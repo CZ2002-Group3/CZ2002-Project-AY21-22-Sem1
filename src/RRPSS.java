@@ -15,6 +15,7 @@ public class RRPSS {
 
         Restaurant restaurant = new Restaurant();
         ReservationMgr reservationMgr = new ReservationMgr();
+        MenuItemMgr MenuItemMgr = new MenuItemMgr();
 
         System.out.println("(1) Create reservation");
         System.out.println("(2) Check/Delete reservation");
@@ -38,7 +39,7 @@ public class RRPSS {
                     reservationMgr.checkReservation(restaurant.reservation);
                     break;
                 case 3:
-
+                    restaurant.menuItems.add(MenuItemMgr.createMenuItem());
                     break;
                 case 4:
                     break;

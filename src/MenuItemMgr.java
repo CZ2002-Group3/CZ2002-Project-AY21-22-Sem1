@@ -7,7 +7,6 @@ public class MenuItemMgr {
 	public MenuItemMgr() {
 		// TODO - implement MenuItemMgr.MenuItemMgr
 		// throw new UnsupportedOperationException();
-
 	}
 
 	/**
