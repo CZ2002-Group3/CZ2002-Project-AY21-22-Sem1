@@ -14,7 +14,7 @@ public class Restaurant {
 	public Restaurant() {
 		table = new ArrayList<Table>();
 		reservation = new ArrayList<Reservation>();
-		staff= new ArrayList<Staff>();
+		staff = new ArrayList<Staff>();
 		staff.add(new Staff("Tom", 1234, "Manager"));
 		customer = new ArrayList<Customer>();
 		order = new ArrayList<Order>();
