@@ -15,10 +15,10 @@ public class RRPSS {
 
         Restaurant restaurant = new Restaurant();
         ReservationMgr reservationMgr = new ReservationMgr();
-
+        
         System.out.println("(1) Create reservation");
         System.out.println("(2) Check/Delete reservation");
-        System.out.println("(3) Create menu item");
+        System.out.println("(3) Show the list of seat assignments by seat ID");
         System.out.println("(4) Show the list of seat assignments by customer ID");
         System.out.println("(5) Assign a customer to a seat");
         System.out.println("(6) Remove a seat assignment");
@@ -29,16 +29,15 @@ public class RRPSS {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    Reservation r = reservationMgr.createReservation();
-                    r.allocateTable(restaurant.table);
-                    restaurant.reservation.add(r);
-                    r.printReservation();
+                    // Reservation r = reservationMgr.createReservation();
+                    // r.allocateTable(restaurant.table);
+                    // restaurant.reservation.add(r);
+                    // r.printReservation();
                     break;
                 case 2:
-                    reservationMgr.checkReservation(restaurant.reservation);
+                    // reservationMgr.checkReservation(restaurant.reservation);
                     break;
                 case 3:
-
                     break;
                 case 4:
                     break;

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Restaurant {
 
-	protected Table[] table;
+	protected List<Table> table;
 	protected List<Reservation> reservation;
 	protected Staff[] staff;
 	protected Customer[] customer;
@@ -24,15 +24,15 @@ public class Restaurant {
 		// table[5] = new Table(6, 10);
 	}
 
-	// public void updateMenuItem(MenuItem item) {
-	// }
+	public void updateMenuItem(MenuItem item) {
+	}
 
-	// public void createMenuItem() {
+	public void createMenuItem() {
 
-	// }
+	}
 
-	// public void deleteMenuItem(int MenuItem) {
+	public void deleteMenuItem(int MenuItem) {
 
-	// }
+	}
 
 }
