@@ -29,7 +29,7 @@ public class RRPSS {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    // Reservation r = reservationMgr.createReservation();
+                    Reservation r = reservationMgr.createReservation();
                     // r.allocateTable(restaurant.table);
                     // restaurant.reservation.add(r);
                     // r.printReservation();

@@ -12,7 +12,7 @@ public class Restaurant {
 	protected List<Reservation> promotions;
 
 	public Restaurant() {
-		table = new Table[6];
+		//table = new Table[6];
 		menuItems = new ArrayList<MenuItem>();
 		reservation = new ArrayList<Reservation>();
 		// table[0] = new Table(1, 10);
