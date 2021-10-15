@@ -31,11 +31,11 @@ public class Order {
 		}
 	}
 
-	public Order(Date timeStamp, Staff waiter, List<MenuItem> orderItems, List<Promotion> promotionItems, boolean type, float discount,
-			Table table) {
+	public Order(int tableNumber, Date timeStamp, Staff waiter, List<MenuItem> orderItems, boolean type, float discount,
+			Table table, List<Promotion> promotionItems) {
 
 		this.totalPrice = 0;
-		this.tableNumber = table.getTableNumber();
+		this.tableNumber = tableNumber;
 		this.timeStamp = timeStamp;
 		this.orderItem = new ArrayList<MenuItem>();
 		this.orderItem.addAll(orderItems);
@@ -46,7 +46,7 @@ public class Order {
 		this.promotionItem.addAll(promotionItems);
 	}
 
-	public void printOrderInvoice() {
+	public String printOrderInvoice() {
 		calculateTotal();
 		int oLength = orderItem.size();
 		int pLength = promotionItem.size();
@@ -60,7 +60,7 @@ public class Order {
 		}
 
 		for (int i = 0; i < pLength; i++) {
-			System.out.println(promotionItem.get(i).getName() + " " +promotionItem.get(i).getDescription()  + "				" + promotionItem.get(i).getPrice());
+			System.out.println(promotionItem.get(i).getName() + "				" + promotionItem.get(i).getPrice());
 		}
 
 		double servieCharge = totalPrice * 0.1;
@@ -83,17 +83,13 @@ public class Order {
 	// throw new UnsupportedOperationException();
 	// }
 
-	public Table getTable(){
+	public Table getTable() {
 		return this.table;
 	}
 
 	public Double getTotalPrice() {
 		calculateTotal();
-		return this.totalPrice;
-	}
-
-	public Date getDate(){
-		return this.timeStamp;
+		return totalPrice;
 	}
 
 	public void removeOrderItem(MenuItem orderItem) {
