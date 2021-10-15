@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Promotion {
 
 	private double price;
-	private ArrayList<MenuItem> menuItem = new ArrayList<MenuItem>();
+	private ArrayList<MenuItem> menuItem;
 	private String description;
 	private String name;
 
@@ -13,6 +13,7 @@ public class Promotion {
 	 * @param menuItem
 	 */
 	public Promotion() {
+		menuItem = new ArrayList<MenuItem>();
 	}
 	
 
@@ -32,8 +33,8 @@ public class Promotion {
 		menuItem.add(item);
 	}
 
-	public void removeMenuItem(MenuItem item) {
-		menuItem.remove(item);
+	public void removeMenuItem(int index) {
+		menuItem.remove(index);
 	}
 
 	public void setPrice(double price) {
