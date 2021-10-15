@@ -17,16 +17,18 @@ public class MenuItemMgr {
 
 		Scanner sc = new Scanner(System.in);
 		int size = menuItems.size();
-
+		System.out.println(size + menuItems.get(0).getName());
 		for (int i = 0; i < size; i++) {
-			System.out.println("Press (" + i + ") to update" + menuItems.get(i).getName());
+			System.out.println("Press (" + i + ") to update " + menuItems.get(i).getName());
 		}
 
 		int foodToUpdate = sc.nextInt();
+		sc.nextLine();
 
-		System.out.println("Press 0 if the food type is unchanged");
-		System.out.println("Press 1 to change name of the food type");
+		System.out.println("Press (0) if the food type is unchanged");
+		System.out.println("Press (1) to change name of the food type");
 		int usrInput = sc.nextInt();
+		sc.nextLine();
 
 		if (usrInput == 1) {
 			System.out.println("Enter new name of the food");
@@ -36,7 +38,7 @@ public class MenuItemMgr {
 		}
 
 		System.out.println("Enter 0 if the description of this food type is unchanged");
-		System.out.println("Press 1 to change name of the food type");
+		System.out.println("Press 1 to change description of the food type");
 		usrInput = sc.nextInt();
 
 		if (usrInput == 1) {
@@ -67,6 +69,7 @@ public class MenuItemMgr {
 		System.out.println("Press (3) to add a Dessert");
 
 		int foodChoice = sc.nextInt();
+		sc.nextLine();
 
 		FoodCategory foodCat = FoodCategory.MAIN_COURSE;
 		if (foodChoice == 2) {
@@ -103,6 +106,7 @@ public class MenuItemMgr {
 		}
 
 		int foodToDelete = sc.nextInt();
+		sc.nextLine();
 
 		menuItems.remove(foodToDelete);
 	}

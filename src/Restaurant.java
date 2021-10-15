@@ -7,14 +7,15 @@ public class Restaurant {
 	protected List<Reservation> reservation;
 	protected Staff[] staff;
 	protected Customer[] customer;
-	protected List<Reservation> order;
+	protected ArrayList<Reservation> order;
 	protected ArrayList<MenuItem> menuItems;
-	protected List<Reservation> promotions;
+	protected ArrayList<Promotion> promotions;
 
 	public Restaurant() {
-		table = new Table[6];
+		// table = new Table[6];
 		menuItems = new ArrayList<MenuItem>();
 		reservation = new ArrayList<Reservation>();
+		promotions = new ArrayList<Promotion>();
 		// table[0] = new Table(1, 10);
 		// table[1] = new Table(2, 8);
 		// table[2] = new Table(3, 6);

@@ -15,12 +15,13 @@ public class RRPSS {
 
         Restaurant restaurant = new Restaurant();
         ReservationMgr reservationMgr = new ReservationMgr();
-        
+        MenuItemMgr menuItemMgr = new MenuItemMgr();
+
         System.out.println("(1) Create reservation");
         System.out.println("(2) Check/Delete reservation");
-        System.out.println("(3) Show the list of seat assignments by seat ID");
-        System.out.println("(4) Show the list of seat assignments by customer ID");
-        System.out.println("(5) Assign a customer to a seat");
+        System.out.println("(3) Alter restaurant menu");
+        System.out.println("(4) something happens here");
+        System.out.println("(5) something happens here");
         System.out.println("(6) Remove a seat assignment");
         System.out.println("(7) Exit");
 
@@ -38,10 +39,29 @@ public class RRPSS {
                     // reservationMgr.checkReservation(restaurant.reservation);
                     break;
                 case 3:
+                    System.out.println("Altering restaurant menu");
+                    System.out.println("(1) Add menu item");
+                    System.out.println("(2) Update menu item");
+                    System.out.println("(3) Delete menu item");
+
+                    System.out.printf("Enter the number of your choice: ");
+                    choice = sc.nextInt();
+
+                    if (choice == 1) {
+                        restaurant.menuItems.add(menuItemMgr.createMenuItem());
+                    } else if (choice == 2) {
+                        menuItemMgr.updateMenuItem(restaurant.menuItems);
+                    }
+                    if (choice == 3) {
+                        menuItemMgr.deleteMenuItem(restaurant.menuItems);
+                    }
+
                     break;
                 case 4:
+
                     break;
                 case 5:
+
                     break;
                 case 6:
                     break;
@@ -50,13 +70,20 @@ public class RRPSS {
                 default:
                     System.out.println("(1) Show number of empty seats");
                     System.out.println("(2) Show the list of empty seats");
-                    System.out.println("(3) Show the list of seat assignments by seat ID");
-                    System.out.println("(4) Show the list of seat assignments by customer ID");
-                    System.out.println("(5) Assign a customer to a seat");
+                    System.out.println("(3) Add menu item");
+                    System.out.println("(4) Update menu item");
+                    System.out.println("(5) Delete menu item");
                     System.out.println("(6) Remove a seat assignment");
                     System.out.println("(7) Exit");
                     break;
             }
+            System.out.println("(1) Show number of empty seats");
+            System.out.println("(2) Show the list of empty seats");
+            System.out.println("(3) Add menu item");
+            System.out.println("(4) something happens here");
+            System.out.println("(5) something happens here");
+            System.out.println("(6) Remove a seat assignment");
+            System.out.println("(7) Exit");
         }
         sc.close();
     }
