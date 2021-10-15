@@ -14,6 +14,7 @@ public class Restaurant {
 	public Restaurant() {
 		// table = new Table[6];
 		menuItems = new ArrayList<MenuItem>();
+		promotions = new ArrayList<Promotion>();
 		reservation = new ArrayList<Reservation>();
 		promotions = new ArrayList<Promotion>();
 		// table[0] = new Table(1, 10);
