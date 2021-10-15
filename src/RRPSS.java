@@ -13,11 +13,8 @@ public class RRPSS {
         orderMgr orderMgr = new orderMgr();
         MenuItemMgr menuItemMgr = new MenuItemMgr();
         StaffMgr staffMgr = new StaffMgr();
-<<<<<<< HEAD
         PromotionMgr promotionMgr = new PromotionMgr();
-=======
         TableMgr tableMgr = new TableMgr();
->>>>>>> cad58e0c802a23181162462d3156a3b600a71883
 
         System.out.println("Enter your Employee ID:");
         long employeeID = sc.nextInt();
