@@ -76,8 +76,73 @@ public class PromotionMgr {
 					switch(userInput) {
 						case 1:
 							System.out.println("What would you like to do?");
+<<<<<<< Updated upstream
 							System.out.print("1. Add items" + "2. Delete items");
+<<<<<<< HEAD
+=======
+							int userInp = sc.nextInt();
+<<<<<<< HEAD
+							// if ()
+=======
+							System.out.print("1. Add items\n" + "2. Delete items\n" + " Enter '-1' to exit.");
+							do {
+
+								int userInp = sc.nextInt();
+
+								if (userInp == 1){
+									String itemToAdd = sc.nextLine();
+									if(restaurant.menuItems.size() == 0){
+										System.out.println("There are currently no items in the menu.");
+									} else {
+										boolean existPromo = false;
+										boolean existMenu = false;
+
+										for (int item = 0; item < restaurant.promotions.get(promoFound).getPromoList().size(); item++){
+											if(itemToAdd == restaurant.promotions.get(promoFound).getPromoList().get(item).getName()){
+												System.out.println("The menu item already exist in the promotion: " + restaurant.promotions.get(promoFound).getName());
+												existPromo = true;
+												break;
+											}
+										}
+
+										if(!existPromo){
+											for (int i = 0; i < restaurant.menuItems.size(); i++){
+												if (itemToAdd == restaurant.menuItems.get(i).getName()){
+													System.out.println("Successfully added " + restaurant.menuItems.get(i).getName() + "to promotion " + restaurant.promotions.get(promoFound).getName());
+													restaurant.promotions.get(promoFound).addMenuItem(restaurant.menuItems.get(i));
+													existMenu = true;
+													break;
+												} 
+											}
+										}
+
+										if(!existMenu){
+											System.out.println("Item does not exist in the menu. Please try again.");
+										}
+									} 
+								} else {
+									String itemToDelete = sc.nextLine();
+									boolean existPromo = false;
+									for (int item = 0; item < restaurant.promotions.get(promoFound).getPromoList().size(); item++){
+										if(itemToDelete == restaurant.promotions.get(promoFound).getPromoList().get(item).getName()){
+											System.out.println("Successfully deleted " + restaurant.menuItems.get(item).getName() + "in promotion: " + restaurant.promotions.get(promoFound).getName());
+											existPromo = true;
+											break;
+										}
+									}
+									if(!existPromo){
+										System.out.println("Item does not exist in promotion: " + restaurant.promotions.get(promoFound).getName());
+									} 
+								}
+							} while (userInput != -1);
+
+>>>>>>> Stashed changes
+=======
+							if ()
+>>>>>>> 12adf10fc053f409a2938cff28968ef7be578bb2
+>>>>>>> a05da49db3fa8b165218b24503df9e0704938453
 							break;
+
 						case 2:
 							System.out.println("Please enter the new description:");
 							String description = sc.nextLine();
@@ -164,6 +229,7 @@ public class PromotionMgr {
 	public void deletePromotion() {
 		Scanner sc = new Scanner(System.in);
 		boolean existPromo = false;
+<<<<<<< HEAD
 
 		System.out.println("The current ongoing promotions are: "); 
 		if(restaurant.promotions.size() == 0){
@@ -177,6 +243,22 @@ public class PromotionMgr {
 
 			String promoToRemove = sc.nextLine();
 
+=======
+
+<<<<<<< HEAD
+		System.out.println("The current ongoing promotions are: "); 
+		if(restaurant.promotions.size() == 0){
+			System.out.println("There are currently no ongoing promotions!");
+		} else {
+			for(int i = 0; i < restaurant.promotions.size(); i++){
+				System.out.println(restaurant.promotions.get(i).getName());
+			}
+			System.out.println("\nWhich of the above promotions would you like to remove?");
+			System.out.print("Enter promotion name: ");
+
+			String promoToRemove = sc.nextLine();
+
+>>>>>>> a05da49db3fa8b165218b24503df9e0704938453
 			for(int item = 0; item < restaurant.promotions.size(); item++) {
 				if (promoToRemove == restaurant.promotions.get(item).getName()) {
 					restaurant.promotions.remove(item);
@@ -191,3 +273,9 @@ public class PromotionMgr {
 		}
 	}
 }
+<<<<<<< HEAD
+=======
+=======
+}
+>>>>>>> 12adf10fc053f409a2938cff28968ef7be578bb2
+>>>>>>> a05da49db3fa8b165218b24503df9e0704938453

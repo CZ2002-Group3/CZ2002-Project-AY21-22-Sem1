@@ -21,6 +21,8 @@ public class ReservationMgr extends TimeMgr{
 	public void removeReservation(Reservation reserved) {
 		boolean check = checkExpired(reserved);
 		if(check == true)
+			
+			
 	}
 
 	public Reservation createReservation() {

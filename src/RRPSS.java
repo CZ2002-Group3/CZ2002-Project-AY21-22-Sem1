@@ -35,9 +35,11 @@ public class RRPSS {
         System.out.println("(10) Print sale revenue report by period (eg day or month)");
         System.out.println("(0) Exit");
 
+        System.out.printf("Enter the number of your choice: ");
+        choice = sc.nextInt();
+
         while (choice != 0) {
-            System.out.printf("Enter the number of your choice: ");
-            choice = sc.nextInt();
+
             switch (choice) {
                 case 1:
                     System.out.println("Altering restaurant menu");
@@ -119,6 +121,9 @@ public class RRPSS {
             System.out.println("(9) Print order invoice");
             System.out.println("(10) Print sale revenue report by period (eg day or month)");
             System.out.println("(0) Exit");
+
+            System.out.printf("Enter the number of your choice: ");
+            choice = sc.nextInt();
         }
         sc.close();
     }

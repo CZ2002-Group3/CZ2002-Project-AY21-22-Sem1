@@ -8,7 +8,6 @@ public class TableMgr {
 		// TODO - implement TableMgr.TableMgr
 		// throw new UnsupportedOperationException();
 	}
-
 	/**
 	 * 
 	 * @param Table
