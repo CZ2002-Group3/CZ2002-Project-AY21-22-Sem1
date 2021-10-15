@@ -17,7 +17,7 @@ public class MenuItemMgr {
 
 		Scanner sc = new Scanner(System.in);
 		int size = menuItems.size();
-		System.out.println(size + menuItems.get(0).getName());
+
 		for (int i = 0; i < size; i++) {
 			System.out.println("Press (" + i + ") to update " + menuItems.get(i).getName());
 		}
@@ -25,8 +25,8 @@ public class MenuItemMgr {
 		int foodToUpdate = sc.nextInt();
 		sc.nextLine();
 
-		System.out.println("Press (0) if the food type is unchanged");
-		System.out.println("Press (1) to change name of the food type");
+		System.out.println("Press (0) if name of food is unchanged");
+		System.out.println("Press (1) to change name of food");
 		int usrInput = sc.nextInt();
 		sc.nextLine();
 
@@ -37,9 +37,10 @@ public class MenuItemMgr {
 
 		}
 
-		System.out.println("Enter 0 if the description of this food type is unchanged");
-		System.out.println("Press 1 to change description of the food type");
+		System.out.println("Enter 0 if the description of food ");
+		System.out.println("Press 1 to change description of the food");
 		usrInput = sc.nextInt();
+		sc.nextLine();
 
 		if (usrInput == 1) {
 			System.out.println("Enter new description of the food");
@@ -48,11 +49,12 @@ public class MenuItemMgr {
 		}
 
 		System.out.println("Enter 0 if the price of this food type is unchanged");
-		System.out.println("Press 1 to change name of the food type");
+		System.out.println("Press 1 to change price of the food");
 		usrInput = sc.nextInt();
+		sc.nextLine();
 
 		if (usrInput == 1) {
-			System.out.println("Enter price of the food");
+			System.out.println("Enter new price of the food");
 			double foodPrice = sc.nextDouble();
 			menuItems.get(foodToUpdate).setPrice(foodPrice);
 
@@ -102,7 +104,7 @@ public class MenuItemMgr {
 		int size = menuItems.size();
 
 		for (int i = 0; i < size; i++) {
-			System.out.println("Press (" + i + ") to delete" + menuItems.get(i).getName());
+			System.out.println("Press (" + i + ") to delete " + menuItems.get(i).getName());
 		}
 
 		int foodToDelete = sc.nextInt();

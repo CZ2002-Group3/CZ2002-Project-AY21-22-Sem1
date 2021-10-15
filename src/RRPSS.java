@@ -70,16 +70,16 @@ public class RRPSS {
                 default:
                     System.out.println("(1) Show number of empty seats");
                     System.out.println("(2) Show the list of empty seats");
-                    System.out.println("(3) Add menu item");
-                    System.out.println("(4) Update menu item");
-                    System.out.println("(5) Delete menu item");
+                    System.out.println("(3) Alter restaurant menu");
+                    System.out.println("(4) something happens here");
+                    System.out.println("(5) something happens here");
                     System.out.println("(6) Remove a seat assignment");
                     System.out.println("(7) Exit");
                     break;
             }
             System.out.println("(1) Show number of empty seats");
             System.out.println("(2) Show the list of empty seats");
-            System.out.println("(3) Add menu item");
+            System.out.println("(3) Alter restaurant menu");
             System.out.println("(4) something happens here");
             System.out.println("(5) something happens here");
             System.out.println("(6) Remove a seat assignment");
