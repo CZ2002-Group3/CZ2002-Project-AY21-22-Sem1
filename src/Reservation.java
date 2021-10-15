@@ -14,37 +14,34 @@ public class Reservation {
 	 * @param Integar
 	 * @param Int
 	 */
-	public Reservation(int Date, int Integar, int Int) {
-		// TODO - implement Reservation.Reservation
-		throw new UnsupportedOperationException();
+	public Reservation(Date Datee, int numPax, int contactNumber, int tableNumber, String customerName) {
+		this.dateTime = Datee;
+		this.numPax = numPax;
+		this.contactNumber = contactNumber;
+		this.tableNumber = tableNumber;
+		this.customerName = customerName;
 	}
 
-	/**
-	 * 
-	 * @param Integar
-	 */
 	public void allocateTable(int Integar) {
 		// TODO - implement Reservation.allocateTable
 		throw new UnsupportedOperationException();
 	}
 
 	public void deleteReservation() {
-		// TODO - implement Reservation.deleteReservation
-		throw new UnsupportedOperationException();
+			
 	}
 
-	/**
-	 * 
-	 * @param Int
-	 */
 	public void printReservation(int Int) {
 		// TODO - implement Reservation.printReservation
 		throw new UnsupportedOperationException();
 	}
 
-	public Date getDate() {
-		// TODO - implement Reservation.getDate
-		throw new UnsupportedOperationException();
+	public Date getdateTime() {
+		return dateTime;
+	}
+	
+	public String getcustomerName() {
+		return this.customerName;
 	}
 
 	public Table getTable() {

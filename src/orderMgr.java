@@ -9,10 +9,24 @@ public class orderMgr {
 	 * 
 	 * @param Order
 	 */
-	public void orderPaid(Order order) {
-		order.printOrderInvoice();
-		Table table = order.getTable();
-		table.setStatus(0);
+	public void orderPaid(List<Order> order, int tableNumber) {
+		int orderSize = order.size();
+		Order found = null;
+		for (int i = 0; i < orderSize; i++) {
+			if (order.get(i).getTableNumber() == tableNumber) {
+				found = order.get(i);
+				break;
+			}
+		}
+		if (found != null) {
+			found.printOrderInvoice();
+			Table table = found.getTable();
+			table.setStatus(0);
+			order.remove(found);
+		}
+		else{
+			System.out.println("Order not found!");
+		}
 	}
 
 	/**
@@ -28,7 +42,7 @@ public class orderMgr {
 	 * @param MenuItem
 	 * @param Promotion
 	 */
-	public Order createOrder(List<MenuItem> MenuItem, List<Promotion> Promotion, Staff waiter) {
+	public Order createOrder(List<MenuItem> MenuItem, List<Promotion> Promotion, Staff waiter, Table table) {
 		Order order = null;
 		List<MenuItem> orderedMenu = new ArrayList<MenuItem>();
 		List<Promotion> orderedPromo = new ArrayList<Promotion>();
@@ -42,22 +56,27 @@ public class orderMgr {
 			System.out.println("(3) Send Order");
 			System.out.println("(4) Cancel Ordering");
 
+			System.out.printf("Enter the number of your choice: ");
 			choice = sc.nextInt();
 			switch (choice) {
 				case 1:
 					int mLength = MenuItem.size();
-
+					System.out.println("CHOICE NAME		FOOD CATEGORY		DESCRIPTION		PRICE");
 					for (int i = 0; i < mLength; i++) {
-						System.out.println('(' + i + 1 + ')' + MenuItem.get(i).getName() + "				"
-								+ MenuItem.get(i).getPrice());
+						System.out.println("(" + (i + 1) + ") " + MenuItem.get(i).getName() + "		"
+								+ MenuItem.get(i).getFoodCategory() + "		" + MenuItem.get(i).getDescription()
+								+ "		$" + String.format("%.2f",MenuItem.get(i).getPrice()));
 					}
 
 					System.out.println("(0) Go back to selection");
+					System.out.printf("Enter the number of your choice: ");
 					choice = sc.nextInt();
 
 					while (choice != 0) {
 						orderedMenu.add(MenuItem.get(choice - 1));
 						System.out.println(MenuItem.get(choice - 1).getName() + " Added!");
+
+						System.out.printf("Enter the number of your choice: ");
 						choice = sc.nextInt();
 					}
 					choice = 1;
@@ -65,26 +84,33 @@ public class orderMgr {
 				case 2:
 					int pLength = Promotion.size();
 
+					System.out.println("CHOICE NAME		FOOD CATEGORY		DESCRIPTION		PRICE");
 					for (int i = 0; i < pLength; i++) {
-						System.out.println('(' + i + 1 + ')' + Promotion.get(i).getName() + " "
-								+ Promotion.get(i).getDescription() + "				" + Promotion.get(i).getPrice());
+						System.out.println("(" + (i + 1) + ") " + Promotion.get(i).getName() + " "
+								+ Promotion.get(i).getDescription() + "				" + String.format("%.2f",Promotion.get(i).getPrice()));
 					}
 
 					System.out.println("(0) Go back to selection");
+					System.out.printf("Enter the number of your choice: ");
 					choice = sc.nextInt();
 
 					while (choice != 0) {
 						orderedPromo.add(Promotion.get(choice - 1));
 						System.out.println(Promotion.get(choice - 1).getName() + " Added!");
+						System.out.printf("Enter the number of your choice: ");
 						choice = sc.nextInt();
 					}
 					choice = 1;
 					break;
 				case 3:
-					Date timeStamp = new Date();
-					Table table = new Table();
-					order = new Order(timeStamp, waiter, orderedMenu, orderedPromo, true, (float) 0.5, table);
-					choice = 0;
+					if (orderedMenu.size() != 0 || orderedPromo.size() != 0) {
+						Date timeStamp = new Date();
+						order = new Order(timeStamp, waiter, orderedMenu, orderedPromo, true, (float) 0.5, table);
+						choice = 0;
+					} else {
+						System.out.println("No items in the order!");
+						choice = 1;
+					}
 					break;
 				case 4:
 					choice = 0;

@@ -21,6 +21,7 @@ public class Order {
 	private void calculateTotal() {
 		int oLength = orderItem.size();
 		int pLength = promotionItem.size();
+		this.totalPrice = 0;
 
 		for (int i = 0; i < oLength; i++) {
 			this.totalPrice += orderItem.get(i).getPrice();
@@ -31,14 +32,15 @@ public class Order {
 		}
 	}
 
-	public Order(Date timeStamp, Staff waiter, List<MenuItem> orderItems, List<Promotion> promotionItems, boolean type, float discount,
-			Table table) {
+	public Order(Date timeStamp, Staff waiter, List<MenuItem> orderItems, List<Promotion> promotionItems, boolean type,
+			float discount, Table table) {
 
 		this.totalPrice = 0;
-		this.tableNumber = table.getTableNumber();
+		this.tableNumber = tableNumber;
 		this.timeStamp = timeStamp;
 		this.orderItem = new ArrayList<MenuItem>();
 		this.orderItem.addAll(orderItems);
+		this.waiter = waiter;
 		this.type = type;
 		this.discount = discount;
 		this.table = table;
@@ -46,7 +48,7 @@ public class Order {
 		this.promotionItem.addAll(promotionItems);
 	}
 
-	public void printOrderInvoice() {
+	public String printOrderInvoice() {
 		calculateTotal();
 		int oLength = orderItem.size();
 		int pLength = promotionItem.size();
@@ -56,21 +58,27 @@ public class Order {
 		System.out.println("Date: " + timeStamp);
 
 		for (int i = 0; i < oLength; i++) {
-			System.out.println(orderItem.get(i).getName() + "				" + orderItem.get(i).getPrice());
+			System.out.println(orderItem.get(i).getName() + "				$"
+					+ String.format("%.2f", orderItem.get(i).getPrice()));
 		}
 
 		for (int i = 0; i < pLength; i++) {
-			System.out.println(promotionItem.get(i).getName() + " " +promotionItem.get(i).getDescription()  + "				" + promotionItem.get(i).getPrice());
+<<<<<<< HEAD
+			System.out.println(promotionItem.get(i).getName() + " " + promotionItem.get(i).getDescription()
+					+ "				$" + String.format("%.2f", promotionItem.get(i).getPrice()));
+=======
+			System.out.println(promotionItem.get(i).getName() + "				" + promotionItem.get(i).getPrice());
+>>>>>>> a05da49db3fa8b165218b24503df9e0704938453
 		}
 
 		double servieCharge = totalPrice * 0.1;
 		double gst = totalPrice * 0.07;
 		double finalTotal = totalPrice + servieCharge + gst;
 
-		System.out.println("Subtotal: " + totalPrice);
-		System.out.println("10% Service Charge: " + servieCharge);
-		System.out.println("7% GST: " + gst);
-		System.out.println("Total: " + finalTotal);
+		System.out.println("Subtotal: $" + String.format("%.2f", totalPrice));
+		System.out.println("10% Service Charge: $" + String.format("%.2f", servieCharge));
+		System.out.println("7% GST: $" + String.format("%.2f", gst));
+		System.out.println("Total: $" + String.format("%.2f", finalTotal));
 	}
 
 	// /**
@@ -83,17 +91,25 @@ public class Order {
 	// throw new UnsupportedOperationException();
 	// }
 
-	public Table getTable(){
+	public Table getTable() {
 		return this.table;
 	}
 
 	public Double getTotalPrice() {
 		calculateTotal();
+<<<<<<< HEAD
 		return this.totalPrice;
 	}
 
-	public Date getDate(){
+	public Date getDate() {
 		return this.timeStamp;
+=======
+		return totalPrice;
+>>>>>>> a05da49db3fa8b165218b24503df9e0704938453
+	}
+
+	public int getTableNumber() {
+		return this.tableNumber;
 	}
 
 	public void removeOrderItem(MenuItem orderItem) {
