@@ -1,41 +1,70 @@
+import java.util.ArrayList;
+
 public class Promotion {
 
 	private double price;
-	private MenuItem[] menuItem;
+	private ArrayList<MenuItem> menuItem = new ArrayList<MenuItem>();
+	private String description;
+	private String name;
 
 	/**
 	 * 
 	 * @param Double
 	 * @param menuItem
 	 */
-	private Promotion(int Double, int menuItem) {
+	public Promotion() {
 		// TODO - implement Promotion.Promotion
-		throw new UnsupportedOperationException();
+		// this.price = price;
+		// this.description = description;
+		// for (int i = 0; i < items.length; i++) {
+		// menuItem.add(items[i]);
 	}
 
-	private String getDescription() {
+	public String getDescription() {
 		// TODO - implement Promotion.getDescription
-		throw new UnsupportedOperationException();
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		// TODO - implement Promotion.getDescription
+		this.description = description;
 	}
 
 	public Double getPromoPrice() {
 		// TODO - implement Promotion.getPromoPrice
-		throw new UnsupportedOperationException();
+		return this.price;
 	}
 
-	public void addMenuItem() {
+	public void addMenuItem(MenuItem item) {
 		// TODO - implement Promotion.addMenuItem
-		throw new UnsupportedOperationException();
+		menuItem.add(item);
 	}
 
-	public void removeMenuItem() {
+	public void removeMenuItem(MenuItem item) {
 		// TODO - implement Promotion.removeMenuItem
-		throw new UnsupportedOperationException();
+		menuItem.remove(item);
 	}
 
-	public void setPrice() {
+	public void setPrice(double price) {
 		// TODO - implement Promotion.setPrice
-		throw new UnsupportedOperationException();
+		this.price = price;
+	}
+
+	public double getPrice() {
+		// TODO - implement Promotion.setPrice
+		return this.price;
+	}
+
+	public ArrayList<MenuItem> getPromoList() {
+		return (menuItem);
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return this.name;
 	}
 
 }

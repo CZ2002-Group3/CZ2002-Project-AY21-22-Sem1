@@ -1,7 +1,7 @@
 public class RestaurantTables {
 
 	private Table[] tables;
-	private Int numEmpty;
+	private int numEmpty;
 
 	/**
 	 * 
