@@ -53,11 +53,12 @@ public class orderMgr {
 					}
 
 					System.out.println("(0) Go back to selection");
+					choice = sc.nextInt();
 
 					while (choice != 0) {
-						choice = sc.nextInt();
 						orderedMenu.add(MenuItem.get(choice - 1));
 						System.out.println(MenuItem.get(choice - 1).getName() + " Added!");
+						choice = sc.nextInt();
 					}
 					choice = 1;
 					break;
@@ -70,11 +71,12 @@ public class orderMgr {
 					}
 
 					System.out.println("(0) Go back to selection");
+					choice = sc.nextInt();
 
 					while (choice != 0) {
-						choice = sc.nextInt();
 						orderedPromo.add(Promotion.get(choice - 1));
 						System.out.println(Promotion.get(choice - 1).getName() + " Added!");
+						choice = sc.nextInt();
 					}
 					choice = 1;
 					break;
