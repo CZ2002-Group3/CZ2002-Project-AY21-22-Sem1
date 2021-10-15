@@ -63,12 +63,9 @@ public class Order {
 		}
 
 		for (int i = 0; i < pLength; i++) {
-<<<<<<< HEAD
 			System.out.println(promotionItem.get(i).getName() + " " + promotionItem.get(i).getDescription()
 					+ "				$" + String.format("%.2f", promotionItem.get(i).getPrice()));
-=======
 			System.out.println(promotionItem.get(i).getName() + "				" + promotionItem.get(i).getPrice());
->>>>>>> a05da49db3fa8b165218b24503df9e0704938453
 		}
 
 		double servieCharge = totalPrice * 0.1;
@@ -97,15 +94,12 @@ public class Order {
 
 	public Double getTotalPrice() {
 		calculateTotal();
-<<<<<<< HEAD
 		return this.totalPrice;
 	}
 
 	public Date getDate() {
 		return this.timeStamp;
-=======
 		return totalPrice;
->>>>>>> a05da49db3fa8b165218b24503df9e0704938453
 	}
 
 	public int getTableNumber() {

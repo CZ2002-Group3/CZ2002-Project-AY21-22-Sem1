@@ -9,7 +9,7 @@ public class RRPSS {
         Scanner sc = new Scanner(System.in);
 
         Restaurant restaurant = new Restaurant();
-        // ReservationMgr reservationMgr = new ReservationMgr();
+        ReservationMgr reservationMgr = new ReservationMgr();
         orderMgr orderMgr = new orderMgr();
         MenuItemMgr menuItemMgr = new MenuItemMgr();
         StaffMgr staffMgr = new StaffMgr();
@@ -84,8 +84,20 @@ public class RRPSS {
 
                     break;
                 case 6:
+                	reservationMgr.createReservation(restaurant.reservation);
                     break;
                 case 7:
+                	System.out.println("Reservation Menu");
+                	System.out.println("(1) Check reservation");
+                	System.out.println("(2) Remove reservation");
+                	choice = sc.nextInt();
+                	if(choice == 1)
+                		reservationMgr.checkReservation(restaurant.reservation);
+                	else if(choice == 2)
+                		reservationMgr.removeReservation(restaurant.reservation);
+                	else
+                		System.out.println("Invalid Choice");
+                		
                     break;
                 case 8:
                     break;

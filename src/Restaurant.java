@@ -12,12 +12,9 @@ public class Restaurant {
 	protected List<Promotion> promotions;
 
 	public Restaurant() {
-<<<<<<< HEAD
 		//table = new Table[6];
 		menuItems = new ArrayList<MenuItem>();
-=======
 		table = new ArrayList<Table>();
->>>>>>> d559030e53dc699eb2acfcc8b74d1641467893d5
 		reservation = new ArrayList<Reservation>();
 		staff = new ArrayList<Staff>();
 		staff.add(new Staff("Tom", 1234, "Manager"));

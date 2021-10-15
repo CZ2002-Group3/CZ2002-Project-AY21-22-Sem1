@@ -31,9 +31,15 @@ public class Reservation {
 			
 	}
 
-	public void printReservation(int Int) {
-		// TODO - implement Reservation.printReservation
-		throw new UnsupportedOperationException();
+	public void printReservation() {
+		System.out.println("===========================================================");
+		System.out.println("Date and Time of reservation: "+ dateTime);
+		System.out.println("Number of Pax: "+ numPax);
+		System.out.println("Customer contact number: "+ contactNumber);
+		System.out.println("Table assigned: "+ tableNumber);
+		System.out.println("Customer Name: "+ customerName);
+		System.out.println(" ");
+		System.out.println("===========================================================");
 	}
 
 	public Date getdateTime() {
@@ -41,12 +47,11 @@ public class Reservation {
 	}
 	
 	public String getcustomerName() {
-		return this.customerName;
+		return customerName;
 	}
 
-	public Table getTable() {
-		// TODO - implement Reservation.getTable
-		throw new UnsupportedOperationException();
+	public int getTable() {
+		return tableNumber;
 	}
 
 }
