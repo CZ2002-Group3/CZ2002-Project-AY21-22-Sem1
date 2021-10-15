@@ -31,23 +31,18 @@ public class PromotionMgr {
 		int promoFound = 0;
 
 		while(true){
-			System.out.println("Enter the name of the promotion that you would like to update.");
-			System.out.print("Name of Promo: ");
-			String promoName = sc.nextLine();
+			System.out.println("The current ongoing promotions are: "); 
 			if(promotions.size() == 0){
-				System.out.println("There are currently no ongoing promotions!");
+				System.out.println("There are currently no ongoing promotions!\n");
+				return;
 			} else {
 				for(int i = 0; i < promotions.size(); i++){
-					if(promoName == promotions.get(i).getName()){
-						promoFound = i;
-						break;
-					} else {
-						promoFound = -1;
-					}
-				}
+					System.out.printf("%d: %s\n", i + 1,  promotions.get(i).getName());
 			}
-			if(promoFound == -1) {
-				System.out.println("The promotion does not exist. Please try again!");
+			System.out.println("Enter the the promotion that you would like to update.");
+			int promoIndex = sc.nextInt();
+			if (promoIndex <= 0 || promoIndex >= promotions.size() + 1) {
+				System.out.println("Please enter a valid index.");
 			} else {
 				for(int i = 0; i < promotions.size(); i++){
 					if(promoFound == i) {
@@ -135,10 +130,9 @@ public class PromotionMgr {
 							promotions.get(promoFound).setPrice(price);
 							System.out.println("Successfully updated price for promotion: " + promotions.get(promoFound).getName());
 							break;
-					}
-				} while (userInput != -1);
-				
-
+						}
+					} while (userInput != -1);
+				}
 			}
 		}
 	}
@@ -220,13 +214,13 @@ public class PromotionMgr {
 			System.out.println("There are currently no ongoing promotions!");
 		} else {
 			for(int i = 0; i < promotions.size(); i++){
-				System.out.println(promotions.get(i).getName());
+				System.out.printf("%d: %s\n", i + 1,  promotions.get(i).getName());
 			}
 			do {
 				System.out.println("\nWhich of the above promotions would you like to remove?");
 				System.out.print("Enter number: ");
 				int promoToRemove = sc.nextInt();
-				if(promoToRemove == 0 || promoToRemove >= promotions.size() + 1){
+				if(promoToRemove <= 0 || promoToRemove >= promotions.size() + 1){
 					System.out.println("Please enter a valid number!");
 				} else{
 					promotions.remove(promoToRemove - 1);

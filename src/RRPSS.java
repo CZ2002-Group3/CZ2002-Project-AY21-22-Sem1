@@ -10,17 +10,11 @@ public class RRPSS {
 
         Restaurant restaurant = new Restaurant();
         // ReservationMgr reservationMgr = new ReservationMgr();
-        orderMgr orderMgr = new orderMgr();
+        //orderMgr orderMgr = new orderMgr();
         MenuItemMgr menuItemMgr = new MenuItemMgr();
         StaffMgr staffMgr = new StaffMgr();
         PromotionMgr promotionMgr = new PromotionMgr();
         TableMgr tableMgr = new TableMgr();
-
-        System.out.println("Enter your Employee ID:");
-        long employeeID = sc.nextInt();
-
-        Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
-        System.out.println("Welcome " + staff.getStaffName());
 
         int choice = -1;
 
@@ -80,22 +74,10 @@ public class RRPSS {
                     }
                     break;
                 case 3:
-                    System.out.printf("Enter the number of person: ");
-                    int noOfPax = sc.nextInt();
-                    Table table = tableMgr.assignTable(restaurant.table, 1234, noOfPax);
-                    if (table != null) {
-                        Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table);
-                        if (order != null){
-                            restaurant.order.add(order);
-                            table.setStatus(0);
-                        }
-                    }
+                    
                     break;
                 case 4:
-                    int orderSize = restaurant.order.size();
-                    for (int i = 0; i < orderSize; i++) {
-                        restaurant.order.get(i).printOrderInvoice();
-                    }
+                    
                     break;
                 case 5:
 
@@ -107,10 +89,7 @@ public class RRPSS {
                 case 8:
                     break;
                 case 9:
-                    System.out.printf("Enter Table Number: ");
-                    int tableNumber = sc.nextInt();
-                    orderMgr.orderPaid(restaurant.order, tableNumber);
-                    break;
+                    
                 case 10:
                     break;
                 default:
