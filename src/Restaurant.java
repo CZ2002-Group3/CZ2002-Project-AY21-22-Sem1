@@ -9,11 +9,12 @@ public class Restaurant {
 	protected Customer[] customer;
 	protected List<Reservation> order;
 	protected ArrayList<MenuItem> menuItems;
-	protected List<Reservation> promotions;
+	protected List<Promotion> promotions;
 
 	public Restaurant() {
 		table = new Table[6];
 		menuItems = new ArrayList<MenuItem>();
+		promotions = new ArrayList<Promotion>();
 		reservation = new ArrayList<Reservation>();
 		// table[0] = new Table(1, 10);
 		// table[1] = new Table(2, 8);
