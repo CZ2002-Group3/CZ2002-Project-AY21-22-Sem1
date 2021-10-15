@@ -2,7 +2,7 @@ import java.util.*;
 
 public class MenuItemMgr {
 
-	ArrayList<MenuItem> menuItems;
+	List<MenuItem> menuItems;
 
 	public MenuItemMgr() {
 		// TODO - implement MenuItemMgr.MenuItemMgr
@@ -13,7 +13,7 @@ public class MenuItemMgr {
 	 * 
 	 * @param MenuItem
 	 */
-	public void updateMenuItem(ArrayList<MenuItem> menuItems) {
+	public void updateMenuItem(List<MenuItem> menuItems) {
 
 		Scanner sc = new Scanner(System.in);
 		int size = menuItems.size();
@@ -99,7 +99,7 @@ public class MenuItemMgr {
 	 * 
 	 * @param MenuItem
 	 */
-	public void deleteMenuItem(ArrayList<MenuItem> menuItems) {
+	public void deleteMenuItem(List<MenuItem> menuItems) {
 		Scanner sc = new Scanner(System.in);
 		int size = menuItems.size();
 

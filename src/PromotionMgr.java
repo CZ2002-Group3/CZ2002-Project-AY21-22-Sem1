@@ -76,7 +76,7 @@ public class PromotionMgr {
 							System.out.println("What would you like to do?");
 							System.out.print("1. Add items" + "2. Delete items");
 							int userInp = sc.nextInt();
-							if ()
+							// if ()
 							break;
 						case 2:
 							break;

@@ -57,10 +57,17 @@ public class Promotion {
 	}
 
 	public ArrayList<MenuItem> getPromoList() {
+<<<<<<< HEAD
+		return (menuItem);
+	}
+
+	public void setName(String name) {
+=======
 		return(menuItem);
 	}
 
 	public void setName(String name){
+>>>>>>> 629ce6cd1bf7826ef7ed5048fae38abbb35dbbb4
 		this.name = name;
 	}
 

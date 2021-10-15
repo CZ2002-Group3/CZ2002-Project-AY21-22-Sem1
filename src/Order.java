@@ -28,13 +28,14 @@ public class Order {
 
 		for (int i = 0; i < pLength; i++) {
 			this.totalPrice += promotionItem.get(i).getPrice();
+		}
 	}
 
-	public Order(int tableNumber, Date timeStamp, Staff waiter, List<MenuItem> orderItems, boolean type, float discount,
-			Table table, List<Promotion> promotionItems) {
-				
+	public Order(Date timeStamp, Staff waiter, List<MenuItem> orderItems, List<Promotion> promotionItems, boolean type, float discount,
+			Table table) {
+
 		this.totalPrice = 0;
-		this.tableNumber = tableNumber;
+		this.tableNumber = table.getTableNumber();
 		this.timeStamp = timeStamp;
 		this.orderItem = new ArrayList<MenuItem>();
 		this.orderItem.addAll(orderItems);
@@ -45,7 +46,7 @@ public class Order {
 		this.promotionItem.addAll(promotionItems);
 	}
 
-	public String printOrderInvoice() {
+	public void printOrderInvoice() {
 		calculateTotal();
 		int oLength = orderItem.size();
 		int pLength = promotionItem.size();
@@ -59,7 +60,7 @@ public class Order {
 		}
 
 		for (int i = 0; i < pLength; i++) {
-			System.out.println(promotionItem.get(i).getName() + "				" + promotionItem.get(i).getPrice());
+			System.out.println(promotionItem.get(i).getName() + " " +promotionItem.get(i).getDescription()  + "				" + promotionItem.get(i).getPrice());
 		}
 
 		double servieCharge = totalPrice * 0.1;
@@ -88,7 +89,11 @@ public class Order {
 
 	public Double getTotalPrice() {
 		calculateTotal();
-		return totalPrice;
+		return this.totalPrice;
+	}
+
+	public Date getDate(){
+		return this.timeStamp;
 	}
 
 	public void removeOrderItem(MenuItem orderItem) {
