@@ -33,6 +33,10 @@ public class Table {
 			}
 	}
 
+	public TableStatus getStatus() {
+		return this.status;
+	}
+
 	public void setTableNumber(int number){
 		this.tableNumber=number;
 		System.out.println("Table number set to" + this.tableNumber);
@@ -73,6 +77,30 @@ public class Table {
 		}
 		
 	}
+	public int getCapacity() {
+		
+		if(this.capacity == TableCapacity.SIZE2)
+		{
+			return 2;
+		}
+		else if(this.capacity == TableCapacity.SIZE4)
+		{
+			return 4;
+		}
+		else if(this.capacity == TableCapacity.SIZE6)
+		{
+			return 6;
+		}
+		else if(this.capacity == TableCapacity.SIZE8)
+		{
+			return 8;
+		}
+		else
+		{
+			return 10;
+		}
+	}
+
 
 	public void setCustomerID(int custid){
 		this.customerId=custid;
