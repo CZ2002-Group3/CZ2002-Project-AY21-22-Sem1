@@ -1,26 +1,27 @@
+import java.util.List;
+
 public class orderMgr {
 
 	public orderMgr() {
-		// TODO - implement orderMgr.orderMgr
-		throw new UnsupportedOperationException();
+
 	}
 
 	/**
 	 * 
 	 * @param Order
 	 */
-	public void orderPaid(int Order) {
-		// TODO - implement orderMgr.orderPaid
-		throw new UnsupportedOperationException();
+	public void orderPaid(Order order) {
+		order.printOrderInvoice();
+		Table table = order.getTable();
+		table.setStatus(TableStatus.VACATED);
 	}
 
 	/**
 	 * 
 	 * @param Order
 	 */
-	public void viewOrder(int Order) {
-		// TODO - implement orderMgr.viewOrder
-		throw new UnsupportedOperationException();
+	public void viewOrder(Order order) {
+		order.printOrderInvoice();
 	}
 
 	/**
@@ -28,9 +29,8 @@ public class orderMgr {
 	 * @param MenuItem
 	 * @param Promotion
 	 */
-	public Order createOrder(int[] MenuItem, int[] Promotion) {
-		// TODO - implement orderMgr.createOrder
-		throw new UnsupportedOperationException();
+	public Order createOrder(List<MenuItem> MenuItem, List<Promotion> Promotion, Staff waiter) {
+
 	}
 
 	/**
@@ -39,8 +39,7 @@ public class orderMgr {
 	 * @param Integar
 	 */
 	public void generateSalesReport(int[] Order, int Integar) {
-		// TODO - implement orderMgr.generateSalesReport
-		throw new UnsupportedOperationException();
+
 	}
 
 }

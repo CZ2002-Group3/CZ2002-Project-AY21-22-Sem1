@@ -1,12 +1,24 @@
 public class Staff {
 
 	private String name;
-	private int employeeId;
+	private long employeeID;
 	private String jobTitle;
 
-	public String getStaffName() {
-		// TODO - implement Staff.getStaffName
-		throw new UnsupportedOperationException();
+	public Staff(String name, long employeeID, String jobTitle) {
+		this.name = name;
+		this.employeeID = employeeID;
+		this.jobTitle = jobTitle;
 	}
 
+	public String getStaffName() {
+		return this.name;
+	}
+
+	public long getEmpolyeeID() {
+		return this.employeeID;
+	}
+
+	public String getJobTitle() {
+		return this.jobTitle;
+	}
 }
