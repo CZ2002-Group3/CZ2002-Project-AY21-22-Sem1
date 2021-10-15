@@ -4,10 +4,4 @@ public class TimeMgr {
 		// TODO - implement TimeMgr.checkExpired
 		throw new UnsupportedOperationException();
 	}
-
-	public Date getCurrentTime() {
-		// TODO - implement TimeMgr.getCurrentTime
-		throw new UnsupportedOperationException();
-	}
-
 }
