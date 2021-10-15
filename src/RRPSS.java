@@ -60,10 +60,15 @@ public class RRPSS {
                 case 2:
                     break;
                 case 3:
-
+                    Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff);
+                    if (order != null)
+                        restaurant.order.add(order);
                     break;
                 case 4:
-
+                    int orderSize = restaurant.order.size();
+                    for (int i = 0; i < orderSize; i++) {
+                        restaurant.order.get(i).printOrderInvoice();
+                    }
                     break;
                 case 5:
 
