@@ -79,6 +79,7 @@ public class PromotionMgr {
 <<<<<<< Updated upstream
 							System.out.print("1. Add items" + "2. Delete items");
 							int userInp = sc.nextInt();
+<<<<<<< HEAD
 							// if ()
 =======
 							System.out.print("1. Add items\n" + "2. Delete items\n" + " Enter '-1' to exit.");
@@ -134,6 +135,9 @@ public class PromotionMgr {
 							} while (userInput != -1);
 
 >>>>>>> Stashed changes
+=======
+							if ()
+>>>>>>> 12adf10fc053f409a2938cff28968ef7be578bb2
 							break;
 
 						case 2:
@@ -223,6 +227,7 @@ public class PromotionMgr {
 		Scanner sc = new Scanner(System.in);
 		boolean existPromo = false;
 
+<<<<<<< HEAD
 		System.out.println("The current ongoing promotions are: "); 
 		if(restaurant.promotions.size() == 0){
 			System.out.println("There are currently no ongoing promotions!");
@@ -249,3 +254,6 @@ public class PromotionMgr {
 		}
 	}
 }
+=======
+}
+>>>>>>> 12adf10fc053f409a2938cff28968ef7be578bb2
