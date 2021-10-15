@@ -7,7 +7,7 @@ public class Restaurant {
 	protected List<Reservation> reservation;
 	protected Staff[] staff;
 	protected Customer[] customer;
-	protected ArrayList<Reservation> order;
+	protected ArrayList<Order> order;
 	protected ArrayList<MenuItem> menuItems;
 	protected ArrayList<Promotion> promotions;
 
