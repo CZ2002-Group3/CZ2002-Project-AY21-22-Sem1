@@ -1,3 +1,4 @@
+import java.text.*;
 import java.util.*;
 
 public class ReservationMgr extends TimeMgr {
@@ -49,7 +50,8 @@ public class ReservationMgr extends TimeMgr {
 		// if(check == true)
 	}
 
-	public void createReservation(List<Reservation> reservation, List<Table> tables, List<Customer> customers) {
+	public void createReservation(List<Reservation> reservation, List<Table> tables, List<Customer> customers)
+			throws ParseException {
 		Scanner sc = new Scanner(System.in);
 		TableMgr tableMgr = new TableMgr();
 		CustomerMgr customerMgr = new CustomerMgr();
@@ -73,7 +75,11 @@ public class ReservationMgr extends TimeMgr {
 			}
 			table.setCustomerID(cust.getCustomerID());
 
-			reservation.add(new Reservation(dateTime, numPax, contactNo, table.getTableNumber(), cust.getCustomerName()));
+			System.out.println("Enter Reservation date and time (Format: dd/MM/yyyy HH:mm): ");
+			String dateString = sc.next();
+			Date dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateString);
+			reservation
+					.add(new Reservation(dateTime, numPax, contactNo, table.getTableNumber(), cust.getCustomerName()));
 		}
 
 	}
