@@ -3,12 +3,13 @@ public class Table {
 	private TableStatus status;
 	private int tableNumber;
 	private TableCapacity capacity;
-	private int customerId;
+	private long customerId;
 
-	public Table() {
+	public Table(int tableNumber, int capacity) {
 		this.status = TableStatus.VACATED;
+		this.tableNumber = tableNumber;
+		setCapacity(capacity);
 	}
-
 
 	public void setStatus(int SetTable) { // 0 set VACATED, 1 set OCCUPIED, 2 set RESERVED 
 		while(SetTable>2 || SetTable<0)
@@ -102,13 +103,13 @@ public class Table {
 	}
 
 
-	public void setCustomerID(int custid){
+	public void setCustomerID(long custid){
 		this.customerId=custid;
 		System.out.println("CustomerID " + this.customerId +" sits at Table Number " + this.tableNumber);
 	}
 
 	public Boolean checkTableAvailability() {
-		if (this.status == TableStatus.VACATED || this.status == TableStatus.OCCUPIED)
+		if (this.status == TableStatus.RESERVED || this.status == TableStatus.OCCUPIED)
 		{
 			System.out.println("Table Number "+ this.getTableNumber() +" is "+ this.status);
 			return false;

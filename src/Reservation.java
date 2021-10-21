@@ -7,13 +7,7 @@ public class Reservation {
 	private int contactNumber;
 	private int tableNumber;
 	private String customerName;
-
-	/**
-	 * 
-	 * @param Date
-	 * @param Integar
-	 * @param Int
-	 */
+	
 	public Reservation(Date Datee, int numPax, int contactNumber, int tableNumber, String customerName) {
 		this.dateTime = Datee;
 		this.numPax = numPax;
@@ -23,17 +17,21 @@ public class Reservation {
 	}
 
 	public void allocateTable(int Integar) {
-		// TODO - implement Reservation.allocateTable
-		throw new UnsupportedOperationException();
+
 	}
 
 	public void deleteReservation() {
 			
 	}
 
-	public void printReservation(int Int) {
-		// TODO - implement Reservation.printReservation
-		throw new UnsupportedOperationException();
+	public void printReservation() {
+		System.out.println("===========================================================");
+		System.out.println("Date and Time of reservation: "+ dateTime);
+		System.out.println("Number of Pax: "+ numPax);
+		System.out.println("Customer contact number: "+ contactNumber);
+		System.out.println("Table assigned: "+ tableNumber);
+		System.out.println("Customer Name: "+ customerName);
+		System.out.println(" ");
 	}
 
 	public Date getdateTime() {
@@ -41,12 +39,11 @@ public class Reservation {
 	}
 	
 	public String getcustomerName() {
-		return this.customerName;
+		return customerName;
 	}
 
-	public Table getTable() {
-		// TODO - implement Reservation.getTable
-		throw new UnsupportedOperationException();
+	public int getTable() {
+		return tableNumber;
 	}
 
 }

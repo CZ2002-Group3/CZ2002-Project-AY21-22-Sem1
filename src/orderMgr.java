@@ -1,17 +1,16 @@
 import java.util.*;
 
-public class orderMgr {
+public class OrderMgr {
 
-	public orderMgr() {
+	public OrderMgr() {
 	}
 
-	/**
-	 * 
-	 * @param Order
-	 */
 	public void orderPaid(List<Order> order, int tableNumber) {
 		int orderSize = order.size();
 		Order found = null;
+		Scanner sc = new Scanner(System.in);
+		Boolean discount = false;
+
 		for (int i = 0; i < orderSize; i++) {
 			if (order.get(i).getTableNumber() == tableNumber) {
 				found = order.get(i);
@@ -19,30 +18,28 @@ public class orderMgr {
 			}
 		}
 		if (found != null) {
-			found.printOrderInvoice();
 			Table table = found.getTable();
+
+			Customer cust = found.getCustomer();
+			if(cust.getIsMember()){
+				System.out.println("Does the customer ");
+				discount = sc.nextBoolean();
+			}
+
+			found.printOrderInvoice(discount);
 			table.setStatus(0);
 			order.remove(found);
-		}
-		else{
+		} else {
 			System.out.println("Order not found!");
 		}
 	}
 
-	/**
-	 * 
-	 * @param Order
-	 */
-	public void viewOrder(Order order) {
-		order.printOrderInvoice();
+	public void viewOrder(Order order, boolean discounted) {
+		order.printOrderInvoice(discounted);
 	}
 
-	/**
-	 * 
-	 * @param MenuItem
-	 * @param Promotion
-	 */
-	public Order createOrder(List<MenuItem> MenuItem, List<Promotion> Promotion, Staff waiter, Table table) {
+	public Order createOrder(List<MenuItem> MenuItem, List<Promotion> Promotion, Staff waiter, Table table,
+			Customer customer) {
 		Order order = null;
 		List<MenuItem> orderedMenu = new ArrayList<MenuItem>();
 		List<Promotion> orderedPromo = new ArrayList<Promotion>();
@@ -65,7 +62,7 @@ public class orderMgr {
 					for (int i = 0; i < mLength; i++) {
 						System.out.println("(" + (i + 1) + ") " + MenuItem.get(i).getName() + "		"
 								+ MenuItem.get(i).getFoodCategory() + "		" + MenuItem.get(i).getDescription()
-								+ "		$" + String.format("%.2f",MenuItem.get(i).getPrice()));
+								+ "		$" + String.format("%.2f", MenuItem.get(i).getPrice()));
 					}
 
 					System.out.println("(0) Go back to selection");
@@ -84,10 +81,11 @@ public class orderMgr {
 				case 2:
 					int pLength = Promotion.size();
 
-					System.out.println("CHOICE NAME		FOOD CATEGORY		DESCRIPTION		PRICE");
+					System.out.println("CHOICE NAME		DESCRIPTION		PRICE");
 					for (int i = 0; i < pLength; i++) {
-						System.out.println("(" + (i + 1) + ") " + Promotion.get(i).getName() + " "
-								+ Promotion.get(i).getDescription() + "				" + String.format("%.2f",Promotion.get(i).getPrice()));
+						System.out.println("(" + (i + 1) + ") " + Promotion.get(i).getName() + "		"
+								+ Promotion.get(i).getDescription() + "				"
+								+ String.format("%.2f", Promotion.get(i).getPrice()));
 					}
 
 					System.out.println("(0) Go back to selection");
@@ -105,7 +103,7 @@ public class orderMgr {
 				case 3:
 					if (orderedMenu.size() != 0 || orderedPromo.size() != 0) {
 						Date timeStamp = new Date();
-						order = new Order(timeStamp, waiter, orderedMenu, orderedPromo, true, (float) 0.5, table);
+						order = new Order(timeStamp, waiter, orderedMenu, orderedPromo, customer, table);
 						choice = 0;
 					} else {
 						System.out.println("No items in the order!");
@@ -123,12 +121,7 @@ public class orderMgr {
 		return order;
 	}
 
-	/**
-	 * 
-	 * @param Order
-	 * @param Integar
-	 */
-	public void generateSalesReport(int[] Order, int Integar) {
+	public void generateSalesReport(List<Order> Orders, int Integar) {
 
 	}
 
