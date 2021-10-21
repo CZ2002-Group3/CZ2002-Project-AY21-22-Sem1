@@ -19,7 +19,7 @@ public class ReservationMgr extends TimeMgr {
 			System.out.printf("Enter your Name: ");
 			name = scan.next();
 			for (int i = 0; i < size; i++) {
-				if (reservation.get(i).getcustomerName().equals(name) && reservation.get(i).getTable() == tableNo) {
+				if (reservation.get(i).getcustomerName().equals(name) && reservation.get(i).getTableNumber() == tableNo) {
 					reservation.get(i).printReservation();
 					return;
 				}
@@ -40,14 +40,15 @@ public class ReservationMgr extends TimeMgr {
 		int size = reservation.size();
 		System.out.printf("Enter the table number to be removed: ");
 		tableNo = sc.nextInt();
+
 		for (int i = 0; i < size; i++) {
-			if (reservation.get(i).getTable() == tableNo) {
-				boolean check = checkExpired(reservation.get(i));
+			if (reservation.get(i).getTableNumber() == tableNo) {
+				reservation.get(i).getTable().setStatus(0);
 				reservation.remove(i);
-			} else
-				System.out.println("Table not under reservation !! ");
+				return;
+			}
 		}
-		// if(check == true)
+		System.out.println("Table not under reservation !! ");
 	}
 
 	public void createReservation(List<Reservation> reservation, List<Table> tables, List<Customer> customers)
@@ -72,14 +73,15 @@ public class ReservationMgr extends TimeMgr {
 				boolean member = sc.nextBoolean();
 				long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
 				cust = new Customer(custID, custName, member, contactNo);
+				customers.add(cust);
 			}
 			table.setCustomerID(cust.getCustomerID());
 
 			System.out.println("Enter Reservation date and time (Format: dd/MM/yyyy HH:mm): ");
-			String dateString = sc.next();
+			sc.nextLine();
+			String dateString = sc.nextLine();
 			Date dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateString);
-			reservation
-					.add(new Reservation(dateTime, numPax, contactNo, table.getTableNumber(), cust.getCustomerName()));
+			reservation.add(new Reservation(dateTime, numPax, cust, table));
 		}
 
 	}

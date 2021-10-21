@@ -1,14 +1,20 @@
 import java.util.Date;
+import java.util.List;
 
-public  class TimeMgr {
+public class TimeMgr {
 
-	public boolean checkExpired(Reservation date) {
+	public void checkExpired(List<Reservation> reservations) {
 		Date newdate = new Date();
-		int compare = newdate.compareTo(date.getdateTime());
-		if(compare < 0)
-			return false;
-		else
-			return true;
+		int size = reservations.size();
+		for (int i = 0; i < size; i++) {
+			Reservation curr = reservations.get(i);
+			int compare = newdate.compareTo(curr.getdateTime());
+			if (compare > 0)
+			{
+				reservations.remove(curr);
+				size--;
+			}
+		}
 	}
-	
+
 }

@@ -7,21 +7,17 @@ public class Reservation {
 	private int contactNumber;
 	private int tableNumber;
 	private String customerName;
+	private Table table;
+	private Customer cust;
 	
-	public Reservation(Date Datee, int numPax, int contactNumber, int tableNumber, String customerName) {
+	public Reservation(Date Datee, int numPax, Customer cust, Table table) {
 		this.dateTime = Datee;
 		this.numPax = numPax;
-		this.contactNumber = contactNumber;
-		this.tableNumber = tableNumber;
-		this.customerName = customerName;
-	}
-
-	public void allocateTable(int Integar) {
-
-	}
-
-	public void deleteReservation() {
-			
+		this.contactNumber = cust.getContactNumber();
+		this.tableNumber = table.getTableNumber();
+		this.customerName = cust.getCustomerName();
+		this.cust = cust;
+		this.table = table;
 	}
 
 	public void printReservation() {
@@ -42,8 +38,15 @@ public class Reservation {
 		return customerName;
 	}
 
-	public int getTable() {
+	public int getTableNumber() {
 		return tableNumber;
 	}
 
+	public Table getTable(){
+		return table;
+	}
+
+	public Customer getCustomer(){
+		return cust;
+	}
 }

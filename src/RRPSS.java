@@ -1,12 +1,9 @@
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
-import java.util.UUID;
-import java.io.*;
+import java.text.*;
+import java.util.*;
 
 public class RRPSS {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Scanner sc = new Scanner(System.in);
 
         Restaurant restaurant = new Restaurant();
@@ -17,6 +14,7 @@ public class RRPSS {
         TableMgr tableMgr = new TableMgr();
         PromotionMgr promotionMgr = new PromotionMgr();
         CustomerMgr customerMgr = new CustomerMgr();
+        TimeMgr timeMgr = new TimeMgr();
 
         System.out.println("Enter your Employee ID:");
         long employeeID = sc.nextInt();
@@ -96,6 +94,7 @@ public class RRPSS {
                     boolean member = sc.nextBoolean();
                     long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
                     cust = new Customer(custID, custName, member, contactNo);
+                    restaurant.customer.add(cust);
                 }
 
                 Table table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(), noOfPax);
@@ -120,12 +119,14 @@ public class RRPSS {
                 orderMgr.removeOrderItem(restaurant.order, tableNo);
                 break;
             case 6:
+                reservationMgr.createReservation(restaurant.reservation, restaurant.table, restaurant.customer);
                 break;
             case 7:
                 System.out.println("Reservation Menu");
                 System.out.println("(1) Check reservation");
                 System.out.println("(2) Remove reservation");
                 choice = sc.nextInt();
+                timeMgr.checkExpired(restaurant.reservation);
                 if (choice == 1)
                     reservationMgr.checkReservation(restaurant.reservation);
                 else if (choice == 2)
