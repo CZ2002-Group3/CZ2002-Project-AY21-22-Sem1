@@ -101,6 +101,14 @@ public class Order {
 		return this.customer;
 	}
 
+	public List<MenuItem> getOrderItems(){
+		return this.orderItem;
+	}
+
+	public List<Promotion> getPromotions(){
+		return this.promotionItem;
+	}
+
 	public void removeOrderItem(MenuItem orderItem) {
 		this.orderItem.remove(orderItem);
 

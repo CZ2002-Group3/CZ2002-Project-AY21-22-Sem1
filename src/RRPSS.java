@@ -93,7 +93,7 @@ public class RRPSS {
                     System.out.println("Enter Customer Name: ");
                     String custName = sc.next();
                     System.out.println("Membership?: ");
-                    boolean member = sc.nextBoolean();  
+                    boolean member = sc.nextBoolean();
                     long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
                     cust = new Customer(custID, custName, member, contactNo);
                 }
@@ -115,11 +115,24 @@ public class RRPSS {
                 }
                 break;
             case 5:
-
+                System.out.printf("Enter Table Number: ");
+                int tableNo = sc.nextInt();
+                orderMgr.removeOrderItem(restaurant.order, tableNo);
                 break;
             case 6:
                 break;
             case 7:
+                System.out.println("Reservation Menu");
+                System.out.println("(1) Check reservation");
+                System.out.println("(2) Remove reservation");
+                choice = sc.nextInt();
+                if (choice == 1)
+                    reservationMgr.checkReservation(restaurant.reservation);
+                else if (choice == 2)
+                    reservationMgr.removeReservation(restaurant.reservation);
+                else
+                    System.out.println("Invalid Choice");
+
                 break;
             case 8:
                 break;
