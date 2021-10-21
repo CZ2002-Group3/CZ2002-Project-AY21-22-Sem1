@@ -33,14 +33,13 @@ public class TableMgr {
 		return null;
 	}
 
-	public Table reverseTable(List<Table> tables, long custid, int numOfPax) {
+	public Table reverseTable(List<Table> tables, int numOfPax) {
 		int flag; // to check if this customer has been allocated a table
 		flag = 0;
 		for (int i = 0; i < tables.size(); i++) {
 			if ((tables.get(i).getCapacity() >= numOfPax) && (tables.get(i).checkTableAvailability() == true)) {
 				flag = 1; // this customer has been assigned a table
 				tables.get(i).setStatus(2);
-				tables.get(i).setCustomerID(custid);
 				System.out.println("Table number " + tables.get(i).getTableNumber() + " with a capacity of "
 						+ tables.get(i).getCapacity() + " has been reversed to this customer");
 				return tables.get(i);
