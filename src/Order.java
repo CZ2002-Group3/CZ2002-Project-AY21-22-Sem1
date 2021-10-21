@@ -79,17 +79,7 @@ public class Order {
 			System.out.println("Total: $" + String.format("%.2f", finalTotal));
 		}
 	}
-
-	// /**
-	// *
-	// * @param Promotion
-	// * @param order
-	// */
-	// public void createOrder(int Promotion, int order) {
-	// // TODO - implement Order.createOrder
-	// throw new UnsupportedOperationException();
-	// }
-
+	
 	public Table getTable() {
 		return this.table;
 	}
