@@ -39,7 +39,6 @@ public class Reservation {
 		System.out.println("Table assigned: "+ tableNumber);
 		System.out.println("Customer Name: "+ customerName);
 		System.out.println(" ");
-		System.out.println("===========================================================");
 	}
 
 	public Date getdateTime() {

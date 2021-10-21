@@ -18,8 +18,6 @@ public class ReservationMgr extends TimeMgr{
 			System.out.printf("Enter your Name: ");
 			name = scan.next();
 			for(int i =0; i< size; i++) {
-				System.out.println("========="+reservation.get(i).getTable());
-				//System.out.println("========="+reservation.get(i).getcustomerName());
 				if(reservation.get(i).getcustomerName().equals(name) && reservation.get(i).getTable() == tableNo) {
 					reservation.get(i).printReservation();
 					return;
@@ -36,13 +34,23 @@ public class ReservationMgr extends TimeMgr{
 	}
 
 	public void removeReservation(List<Reservation> reservation) {
-		boolean check = checkExpired(reserved);
-		if(check == true)
-			
-			
+		Scanner sc = new Scanner(System.in);
+		int tableNo;
+		int size = reservation.size();
+		System.out.printf("Enter the table number to be removed: ");
+		tableNo = sc.nextInt();
+		for(int i =0; i< size; i++) {
+			if(reservation.get(i).getTable() == tableNo) {
+				boolean check = checkExpired(reservation.get(i));
+				reservation.remove(i);
+			}
+			else
+				System.out.println("Table not under reservation !! ");
+		}
+		//if(check == true)
 	}
 
-	public void createReservation(List<Reservation> reservation) {
+	public void createReservation(List<Reservation> reservation, List<Table> tables) {
 		Scanner sc = new Scanner(System.in);
 		System.out.printf("Enter number of Pax: ");
     	int numPax = sc.nextInt();
@@ -51,8 +59,10 @@ public class ReservationMgr extends TimeMgr{
     	System.out.printf("Enter your name: ");
     	String customerName = sc.next();
 		Date dateTime = new Date();
-		int TABLENUMBER = 6;
-		reservation.add(new Reservation(dateTime, numPax, contactNum, TABLENUMBER ,customerName));
+		int custid = 1234;
+		TableMgr TableMgr = new TableMgr();
+		Table tableNO = TableMgr.assignTable(tables ,custid,numPax);
+		reservation.add(new Reservation(dateTime, numPax, contactNum, tableNO.getTableNumber() ,customerName));
 	}
 
 }

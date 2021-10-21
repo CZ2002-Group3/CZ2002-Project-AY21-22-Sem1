@@ -46,7 +46,6 @@ public class Restaurant {
 		menuItems.add(new MenuItem("Cake", "This is a Cake", 50, FoodCategory.DESSERT));
 		menuItems.add(new MenuItem("Rice", "This is a Rice", 0.5, FoodCategory.MAIN_COURSE));
 	}
-
 	// public void updateMenuItem(MenuItem item) {
 	// }
 

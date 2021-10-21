@@ -84,7 +84,7 @@ public class RRPSS {
 
                     break;
                 case 6:
-                	reservationMgr.createReservation(restaurant.reservation);
+                	reservationMgr.createReservation(restaurant.reservation, restaurant.table);
                     break;
                 case 7:
                 	System.out.println("Reservation Menu");
