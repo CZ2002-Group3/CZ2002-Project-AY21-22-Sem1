@@ -168,6 +168,7 @@ public class RRPSS {
                 if (reserve != null) {
                     cust = reserve.getCustomer();
                     table = reserve.getTable();
+                    restaurant.reservation.remove(reserve);
                     table.setStatus(1);
                     Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table, cust);
                     if (order != null) {
