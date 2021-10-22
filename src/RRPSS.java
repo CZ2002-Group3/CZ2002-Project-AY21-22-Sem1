@@ -90,7 +90,15 @@ public class RRPSS {
                     System.out.println("Enter (-1) to exit Altering restaurant menu: ");
 
                     System.out.println("Enter the number of your choice: ");
-                    choice = sc.nextInt();
+                    do {
+                        while(!sc.hasNextInt()){	
+                            System.out.println("Input is invalid, try again!");
+                            System.out.println("Enter the number of your choice: ");
+                            sc.next();
+                        }
+                        choice = sc.nextInt();
+                        break;
+                    } while(true);
                 }
                 break;
             case 2:
@@ -98,29 +106,51 @@ public class RRPSS {
                 System.out.println("(1) Create promotion");
                 System.out.println("(2) Update promotion");
                 System.out.println("(3) Delete promotion");
+                System.out.println("(4) Print list of promotions");
 
-                System.out.printf("Enter the number of your choice: ");
+                System.out.printf("Enter the number of your choice (-1 to quit): ");
 
                 do {
                     while(!sc.hasNextInt()){	
                         System.out.println("Input is invalid, try again!");
-                        System.out.print("Choice of which to update (-1 to quit): ");
+                        System.out.printf("Enter the number of your choice (-1 to quit): ");
                         sc.next();
                     }
                     choice = sc.nextInt();
                     break;
                 } while(true);
                 
+                while (choice != -1) {
+                    if (choice == 1) {
+                        promotionMgr.createPromotion(restaurant.promotions, restaurant.menuItems);
+                    } else if (choice == 2) {
+                        promotionMgr.updatePromotion(restaurant.promotions, restaurant.menuItems);
+                    } else if (choice == 3) {
+                        promotionMgr.deletePromotion(restaurant.promotions);
+                    } else {
+                        promotionMgr.getPromotionList(restaurant.promotions);
+                    }
 
-                if (choice == 1) {
-                    promotionMgr.createPromotion(restaurant.promotions, restaurant.menuItems);
-                } else if (choice == 2) {
-                    promotionMgr.updatePromotion(restaurant.promotions, restaurant.menuItems);
-                }
-                if (choice == 3) {
-                    promotionMgr.deletePromotion(restaurant.promotions);
+                    System.out.println("Altering restaurant promotion menu");
+                    System.out.println("(1) Create promotion");
+                    System.out.println("(2) Update promotion");
+                    System.out.println("(3) Delete promotion");
+                    System.out.println("(4) Print list of promotions");
+
+                    System.out.printf("Enter the number of your choice (-1 to quit): ");
+
+                    do {
+                        while(!sc.hasNextInt()){	
+                            System.out.println("Input is invalid, try again!");
+                            System.out.printf("Enter the number of your choice (-1 to quit): ");
+                            sc.next();
+                        }
+                        choice = sc.nextInt();
+                        break;
+                    } while(true);
                 }
                 break;
+                
             case 3:
                 // System.out.printf("Enter the number of person: ");
                 // int noOfPax = sc.nextInt();

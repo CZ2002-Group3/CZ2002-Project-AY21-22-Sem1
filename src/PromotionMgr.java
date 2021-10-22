@@ -15,9 +15,9 @@ public class PromotionMgr {
 			System.out.println("There are currently no ongoing promotions!");
 		} else {
 			for(int i = 0; i < promotions.size(); i++){
-				System.out.println(promotions.get(i).getName());
-				System.out.println(promotions.get(i).getDescription());
-				System.out.println(promotions.get(i).getPrice());
+				System.out.println("(" + (i+1) + ") " + promotions.get(i).getName() + ":");
+				System.out.println("\tDescriptions: \n\t" + promotions.get(i).getDescription());
+				System.out.println("\tPrice: " + promotions.get(i).getPrice());
 				System.out.println();
 			}
 		}
