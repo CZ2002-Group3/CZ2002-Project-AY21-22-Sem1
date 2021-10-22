@@ -23,7 +23,18 @@ public class OrderMgr {
 			Customer cust = found.getCustomer();
 			if (cust.getIsMember()) {
 				System.out.println("Does the customer ");
-				discount = sc.nextBoolean();
+
+				do {
+					while (!sc.hasNextBoolean()) {
+						System.out.println("Input is invalid, try again!");
+						System.out.println("Does the customer ");
+						sc.next();
+					}
+					discount = sc.nextBoolean();
+					break;
+	
+				} while (true);
+				
 			}
 
 			found.printOrderInvoice(discount);
@@ -54,7 +65,18 @@ public class OrderMgr {
 			System.out.println("(4) Cancel Ordering");
 
 			System.out.printf("Enter the number of your choice: ");
-			choice = sc.nextInt();
+
+			do {
+				while (!sc.hasNextInt()) {
+					System.out.println("Input is invalid, try again!");
+					System.out.printf("Enter the number of your choice: ");
+					sc.next();
+				}
+				choice = sc.nextInt();
+				break;
+
+			} while (true);
+			
 			switch (choice) {
 			case 1:
 				int mLength = MenuItem.size();
@@ -67,14 +89,36 @@ public class OrderMgr {
 
 				System.out.println("(0) Go back to selection");
 				System.out.printf("Enter the number of your choice: ");
-				choice = sc.nextInt();
+
+				do {
+					while (!sc.hasNextInt()) {
+						System.out.println("Input is invalid, try again!");
+						System.out.printf("Enter the number of your choice: ");
+						sc.next();
+					}
+					choice = sc.nextInt();
+					break;
+	
+				} while (true);
+				
 
 				while (choice != 0) {
 					orderedMenu.add(MenuItem.get(choice - 1));
 					System.out.println(MenuItem.get(choice - 1).getName() + " Added!");
 
 					System.out.printf("Enter the number of your choice: ");
-					choice = sc.nextInt();
+
+					do {
+						while (!sc.hasNextInt()) {
+							System.out.println("Input is invalid, try again!");
+							System.out.printf("Enter the number of your choice: ");
+							sc.next();
+						}
+						choice = sc.nextInt();
+						break;
+		
+					} while (true);
+					
 				}
 				choice = 1;
 				break;
@@ -90,13 +134,34 @@ public class OrderMgr {
 
 				System.out.println("(0) Go back to selection");
 				System.out.printf("Enter the number of your choice: ");
-				choice = sc.nextInt();
+
+				do {
+					while (!sc.hasNextInt()) {
+						System.out.println("Input is invalid, try again!");
+						System.out.printf("Enter the number of your choice: ");
+						sc.next();
+					}
+					choice = sc.nextInt();
+					break;
+	
+				} while (true);
+
+				
 
 				while (choice != 0) {
 					orderedPromo.add(Promotion.get(choice - 1));
 					System.out.println(Promotion.get(choice - 1).getName() + " Added!");
-					System.out.printf("Enter the number of your choice: ");
-					choice = sc.nextInt();
+
+					do {
+						while (!sc.hasNextInt()) {
+							System.out.println("Input is invalid, try again!");
+							System.out.printf("Enter the number of your choice: ");
+							sc.next();
+						}
+						choice = sc.nextInt();
+						break;
+		
+					} while (true);
 				}
 				choice = 1;
 				break;
