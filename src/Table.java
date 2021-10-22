@@ -54,27 +54,27 @@ public class Table {
 		if(capNo==2)
 		{
 			this.capacity=TableCapacity.SIZE2;
-			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ this.capacity);
+			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ getCapacity());
 		}
 		else if (capNo==4)
 		{
 			this.capacity=TableCapacity.SIZE4;
-			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ this.capacity);
+			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ getCapacity());
 		}
 		else if (capNo==6)
 		{
 			this.capacity=TableCapacity.SIZE6;
-			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ this.capacity);
+			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ getCapacity());
 		}
 		else if (capNo==8)
 		{
 			this.capacity=TableCapacity.SIZE8;
-			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ this.capacity);
+			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ getCapacity());
 		}
 		else if (capNo==10)
 		{
 			this.capacity=TableCapacity.SIZE10;
-			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ this.capacity);
+			System.out.println("Table Number "+ this.getTableNumber() +" has a max capacity of "+ getCapacity());
 		}
 		
 	}

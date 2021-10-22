@@ -41,12 +41,12 @@ public class TableMgr {
 				flag = 1; // this customer has been assigned a table
 				tables.get(i).setStatus(2);
 				System.out.println("Table number " + tables.get(i).getTableNumber() + " with a capacity of "
-						+ tables.get(i).getCapacity() + " has been reversed to this customer");
+						+ tables.get(i).getCapacity() + " has been reserved for this customer.");
 				return tables.get(i);
 			}
 		}
 		if (flag == 0) {
-			System.out.println("No avaliable table for this customer to be reversed");
+			System.out.println("No avaliable table to be reserved for this customer.");
 			return null;
 		}
 		return null;
