@@ -174,7 +174,7 @@ public class ReservationMgr {
 			table.setCustomerID(cust.getCustomerID());
 
 			System.out.println("Enter Reservation date and time (Format: dd/MM/yyyy HH:mm): ");
-			sc.nextLine();
+
 			String dateString = sc.nextLine();
 			Date dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateString);
 			reservation.add(new Reservation(dateTime, numPax, cust, table));
