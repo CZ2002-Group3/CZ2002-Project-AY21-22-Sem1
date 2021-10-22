@@ -4,22 +4,19 @@ import java.util.*;
 public class ReservationMgr extends TimeMgr {
 
 	public void checkReservation(List<Reservation> reservation) {
-		Scanner scan = new Scanner(System.in);
-		String name;
+		Scanner sc = new Scanner(System.in);
 		int size = reservation.size();
 		int tableNo, choice;
 
 		System.out.println("(1)Check Single reservation");
 		System.out.println("(2)Check All reservation");
 		System.out.printf("Enter your Choices: ");
-		choice = scan.nextInt();
+		choice = sc.nextInt();
 		if (choice == 1) {
 			System.out.printf("Enter your Table Number: ");
-			tableNo = scan.nextInt();
-			System.out.printf("Enter your Name: ");
-			name = scan.next();
+			tableNo = sc.nextInt();
 			for (int i = 0; i < size; i++) {
-				if (reservation.get(i).getcustomerName().equals(name) && reservation.get(i).getTableNumber() == tableNo) {
+				if (reservation.get(i).getTableNumber() == tableNo) {
 					reservation.get(i).printReservation();
 					return;
 				}
