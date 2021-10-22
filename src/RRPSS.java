@@ -77,6 +77,7 @@ public class RRPSS {
                 break;
             case 3:
                 // Create Order
+                timeMgr.checkExpired(restaurant.reservation);
                 System.out.printf("Enter your Employee ID: ");
                 long employeeID = sc.nextInt();
 
