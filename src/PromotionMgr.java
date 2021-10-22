@@ -18,7 +18,7 @@ public class PromotionMgr {
 			for(int i = 0; i < promotions.size(); i++){
 				System.out.println("(" + (i+1) + ") " + promotions.get(i).getName() + ":");
 				System.out.println("\tDescriptions: \n\t" + promotions.get(i).getDescription());
-				System.out.println("\tPrice: " + promotions.get(i).getPrice());
+				System.out.println("\tPrice: $" +  String.format("%.2f",promotions.get(i).getPrice()));
 				System.out.println();
 			}
 		}
@@ -70,7 +70,7 @@ public class PromotionMgr {
 							}
 
 							System.out.println("\nDescriptions:\n" + promotions.get(i).getDescription());
-							System.out.println("\nPromotion price:\n" + promotions.get(i).getPrice());
+							System.out.println("\nPromotion price: $" +  String.format("%.2f",promotions.get(i).getPrice()));
 							System.out.println();
 						}
 					}
@@ -230,15 +230,15 @@ public class PromotionMgr {
 							break;
 
 						case 3:
-							System.out.println("\nCurrent promotion price: " + promotions.get(promoFound).getPrice());
-							System.out.print("\nPlease enter the new price (-1 to quit): ");
+							System.out.println("\nCurrent promotion price: $" +  String.format("%.2f",promotions.get(promoFound).getPrice()));
+							System.out.print("\nPlease enter the new price (-1 to quit): $");
 
 							double price;
 
 							do {
 								while (!sc.hasNextDouble()) {
 									System.out.println("Input is invalid, try again!");
-									System.out.print("\nPlease enter the new price (-1 to quit): ");
+									System.out.print("\nPlease enter the new price (-1 to quit): $");
 									sc.next();
 								}
 								price = sc.nextDouble();
@@ -348,13 +348,13 @@ public class PromotionMgr {
 			}
 			// Set price
 			System.out.println("\nPlease set the price for this promotion package (-1 to quit):");
-			System.out.print("Price: ");
+			System.out.print("Price: $");
 
 			double price;
 			do {
 				while (!sc.hasNextDouble()) {
 					System.out.println("Input is invalid, try again!");
-					System.out.print("Price: ");
+					System.out.print("Price: $");
 					sc.next();
 				}
 				price = sc.nextDouble();
@@ -423,7 +423,6 @@ public class PromotionMgr {
 					}
 				} while (true);
 			} while(promotions.size() != 0);
-			
 		}
 	}
 }
