@@ -139,12 +139,13 @@ public class ReservationMgr {
 		} while (true);
 		sc.nextLine();
 
-		Table table = tableMgr.reverseTable(tables, numPax);
+		Table table = tableMgr.reserveTable(tables, numPax);
 
 		if (table != null) {
 			System.out.println("Enter Customer Contact Number: ");
 			int contactNo = sc.nextInt();
 			Customer cust = customerMgr.findCustomer(customers, contactNo);
+
 			if (cust == null) {
 				System.out.println("Enter Customer Name: ");
 				String custName = sc.next();
@@ -170,11 +171,12 @@ public class ReservationMgr {
 				long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
 				cust = new Customer(custID, custName, member, contactNo);
 				customers.add(cust);
+			} else {
+				sc.nextLine();
 			}
 			table.setCustomerID(cust.getCustomerID());
 
 			System.out.println("Enter Reservation date and time (Format: dd/MM/yyyy HH:mm): ");
-
 			String dateString = sc.nextLine();
 			Date dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateString);
 			reservation.add(new Reservation(dateTime, numPax, cust, table));

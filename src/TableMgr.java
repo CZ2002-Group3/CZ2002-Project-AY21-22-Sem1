@@ -33,7 +33,7 @@ public class TableMgr {
 		return null;
 	}
 
-	public Table reverseTable(List<Table> tables, int numOfPax) {
+	public Table reserveTable(List<Table> tables, int numOfPax) {
 		int flag; // to check if this customer has been allocated a table
 		flag = 0;
 		for (int i = 0; i < tables.size(); i++) {

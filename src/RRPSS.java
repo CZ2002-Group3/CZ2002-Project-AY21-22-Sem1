@@ -15,7 +15,7 @@ public class RRPSS {
         PromotionMgr promotionMgr = new PromotionMgr();
         CustomerMgr customerMgr = new CustomerMgr();
         TimeMgr timeMgr = new TimeMgr();
-        
+
         int choice = -1;
 
         System.out.println("(1) Create/Update/Remove menu item");
@@ -168,6 +168,7 @@ public class RRPSS {
                 if (reserve != null) {
                     cust = reserve.getCustomer();
                     table = reserve.getTable();
+                    restaurant.reservation.remove(reserve);
                     table.setStatus(1);
                     Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table, cust);
                     if (order != null) {
@@ -206,13 +207,28 @@ public class RRPSS {
                 System.out.println("(0) Return back to menu");
 
                 System.out.printf("Enter the number of your choice: ");
-                choice = sc.nextInt();
+                do {
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Input is invalid, try again!");
+                        sc.next();
+                    }
+                    choice = sc.nextInt();
+                    break;
+                } while (true);
 
                 int orderSize = restaurant.order.size();
                 if (choice == 1) {
                     Boolean exist = false;
                     System.out.printf("Enter Table Number: ");
-                    int tableNo = sc.nextInt();
+                    int tableNo;
+                    do {
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Input is invalid, try again!");
+                            sc.next();
+                        }
+                        tableNo = sc.nextInt();
+                        break;
+                    } while (true);
 
                     for (int i = 0; i < orderSize; i++) {
                         Order curr = restaurant.order.get(i);
@@ -235,14 +251,31 @@ public class RRPSS {
             case 5:
                 // Add/Remove order item/s to/from order
                 System.out.printf("Enter Table Number: ");
-                int tableNo = sc.nextInt();
+                int tableNo;
+
+                do {
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Input is invalid, try again!");
+                        sc.next();
+                    }
+                    tableNo = sc.nextInt();
+                    break;
+                } while (true);
 
                 System.out.println("(1) Remove items from Order");
                 System.out.println("(2) Add items to Order");
                 System.out.println("(0) Return back to menu");
 
                 System.out.printf("Enter the number of your choice: ");
-                choice = sc.nextInt();
+
+                do {
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Input is invalid, try again!");
+                        sc.next();
+                    }
+                    choice = sc.nextInt();
+                    break;
+                } while (true);
 
                 if (choice == 1) {
                     orderMgr.removeOrderItem(restaurant.order, tableNo);
@@ -264,12 +297,12 @@ public class RRPSS {
                 do {
                     while (!sc.hasNextInt()) {
                         System.out.println("Input is invalid, try again!");
-                        System.out.print("Choice of which to update (-1 to quit): ");
                         sc.next();
                     }
                     choice = sc.nextInt();
                     break;
                 } while (true);
+                sc.nextLine();
 
                 timeMgr.checkExpired(restaurant.reservation);
                 if (choice == 1)
@@ -285,13 +318,38 @@ public class RRPSS {
                 System.out.println("(1) Show one table");
                 System.out.println("(2) Show all tables");
                 System.out.printf("Enter the number of your choice: ");
-                choice = sc.nextInt();
+
+                do {
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Input is invalid, try again!");
+                        sc.next();
+                    }
+                    choice = sc.nextInt();
+                    if (choice == 1 || choice == 2) {
+                        break;
+                    }
+                } while (true);
+                sc.nextLine();
 
                 int tableSize = restaurant.table.size();
                 if (choice == 1) {
                     Boolean exist = false;
                     System.out.printf("Enter Table Number: ");
-                    int tableNo1 = sc.nextInt();
+                    int tableNo1;
+
+                    do {
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Input is invalid, try again!");
+                            sc.next();
+                        }
+
+                        tableNo1 = sc.nextInt();
+                        if (tableNo1 <= restaurant.table.size() && tableNo1 >= 1) {
+                            break;
+                        }
+                        System.out.println("Input is invalid, try again!");
+                    } while (true);
+                    sc.nextLine();
 
                     for (int i = 0; i < tableSize; i++) {
                         Table curr = restaurant.table.get(i);
@@ -310,7 +368,22 @@ public class RRPSS {
                 break;
             case 9:
                 System.out.printf("Enter Table Number: ");
-                int tableNumber = sc.nextInt();
+                int tableNumber;
+
+                do {
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Input is invalid, try again!");
+                        sc.next();
+                    }
+
+                    tableNumber = sc.nextInt();
+                    if (tableNumber <= restaurant.table.size() && tableNumber >= 1) {
+                        break;
+                    }
+                    System.out.println("Input is invalid, try again!");
+                } while (true);
+                sc.nextLine();
+
                 orderMgr.orderPaid(restaurant.order, tableNumber);
                 break;
             case 10:
