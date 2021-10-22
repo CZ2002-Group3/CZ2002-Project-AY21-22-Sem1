@@ -4,7 +4,7 @@ public class Reservation {
 
 	private Date dateTime;
 	private int numPax;
-	private int contactNumber;
+	private long contactNumber;
 	private int tableNumber;
 	private String customerName;
 	private Table table;

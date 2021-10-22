@@ -28,15 +28,23 @@ public class ReservationMgr {
 				reservation.get(i).printReservation();
 		} else
 			return;
-
 	}
 
-	public void removeReservation(List<Reservation> reservation) {
+	public Reservation checkReservation(List<Reservation> reservation, long contactNumber) {
 		Scanner sc = new Scanner(System.in);
-		int tableNo;
 		int size = reservation.size();
-		System.out.printf("Enter the table number to be removed: ");
-		tableNo = sc.nextInt();
+
+		for (int i = 0; i < size; i++) {
+			Reservation curr = reservation.get(i);
+			if (curr.getCustomer().getContactNumber() == contactNumber) {
+				return curr;
+			}
+		}
+		return null;
+	}
+
+	public void removeReservation(List<Reservation> reservation, int tableNo) {
+		int size = reservation.size();
 
 		for (int i = 0; i < size; i++) {
 			if (reservation.get(i).getTableNumber() == tableNo) {
@@ -61,12 +69,12 @@ public class ReservationMgr {
 
 		if (table != null) {
 			System.out.println("Enter Customer Contact Number: ");
-			int contactNo = sc.nextInt();
+			long contactNo = sc.nextLong();
 			Customer cust = customerMgr.findCustomer(customers, contactNo);
 			if (cust == null) {
 				System.out.println("Enter Customer Name: ");
 				String custName = sc.next();
-				System.out.println("Membership?: ");
+				System.out.printf("Does the customer want a membership?: ");
 				boolean member = sc.nextBoolean();
 				long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
 				cust = new Customer(custID, custName, member, contactNo);

@@ -1,13 +1,9 @@
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
 
 public class SalesReport {
 
-	public String getSalesReport(ArrayList<Order> order) {
-		// TODO - implement SalesReport.getSalesReport
-		throw new UnsupportedOperationException();
+	public void generateSalesReport(List<Order> order, int days) {
 
-		// order.sort(Comparator.comparing(order ));
 	}
 
 }

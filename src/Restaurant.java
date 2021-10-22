@@ -21,6 +21,7 @@ public class Restaurant {
 		menuItems = new ArrayList<MenuItem>();
 		promotions = new ArrayList<Promotion>();
 		addMenuItem();
+		addPromoItem();
 		addTable();
 	}
 
@@ -37,5 +38,15 @@ public class Restaurant {
 		menuItems.add(new MenuItem("Coke", "This is a Coke", 1, FoodCategory.DRINKS));
 		menuItems.add(new MenuItem("Cake", "This is a Cake", 50, FoodCategory.DESSERT));
 		menuItems.add(new MenuItem("Rice", "This is a Rice", 0.5, FoodCategory.MAIN_COURSE));
+	}
+
+	private void addPromoItem(){
+		Promotion promo1 = new Promotion();
+		promo1.addMenuItem(menuItems.get(0));
+		promo1.addMenuItem(menuItems.get(1));
+		promo1.setName("Promo 1");
+		promo1.setPrice(50);
+		promo1.setDescription("This is promotion set 1");
+		promotions.add(promo1);
 	}
 }
