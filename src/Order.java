@@ -7,7 +7,7 @@ public class Order {
 	private Date timeStamp;
 	private Staff waiter;
 	private List<MenuItem> orderItem;
-	private boolean type;
+	private boolean discounted;
 	private Table table;
 	private double totalPrice;
 	private List<Promotion> promotionItem;
