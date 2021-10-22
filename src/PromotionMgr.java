@@ -97,7 +97,7 @@ public class PromotionMgr {
 								int userInp = 0;
 								
 								do {
-									System.out.println("What would you like to do?");
+									System.out.println("\nWhat would you like to do?");
 									System.out.print("1. Add items\n" + "2. Delete items\n");
 									System.out.print("Choice of action (-1 to quit): ");
 									
@@ -112,23 +112,25 @@ public class PromotionMgr {
 									} while(true);
 
 									if (userInp == 1){
+										
 										if(menuItems.size() == 0){
 											System.out.println("There is currently nothing in the menu!");
 											break;				
 										} else { 
+											System.out.println("Choose a menu item to add: ");
 											for (int i = 0; i < menuItems.size(); i++){
 												System.out.printf("%d: %s\n", i + 1, menuItems.get(i).getName());
 											}
 										}
 										int itemToAdd = 0;
-										System.out.println("Choose a menu item to add: ");
+										
 										do {
-											System.out.print("Choice of menu item to add (-1 to quit): ");
+											System.out.print("\nChoice of menu item to add (-1 to quit): ");
 
 											do {
 												while(!sc.hasNextInt()){	
 													System.out.println("Input is invalid, try again!");
-													System.out.print("Choice of menu item to add (-1 to quit): ");
+													System.out.print("\nChoice of menu item to add (-1 to quit): ");
 													sc.next();
 												}
 												itemToAdd = sc.nextInt();
@@ -265,7 +267,7 @@ public class PromotionMgr {
 		System.out.println("Please enter the items that you would like to add to the promotion: ");
 		
 		do{
-			System.out.print("Enter menu items (-1 to quit):");
+			System.out.print("Enter menu items (-1 to quit): ");
 			
 
 			do {
@@ -299,7 +301,7 @@ public class PromotionMgr {
 						}
 						if(!existPromo){
 							promotion.addMenuItem(itemToAdd);
-							System.out.println("Successfully added " + itemToAdd.getName() + ".\n");
+							System.out.println("Successfully added " + itemToAdd.getName() + ".");
 							break;
 						} else {
 							System.out.println("Menu item already exist.");

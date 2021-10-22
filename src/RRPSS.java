@@ -37,7 +37,16 @@ public class RRPSS {
         System.out.println("(0) Exit");
 
         System.out.printf("Enter the number of your choice: ");
-        choice = sc.nextInt();
+
+        do {
+            while(!sc.hasNextInt()){	
+                System.out.println("Input is invalid, try again!");
+                System.out.print("Choice of which to update (-1 to quit): ");
+                sc.next();
+            }
+            choice = sc.nextInt();
+            break;
+        } while(true);
 
         while (choice != 0) {
 
@@ -52,7 +61,16 @@ public class RRPSS {
 
                 System.out.println("Enter the number of your choice: ");
 
-                choice = sc.nextInt();
+                do {
+                    while(!sc.hasNextInt()){	
+                        System.out.println("Input is invalid, try again!");
+                        System.out.print("Choice of which to update (-1 to quit): ");
+                        sc.next();
+                    }
+                    choice = sc.nextInt();
+                    break;
+                } while(true);
+
 
                 while (choice != -1) {
                     if (choice == 1) {
@@ -82,7 +100,17 @@ public class RRPSS {
                 System.out.println("(3) Delete promotion");
 
                 System.out.printf("Enter the number of your choice: ");
-                choice = sc.nextInt();
+
+                do {
+                    while(!sc.hasNextInt()){	
+                        System.out.println("Input is invalid, try again!");
+                        System.out.print("Choice of which to update (-1 to quit): ");
+                        sc.next();
+                    }
+                    choice = sc.nextInt();
+                    break;
+                } while(true);
+                
 
                 if (choice == 1) {
                     promotionMgr.createPromotion(restaurant.promotions, restaurant.menuItems);
@@ -141,7 +169,17 @@ public class RRPSS {
                 System.out.println("Reservation Menu");
                 System.out.println("(1) Check reservation");
                 System.out.println("(2) Remove reservation");
-                choice = sc.nextInt();
+
+                do {
+                    while(!sc.hasNextInt()){	
+                        System.out.println("Input is invalid, try again!");
+                        System.out.print("Choice of which to update (-1 to quit): ");
+                        sc.next();
+                    }
+                    choice = sc.nextInt();
+                    break;
+                } while(true);
+
                 timeMgr.checkExpired(restaurant.reservation);
                 if (choice == 1)
                     reservationMgr.checkReservation(restaurant.reservation);
@@ -187,7 +225,17 @@ public class RRPSS {
             System.out.println("(0) Exit");
 
             System.out.printf("Enter the number of your choice: ");
-            choice = sc.nextInt();
+
+            do {
+                while(!sc.hasNextInt()){	
+                    System.out.println("Input is invalid, try again!");
+                    System.out.print("Choice of which to update (-1 to quit): ");
+                    sc.next();
+                }
+                choice = sc.nextInt();
+                break;
+            } while(true);
+
         }
         sc.close();
     }
