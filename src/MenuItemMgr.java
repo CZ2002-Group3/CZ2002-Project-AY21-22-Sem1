@@ -5,14 +5,7 @@ public class MenuItemMgr {
 	List<MenuItem> menuItems;
 
 	public MenuItemMgr() {
-		// TODO - implement MenuItemMgr.MenuItemMgr
-		// throw new UnsupportedOperationException();
 	}
-
-	/**
-	 * 
-	 * @param MenuItem
-	 */
 
 	public void updateMenuItem(List<MenuItem> menuItems) {
 

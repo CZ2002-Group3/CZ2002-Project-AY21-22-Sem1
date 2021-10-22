@@ -1,40 +1,86 @@
-import java.util.Scanner;
-import java.util.Date;
+import java.text.*;
 import java.util.*;
 
-public class ReservationMgr extends TimeMgr{
+public class ReservationMgr {
 
-	public void checkReservation(Restaurant list) {
-		Scanner scan = new Scanner(System.in);
-		String name;
-		System.out.println("Enter your name");
-		name = scan.nextLine();
-		int size = list.reservation.size();
-		for(int i = 0; i < size; i++) {
-			if(name == list.reservation.customerName[i]) {
-				
+	public void checkReservation(List<Reservation> reservation) {
+		Scanner sc = new Scanner(System.in);
+		int size = reservation.size();
+		int tableNo, choice;
+
+		System.out.println("(1)Check Single reservation");
+		System.out.println("(2)Check All reservation");
+		System.out.printf("Enter your Choices: ");
+		choice = sc.nextInt();
+		if (choice == 1) {
+			System.out.printf("Enter your Table Number: ");
+			tableNo = sc.nextInt();
+			for (int i = 0; i < size; i++) {
+				if (reservation.get(i).getTableNumber() == tableNo) {
+					reservation.get(i).printReservation();
+					return;
+				}
+			}
+			System.out.println("NOT FOUND!!");
+
+		} else if (choice == 2) {
+			for (int i = 0; i < size; i++)
+				reservation.get(i).printReservation();
+		} else
+			return;
+
+	}
+
+	public void removeReservation(List<Reservation> reservation) {
+		Scanner sc = new Scanner(System.in);
+		int tableNo;
+		int size = reservation.size();
+		System.out.printf("Enter the table number to be removed: ");
+		tableNo = sc.nextInt();
+
+		for (int i = 0; i < size; i++) {
+			if (reservation.get(i).getTableNumber() == tableNo) {
+				reservation.get(i).getTable().setStatus(0);
+				reservation.remove(i);
+				return;
 			}
 		}
-		
+		System.out.println("Table not under reservation !! ");
 	}
 
-	public void removeReservation(Reservation reserved) {
-		boolean check = checkExpired(reserved);
-		if(check == true)
-			
-			
-	}
+	public void createReservation(List<Reservation> reservation, List<Table> tables, List<Customer> customers)
+			throws ParseException {
+		Scanner sc = new Scanner(System.in);
+		TableMgr tableMgr = new TableMgr();
+		CustomerMgr customerMgr = new CustomerMgr();
 
-	public Reservation createReservation() {
-		Scanner scan = new Scanner(System.in);
-		int numPax, contactNum;
-		System.out.println("Enter number of Pax: ");
-		numPax = scan.nextInt();
-		System.out.println("Enter your contact Number: ");
-		contactNum = scan.nextInt();
-		Date dateTime = new Date();
-		Reservation reserve = new Reservation(dateTime, numPax, contactNum, TABLENUMBER ,contactNum);
-		return reserve;
+		System.out.printf("Enter number of Pax: ");
+		int numPax = sc.nextInt();
+
+		Table table = tableMgr.reverseTable(tables, numPax);
+
+		if (table != null) {
+			System.out.println("Enter Customer Contact Number: ");
+			int contactNo = sc.nextInt();
+			Customer cust = customerMgr.findCustomer(customers, contactNo);
+			if (cust == null) {
+				System.out.println("Enter Customer Name: ");
+				String custName = sc.next();
+				System.out.println("Membership?: ");
+				boolean member = sc.nextBoolean();
+				long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+				cust = new Customer(custID, custName, member, contactNo);
+				customers.add(cust);
+			}
+			table.setCustomerID(cust.getCustomerID());
+
+			System.out.println("Enter Reservation date and time (Format: dd/MM/yyyy HH:mm): ");
+			sc.nextLine();
+			String dateString = sc.nextLine();
+			Date dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateString);
+			reservation.add(new Reservation(dateTime, numPax, cust, table));
+		}
+
 	}
 
 }
