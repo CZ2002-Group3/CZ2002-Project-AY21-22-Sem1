@@ -8,9 +8,26 @@ public class TimeMgr {
 		int size = reservations.size();
 		for (int i = 0; i < size; i++) {
 			Reservation curr = reservations.get(i);
-			int compare = newdate.compareTo(curr.getdateTime());
-			if (compare > 0)
+			//long time1 = curr.getdateTime().getTime();
+			//long time2 = newdate.getTime();
+			//long compare = time2-time1;
+			
+			long diff = newdate.getTime() - curr.getdateTime().getTime();
+
+			long diffSeconds = diff / 1000 % 60;
+			long diffMinutes = diff / (60 * 1000) % 60;
+			long diffHours = diff / (60 * 60 * 1000) % 24;
+			long diffDays = diff / (24 * 60 * 60 * 1000);
+
+			System.out.print(diffDays + " days, ");
+			System.out.print(diffHours + " hours, ");
+			System.out.print(diffMinutes + " minutes, ");
+			System.out.println(diffSeconds + " seconds.");
+			
+			//System.out.println("+++++++++++++++++++++++++++++++");
+			if (diffDays == 0 && diffSeconds >= 10)
 			{
+				System.out.println("Time limit have reached, reserved table: "+ curr.getTableNumber()+" have been removed");
 				reservations.remove(curr);
 				size--;
 			}

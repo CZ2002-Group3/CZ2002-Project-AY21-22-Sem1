@@ -1,7 +1,7 @@
 import java.text.*;
 import java.util.*;
 
-public class ReservationMgr extends TimeMgr {
+public class ReservationMgr {
 
 	public void checkReservation(List<Reservation> reservation) {
 		Scanner sc = new Scanner(System.in);
