@@ -19,10 +19,6 @@ public class Promotion {
 		this.description = description;
 	}
 
-	public Double getPromoPrice() {
-		return this.price;
-	}
-
 	public void addMenuItem(MenuItem item) {
 		menuItem.add(item);
 	}

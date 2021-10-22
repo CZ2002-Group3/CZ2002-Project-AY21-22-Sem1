@@ -132,7 +132,7 @@ public class RRPSS {
                         promotionMgr.getPromotionList(restaurant.promotions);
                     }
 
-                    System.out.println("Altering restaurant promotion menu");
+                    System.out.println("Altering restaurant promotion menu:");
                     System.out.println("(1) Create promotion");
                     System.out.println("(2) Update promotion");
                     System.out.println("(3) Delete promotion");
