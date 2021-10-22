@@ -15,7 +15,7 @@ public class RRPSS {
         PromotionMgr promotionMgr = new PromotionMgr();
         CustomerMgr customerMgr = new CustomerMgr();
         TimeMgr timeMgr = new TimeMgr();
-        
+
         int choice = -1;
 
         System.out.println("(1) Create/Update/Remove menu item");
@@ -206,13 +206,28 @@ public class RRPSS {
                 System.out.println("(0) Return back to menu");
 
                 System.out.printf("Enter the number of your choice: ");
-                choice = sc.nextInt();
+                do {
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Input is invalid, try again!");
+                        sc.next();
+                    }
+                    choice = sc.nextInt();
+                    break;
+                } while (true);
 
                 int orderSize = restaurant.order.size();
                 if (choice == 1) {
                     Boolean exist = false;
                     System.out.printf("Enter Table Number: ");
-                    int tableNo = sc.nextInt();
+                    int tableNo;
+                    do {
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Input is invalid, try again!");
+                            sc.next();
+                        }
+                        tableNo = sc.nextInt();
+                        break;
+                    } while (true);
 
                     for (int i = 0; i < orderSize; i++) {
                         Order curr = restaurant.order.get(i);
@@ -235,14 +250,31 @@ public class RRPSS {
             case 5:
                 // Add/Remove order item/s to/from order
                 System.out.printf("Enter Table Number: ");
-                int tableNo = sc.nextInt();
+                int tableNo;
+
+                do {
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Input is invalid, try again!");
+                        sc.next();
+                    }
+                    tableNo = sc.nextInt();
+                    break;
+                } while (true);
 
                 System.out.println("(1) Remove items from Order");
                 System.out.println("(2) Add items to Order");
                 System.out.println("(0) Return back to menu");
 
                 System.out.printf("Enter the number of your choice: ");
-                choice = sc.nextInt();
+
+                do {
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Input is invalid, try again!");
+                        sc.next();
+                    }
+                    choice = sc.nextInt();
+                    break;
+                } while (true);
 
                 if (choice == 1) {
                     orderMgr.removeOrderItem(restaurant.order, tableNo);
