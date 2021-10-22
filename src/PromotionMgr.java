@@ -37,7 +37,7 @@ public class PromotionMgr {
 				return;
 			} else {
 				for (int i = 0; i < promotions.size(); i++) {
-					System.out.printf("%d: %s\n", i + 1, promotions.get(i).getName());
+					System.out.printf("(%d) %s\n", i + 1, promotions.get(i).getName());
 				}
 				System.out.println("Enter the the promotion that you would like to update (-1 to quit):");
 
@@ -116,7 +116,7 @@ public class PromotionMgr {
 									} else {
 										System.out.println("Choose a menu item to add: ");
 										for (int i = 0; i < menuItems.size(); i++) {
-											System.out.printf("%d: %s\n", i + 1, menuItems.get(i).getName());
+											System.out.printf("(%d) %s\n", i + 1, menuItems.get(i).getName());
 										}
 									}
 									int itemToAdd = 0;
@@ -171,7 +171,7 @@ public class PromotionMgr {
 
 									for (int item = 0; item < promotions.get(promoFound).getPromoList()
 											.size(); item++) {
-										System.out.printf("%d: %s\n", item + 1,
+										System.out.printf("(%d) %s\n", item + 1,
 												promotions.get(promoFound).getPromoList().get(item).getName());
 									}
 									System.out.print("Choice of menu item to remove (-1 to quit): ");
@@ -267,7 +267,7 @@ public class PromotionMgr {
 			return;
 		} else {
 			for (int i = 0; i < menuItems.size(); i++) {
-				System.out.printf("%d: %s\n", i + 1, menuItems.get(i).getName());
+				System.out.printf("(%d) %s\n", i + 1, menuItems.get(i).getName());
 			}
 		}
 
@@ -381,40 +381,43 @@ public class PromotionMgr {
 		if (promotions.size() == 0) {
 			System.out.println("There are currently no ongoing promotions!\n");
 		} else {
-			for (int i = 0; i < promotions.size(); i++) {
-				System.out.printf("%d: %s\n", i + 1, promotions.get(i).getName());
-			}
-			do {
-				System.out.println("Which of the above promotions would you like to remove?");
-				System.out.print("Enter number (-1 to quit): ");
-
-				int promoToRemove;
-
+			do{
+				System.out.println("The current ongoing promotions are: ");
+				for (int i = 0; i < promotions.size(); i++) {
+					System.out.printf("(%d) %s\n", i + 1, promotions.get(i).getName());
+				}
 				do {
-					while (!sc.hasNextInt()) {
-						System.out.println("Input is invalid, try again!");
-						System.out.print("Enter number (-1 to quit): ");
-						sc.next();
-					}
-					promoToRemove = sc.nextInt();
-					break;
-
-				} while (true);
-
-				if (promoToRemove <= 0 || promoToRemove >= promotions.size() + 1) {
-					if (promoToRemove == -1) {
-						System.out.println("No existing promotion removed... Exiting...\n");
+					System.out.println("Which of the above promotions would you like to remove?");
+					System.out.print("Enter number (-1 to quit): ");
+	
+					int promoToRemove;
+	
+					do {
+						while (!sc.hasNextInt()) {
+							System.out.println("Input is invalid, try again!");
+							System.out.print("Enter number (-1 to quit): ");
+							sc.next();
+						}
+						promoToRemove = sc.nextInt();
+						break;
+	
+					} while (true);
+	
+					if (promoToRemove <= 0 || promoToRemove >= promotions.size() + 1) {
+						if (promoToRemove == -1) {
+							System.out.println("No existing promotion removed... Exiting...\n");
+							break;
+						}
+						System.out.println("Please enter a valid index.");
+					} else {
+						promoToRemove -= 1;
+						System.out.println("Successfully removed promotion " + promotions.get(promoToRemove).getName() + ".\n");
+						promotions.remove(promoToRemove);
 						break;
 					}
-					System.out.println("Please enter a valid index.");
-				} else {
-					promoToRemove -= 1;
-					System.out.println(
-							"Successfully removed promotion " + promotions.get(promoToRemove).getName() + ".\n");
-					promotions.remove(promoToRemove);
-					break;
-				}
-			} while (true);
+				} while (true);
+			} while(promotions.size() != 0);
+			
 		}
 	}
 }
