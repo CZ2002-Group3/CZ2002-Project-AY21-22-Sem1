@@ -92,7 +92,15 @@ public class RRPSS {
                     System.out.println("Enter (-1) to exit Altering restaurant menu: ");
 
                     System.out.println("Enter the number of your choice: ");
-                    choice = sc.nextInt();
+                    do {
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Input is invalid, try again!");
+                            System.out.println("Enter the number of your choice: ");
+                            sc.next();
+                        }
+                        choice = sc.nextInt();
+                        break;
+                    } while (true);
                 }
                 break;
             case 2:
@@ -100,58 +108,78 @@ public class RRPSS {
                 System.out.println("(1) Create promotion");
                 System.out.println("(2) Update promotion");
                 System.out.println("(3) Delete promotion");
-                System.out.println("Enter (-1) to exit Altering restaurant promotion menu: ");
+                System.out.println("(4) Print list of promotions");
 
-                System.out.printf("Enter the number of your choice: ");
+                System.out.printf("Enter the number of your choice (-1 to quit): ");
 
                 do {
                     while (!sc.hasNextInt()) {
                         System.out.println("Input is invalid, try again!");
-                        System.out.print("Choice of which to update (-1 to quit): ");
+                        System.out.printf("Enter the number of your choice (-1 to quit): ");
                         sc.next();
                     }
                     choice = sc.nextInt();
                     break;
                 } while (true);
 
-                if (choice == 1) {
-                    promotionMgr.createPromotion(restaurant.promotions, restaurant.menuItems);
-                } else if (choice == 2) {
-                    promotionMgr.updatePromotion(restaurant.promotions, restaurant.menuItems);
-                }
-                if (choice == 3) {
-                    promotionMgr.deletePromotion(restaurant.promotions);
+                while (choice != -1) {
+                    if (choice == 1) {
+                        promotionMgr.createPromotion(restaurant.promotions, restaurant.menuItems);
+                    } else if (choice == 2) {
+                        promotionMgr.updatePromotion(restaurant.promotions, restaurant.menuItems);
+                    } else if (choice == 3) {
+                        promotionMgr.deletePromotion(restaurant.promotions);
+                    } else {
+                        promotionMgr.getPromotionList(restaurant.promotions);
+                    }
+
+                    System.out.println("Altering restaurant promotion menu");
+                    System.out.println("(1) Create promotion");
+                    System.out.println("(2) Update promotion");
+                    System.out.println("(3) Delete promotion");
+                    System.out.println("(4) Print list of promotions");
+
+                    System.out.printf("Enter the number of your choice (-1 to quit): ");
+
+                    do {
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Input is invalid, try again!");
+                            System.out.printf("Enter the number of your choice (-1 to quit): ");
+                            sc.next();
+                        }
+                        choice = sc.nextInt();
+                        break;
+                    } while (true);
                 }
                 break;
+
             case 3:
-                // System.out.printf("Enter the number of person: ");
-                // int noOfPax = sc.nextInt();
+                System.out.printf("Enter the number of person: ");
+                int noOfPax = sc.nextInt();
 
-                // System.out.println("Enter Customer Contact Number: ");
-                // int contactNo = sc.nextInt();
+                System.out.println("Enter Customer Contact Number: ");
+                int contactNo = sc.nextInt();
 
-                // Customer cust = customerMgr.findCustomer(restaurant.customer, contactNo);
-                // if (cust == null) {
-                // System.out.println("Enter Customer Name: ");
-                // String custName = sc.next();
-                // System.out.println("Membership?: ");
-                // boolean member = sc.nextBoolean();
-                // long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
-                // cust = new Customer(custID, custName, member, contactNo);
-                // restaurant.customer.add(cust);
-                // }
+                Customer cust = customerMgr.findCustomer(restaurant.customer, contactNo);
+                if (cust == null) {
+                    System.out.println("Enter Customer Name: ");
+                    String custName = sc.next();
+                    System.out.println("Membership?: ");
+                    boolean member = sc.nextBoolean();
+                    long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+                    cust = new Customer(custID, custName, member, contactNo);
+                    restaurant.customer.add(cust);
+                }
 
-                // Table table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(),
-                // noOfPax);
-                // if (table != null) {
-                // Order order = orderMgr.createOrder(restaurant.menuItems,
-                // restaurant.promotions, staff, table, cust);
-                // if (order != null) {
-                // restaurant.order.add(order);
-                // } else {
-                // table.setStatus(0);
-                // }
-                // }
+                Table table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(), noOfPax);
+                if (table != null) {
+                    Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table, cust);
+                    if (order != null) {
+                        restaurant.order.add(order);
+                    } else {
+                        table.setStatus(0);
+                    }
+                }
                 break;
             case 4:
                 int orderSize = restaurant.order.size();
