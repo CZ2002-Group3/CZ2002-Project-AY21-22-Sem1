@@ -10,6 +10,7 @@ public class OrderMgr {
 		Order found = null;
 		Scanner sc = new Scanner(System.in);
 		Boolean discount = false;
+		char discount_str;
 
 		for (int i = 0; i < orderSize; i++) {
 			if (order.get(i).getTableNumber() == tableNumber) {
@@ -22,19 +23,23 @@ public class OrderMgr {
 
 			Customer cust = found.getCustomer();
 			if (cust.getIsMember()) {
-				System.out.printf("Does the customer want a discount? ");
-
-				do {
-					while (!sc.hasNextBoolean()) {
-						System.out.println("Input is invalid, try again!");
-						System.out.printf("Does the customer want a discount? ");
-						sc.next();
-					}
-					discount = sc.nextBoolean();
-					break;
-	
-				} while (true);
 				
+				
+				do {
+					System.out.printf("Does the customer want a discount? (Y/N)");
+					discount_str = sc.next().charAt(0);
+
+					if (discount_str == 'y' || discount_str == 'Y') {
+						discount = true;
+						break;
+					} else if (discount_str == 'n' || discount_str == 'N') {
+						discount = false;
+						break;
+					} else {
+						System.out.println("Invalid input, please try again!");
+						continue;
+					}
+				} while(true);
 			}
 			
 
