@@ -154,9 +154,6 @@ public class RRPSS {
 
                 Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
 
-                System.out.printf("Enter the number of person: ");
-                int noOfPax = sc.nextInt();
-
                 System.out.printf("Enter Customer Contact Number: ");
                 long contactNo = sc.nextLong();
 
@@ -187,6 +184,9 @@ public class RRPSS {
                         cust = new Customer(custID, custName, member, contactNo);
                         restaurant.customer.add(cust);
                     }
+
+                    System.out.printf("Enter the number of person: ");
+                    int noOfPax = sc.nextInt();
 
                     table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(), noOfPax);
                     if (table != null) {
