@@ -25,7 +25,7 @@ public class TimeMgr {
 			System.out.println(diffSeconds + " seconds.");
 			
 			//System.out.println("+++++++++++++++++++++++++++++++");
-			if (diffDays == 0 && diffSeconds >= 10)
+			if (diffDays == 0 && diffMinutes >= 10)
 			{
 				System.out.println("Time limit have reached, reserved table: "+ curr.getTableNumber()+" have been removed");
 				reservations.remove(curr);
