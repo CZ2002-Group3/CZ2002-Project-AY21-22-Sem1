@@ -1,262 +1,273 @@
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PromotionMgr {
-	private Restaurant restaurant;
 
-	public PromotionMgr(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
+	public PromotionMgr() {}
 
 	/**
 	 * 
 	 * @param Promotion
 	 */
-	public void getPromotionList() {
+	public void getPromotionList(List<Promotion> promotions) {
 		System.out.println("The current promotions are: ");
-		if(restaurant.promotions.size() == 0){
+		if(promotions.size() == 0){
 			System.out.println("There are currently no ongoing promotions!");
 		} else {
-			for(int i = 0; i < restaurant.promotions.size(); i++){
-				System.out.println(restaurant.promotions.get(i).getName());
-				System.out.println(restaurant.promotions.get(i).getDescription());
-				System.out.println(restaurant.promotions.get(i).getPrice());
+			for(int i = 0; i < promotions.size(); i++){
+				System.out.println(promotions.get(i).getName());
+				System.out.println(promotions.get(i).getDescription());
+				System.out.println(promotions.get(i).getPrice());
 				System.out.println();
 			}
 		}
 	}
 
 
-	public void updatePromotion() {
+	public void updatePromotion(List<Promotion> promotions, List<MenuItem> menuItems) {
 
 		Scanner sc = new Scanner(System.in);
-		int promoFound = 0;
+		int userInput;
+		Promotion promotion;
 
 		while(true){
-			System.out.println("Enter the name of the promotion that you would like to update.");
-			System.out.print("Name of Promo: ");
-			String promoName = sc.nextLine();
-			if(restaurant.promotions.size() == 0){
-				System.out.println("There are currently no ongoing promotions!");
+			System.out.println("The current ongoing promotions are: "); 
+			if(promotions.size() == 0){
+				System.out.println("There are currently no ongoing promotions!\n");
+				return;
 			} else {
-				for(int i = 0; i < restaurant.promotions.size(); i++){
-					if(promoName == restaurant.promotions.get(i).getName()){
-						promoFound = i;
+				for(int i = 0; i < promotions.size(); i++){
+					System.out.printf("%d: %s\n", i + 1,  promotions.get(i).getName());
+				}
+				System.out.println("Enter the the promotion that you would like to update.");
+				int promoFound = sc.nextInt();
+				if (promoFound <= 0 || promoFound >= promotions.size() + 1) {
+					if(promoFound == -1){
 						break;
-					} else {
-						promoFound = -1;
 					}
-				}
-			}
+					System.out.println("Please enter a valid index.");
+				} else {
+					promoFound -= 1;
+					for(int i = 0; i < promotions.size(); i++){
+						if(promoFound == i) {
+							promotion = promotions.get(i); 
 
-			if(promoFound == -1) {
-				System.out.println("The promotion does not exist. Please try again!");
-			} else {
-				for(int i = 0; i < restaurant.promotions.size(); i++){
-					if(promoFound == i) {
-						Promotion promotion = restaurant.promotions.get(i); 
-						System.out.println("Current items in " + restaurant.promotions.get(i).getName());
+							System.out.println("Current items in " + promotions.get(i).getName() + ":");
 
-						for (int item = 0; item < promotion.getPromoList().size(); i++) {
-							System.out.println(promotion.getPromoList().get(item));
+							for (int item = 0; item < promotion.getPromoList().size(); item++) {
+								System.out.println(promotion.getPromoList().get(item).getName());
+							}
+
+							System.out.println("Descriptions:\n" + promotions.get(i).getDescription());
+							System.out.println("Promotion price:\n" + promotions.get(i).getPrice());
+							System.out.println();
 						}
-
-						System.out.println();
-						System.out.println(restaurant.promotions.get(i).getDescription());
-						System.out.println(restaurant.promotions.get(i).getPrice());
-						System.out.println();
 					}
-				}
 
-				System.out.println("Please choose which of the following you would like to update: ");
-				System.out.print("1. Menu items\n" + "2. Descriptions\n" + "3. Price\n");
-				int userInput = sc.nextInt();
+					System.out.println("Please choose which of the following you would like to update: ");
+					System.out.print("1. Menu items\n" + "2. Descriptions\n" + "3. Price\n");
+					
+					do {
+						System.out.print("Choice of which to update: ");
+						userInput = sc.nextInt();
+						switch(userInput) {
+							case 1:
+								int userInp = 0;
+								System.out.println("What would you like to do?");
+								System.out.print("1. Add items\n" + "2. Delete items\n" + "Enter '-1' to exit.\n");
+								do {
+									System.out.print("Choice: ");
+									userInp = sc.nextInt();
 
-				do {
-					switch(userInput) {
-						case 1:
-							System.out.println("What would you like to do?");
-							System.out.print("1. Add items" + "2. Delete items");
-							int userInp = sc.nextInt();
-							// if ()
-							System.out.print("1. Add items\n" + "2. Delete items\n" + " Enter '-1' to exit.");
-							do {
-
-								int userInp = sc.nextInt();
-
-								if (userInp == 1){
-									String itemToAdd = sc.nextLine();
-									if(restaurant.menuItems.size() == 0){
-										System.out.println("There are currently no items in the menu.");
-									} else {
-										boolean existPromo = false;
-										boolean existMenu = false;
-
-										for (int item = 0; item < restaurant.promotions.get(promoFound).getPromoList().size(); item++){
-											if(itemToAdd == restaurant.promotions.get(promoFound).getPromoList().get(item).getName()){
-												System.out.println("The menu item already exist in the promotion: " + restaurant.promotions.get(promoFound).getName());
-												existPromo = true;
-												break;
+									if (userInp == 1){
+										if(menuItems.size() == 0){
+											System.out.println("There is currently nothing in the menu!");
+											break;				
+										} else { 
+											for (int i = 0; i < menuItems.size(); i++){
+												System.out.printf("%d: %s\n", i + 1, menuItems.get(i).getName());
 											}
 										}
-
-										if(!existPromo){
-											for (int i = 0; i < restaurant.menuItems.size(); i++){
-												if (itemToAdd == restaurant.menuItems.get(i).getName()){
-													System.out.println("Successfully added " + restaurant.menuItems.get(i).getName() + "to promotion " + restaurant.promotions.get(promoFound).getName());
-													restaurant.promotions.get(promoFound).addMenuItem(restaurant.menuItems.get(i));
-													existMenu = true;
+										int itemToAdd = 0;
+										System.out.println("Choose a menu item to add: ");
+										do {
+											System.out.print("Choice of menu item to add: ");
+											itemToAdd = sc.nextInt();
+											if(itemToAdd <= 0 || itemToAdd >= menuItems.size() + 1){
+												if (itemToAdd == -1){
 													break;
-												} 
-											}
-										}
+												}
+												System.out.println("Please enter a valid index.");
+											} else {
+												itemToAdd -= 1;
+												boolean existPromo = false;
+												for (int item = 0; item < promotions.get(promoFound).getPromoList().size(); item++){
+													if(menuItems.get(itemToAdd).getName() == promotions.get(promoFound).getPromoList().get(item).getName()){
+														System.out.println("The menu item already exist in the promotion " + promotions.get(promoFound).getName());
+														existPromo = true;
+														break;
+													}
+												}
 
-										if(!existMenu){
-											System.out.println("Item does not exist in the menu. Please try again.");
-										}
-									} 
-								} else {
-									String itemToDelete = sc.nextLine();
-									boolean existPromo = false;
-									for (int item = 0; item < restaurant.promotions.get(promoFound).getPromoList().size(); item++){
-										if(itemToDelete == restaurant.promotions.get(promoFound).getPromoList().get(item).getName()){
-											System.out.println("Successfully deleted " + restaurant.menuItems.get(item).getName() + "in promotion: " + restaurant.promotions.get(promoFound).getName());
-											existPromo = true;
-											break;
+												if(!existPromo){	
+													System.out.println("Successfully added " + menuItems.get(itemToAdd).getName() + " to promotion " + promotions.get(promoFound).getName());
+													promotions.get(promoFound).addMenuItem(menuItems.get(itemToAdd));																							 
+												}
+											}
+										}while(true);
+
+									} else if (userInp == 2){
+										int itemToDelete = 0;
+
+										System.out.println("Current items in " + promotions.get(promoFound).getName() + ":");
+
+										for (int item = 0; item < promotions.get(promoFound).getPromoList().size(); item++) {
+											System.out.printf("%d: %s\n", item + 1, promotions.get(promoFound).getPromoList().get(item).getName());
+										} 
+										System.out.print("Choice of menu item to remove: ");
+										itemToDelete = sc.nextInt();
+
+										if(itemToDelete <= 0 || itemToDelete >= promotions.get(promoFound).getPromoList().size() + 1){
+											System.out.println("Please enter a valid index.");
+										} else {
+											itemToDelete -= 1;
+											System.out.println("Successfully deleted " + promotions.get(promoFound).getPromoList().get(itemToDelete).getName() + " in promotion " + promotions.get(promoFound).getName());
+											promotions.get(promoFound).removeMenuItem(itemToDelete);
 										}
 									}
-									if(!existPromo){
-										System.out.println("Item does not exist in promotion: " + restaurant.promotions.get(promoFound).getName());
-									} 
-								}
-							} while (userInput != -1);
+								} while (userInput != -1);
+								break;
 
-							//if ()
-							break;
+							case 2:
+								sc.nextLine();
+								System.out.println("Please enter the new description: ");
+								String description = sc.nextLine();
+								promotions.get(promoFound).setDescription(description);
+								System.out.println("Successfully updated description for promotion " + promotions.get(promoFound).getName());
+								break;
 
-						case 2:
-							System.out.println("Please enter the new description:");
-							String description = sc.nextLine();
-							restaurant.promotions.get(promoFound).setDescription(description);
-							System.out.println("Successfully updated description for promotion: " + restaurant.promotions.get(promoFound).getName());
-							break;
-						case 3:
-							System.out.print("Please enter the new price:");
-							double price = sc.nextDouble();
-							restaurant.promotions.get(promoFound).setPrice(price);
-							System.out.println("Successfully updated price for promotion: " + restaurant.promotions.get(promoFound).getName());
-							break;
-					}
-				} while (userInput != -1);
+							case 3:
+								System.out.print("Please enter the new price: ");
+								double price = sc.nextDouble();
+								promotions.get(promoFound).setPrice(price);
+								System.out.println("Successfully updated price for promotion " + promotions.get(promoFound).getName());
+								break;
+						}
+					} while (userInput != -1);
+				}
 			}
 		}
 	}
 
-	public void createPromotion(ArrayList<MenuItem> menuItem) {
+	public void createPromotion(List<Promotion> promotions, List<MenuItem> menuItems) {
 		Scanner sc = new Scanner(System.in);
 		Promotion promotion = new Promotion();
+		int userInput = 0;
 
 		System.out.println("Current Items in the menu that you can add to promotion: ");
-		if(menuItem.size() == 0){
+
+		if(menuItems.size() == 0){
 			System.out.println("There is currently nothing in the menu!");
-				
+			return;				
 		} else { 
-			for (int i = 0; i < menuItem.size(); i++){
-				System.out.println(menuItem.get(i));
+			for (int i = 0; i < menuItems.size(); i++){
+				System.out.printf("%d: %s\n", i + 1, menuItems.get(i).getName());
 			}
 		}
+		
 
 		System.out.println("Please enter the items that you would like to add to the promotion: ");
-		System.out.println("Enter menu items and 'c' to cancel");
-		while(true){
-			String userInput = sc.nextLine();
-			if (userInput == "c"){
-				break;
-			}
-			else {
+		System.out.println("Enter menu items ('-1' to cancel):");
+		do{
+			userInput = sc.nextInt();
+			if (userInput <= 0 || userInput >= menuItems.size() + 1) {
+				if(userInput == -1){
+					break;
+				}
+				System.out.println("Please enter a valid index.");
+			} else {
+				userInput -= 1;
 				MenuItem itemToAdd;
-				int failToFind = 0;
-				for (int i = 0; i < restaurant.menuItems.size(); i++){
-					if(userInput == restaurant.menuItems.get(i).getName()){
-						itemToAdd = restaurant.menuItems.get(i);
-						promotion.addMenuItem(itemToAdd);
-						break;
-					} else {
-						failToFind++;
-					}
-				}
-				if(failToFind == restaurant.menuItems.size() - 1){
-					System.out.println("The menu item is not found. Please try again!");
+				boolean existPromo = false;
+				for (int i = 0; i < menuItems.size(); i++){
+					if(userInput == i){
+						itemToAdd = menuItems.get(i);
+						for (int item = 0; item < promotion.getPromoList().size(); item++){
+							if (itemToAdd.getName() == promotion.getPromoList().get(item).getName()){
+								existPromo = true;
+								break;
+							}
+						}
+						if(!existPromo){
+							promotion.addMenuItem(itemToAdd);
+							System.out.println("Successfully added " + itemToAdd.getName() + ".");
+							break;
+						} else {
+							System.out.println("Menu item already exist.");
+						}
+					} 
 				}
 			}
+		} while(userInput >= 0);
+
+		sc.nextLine();
+		if(promotion.getPromoList().size() != 0){
+			// set name
+			System.out.println("Please set the name for this promotion package!");
+			System.out.print("Name: ");
+			String name = sc.nextLine();
+			promotion.setName(name);
+
+			// set descriptions
+			System.out.println("Please set the descriptions for this promotion package!");
+			System.out.print("Descriptions: ");
+			String descriptions = sc.nextLine();
+			promotion.setDescription(descriptions);
+
+			// Set price
+			System.out.println("Please set the price for this promotion package!");
+			System.out.print("Price: ");
+			double price = sc.nextDouble();
+			promotion.setPrice(price);
+
+			promotions.add(promotion);
+			System.out.println("Successfully added a new promotion.\n");
+
+		} else {
+			System.out.println("Please add at least one item!\n");
 		}
-
-
-		// set name
-		System.out.println("Please set the name for this promotion package!");
-		System.out.print("Price: ");
-		String name = sc.nextLine();
-		promotion.setName(name);
-
-		// set descriptions
-		System.out.println("Please set the descriptions for this promotion package!");
-		System.out.print("Descriptions: ");
-		String descriptions = sc.nextLine();
-		promotion.setDescription(descriptions);
-
-		// Set price
-		System.out.println("Please set the price for this promotion package!");
-		System.out.print("Price: ");
-		double price = sc.nextDouble();
-		promotion.setPrice(price);
-
-		restaurant.promotions.add(promotion);
 	}
 
 	/**
 	 * 
 	 * @param Promotion
 	 */
-	public void deletePromotion() {
+	public void deletePromotion(List<Promotion> promotions) {
 		Scanner sc = new Scanner(System.in);
-		boolean existPromo = false;
-		System.out.println("The current ongoing promotions are: "); 
-		if(restaurant.promotions.size() == 0){
-			System.out.println("There are currently no ongoing promotions!");
-		} else {
-			for(int i = 0; i < restaurant.promotions.size(); i++){
-				System.out.println(restaurant.promotions.get(i).getName());
-			}
-			System.out.println("\nWhich of the above promotions would you like to remove?");
-			System.out.print("Enter promotion name: ");
-
-			String promoToRemove = sc.nextLine();
 
 		System.out.println("The current ongoing promotions are: "); 
-		if(restaurant.promotions.size() == 0){
-			System.out.println("There are currently no ongoing promotions!");
+		if(promotions.size() == 0){
+			System.out.println("There are currently no ongoing promotions!\n");
 		} else {
-			for(int i = 0; i < restaurant.promotions.size(); i++){
-				System.out.println(restaurant.promotions.get(i).getName());
+			for(int i = 0; i < promotions.size(); i++){
+				System.out.printf("%d: %s\n", i + 1,  promotions.get(i).getName());
 			}
-			System.out.println("\nWhich of the above promotions would you like to remove?");
-			System.out.print("Enter promotion name: ");
-
-			String promoToRemove = sc.nextLine();
-
-			for(int item = 0; item < restaurant.promotions.size(); item++) {
-				if (promoToRemove == restaurant.promotions.get(item).getName()) {
-					restaurant.promotions.remove(item);
-					existPromo = true;
+			do {
+				System.out.println("Which of the above promotions would you like to remove?");
+				System.out.print("Enter number: ");
+				int promoToRemove = sc.nextInt();
+				if(promoToRemove <= 0 || promoToRemove >= promotions.size() + 1){
+					if(promoToRemove == -1){
+						break;
+					}
+					System.out.println("Please enter a valid number!");
+				} else{
+					promoToRemove -= 1;
+					System.out.println("Successfully removed promotion " + promotions.get(promoToRemove).getName() + "!\n");
+					promotions.remove(promoToRemove);
 					break;
-				} 
-			}
-
-			if(!existPromo) {
-				System.out.println("Promotion name not found. Please try again!");
-			}
+				}
+			} while(true);
 		}
 	}
 }
-}
-
