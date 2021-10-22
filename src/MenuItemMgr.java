@@ -16,10 +16,10 @@ public class MenuItemMgr {
 		}
 
 		for (int i = 0; i < size; i++) {
-			System.out.println("Press (" + i + ") to update " + menuItems.get(i).getName() + " | Costs: $"
+			System.out.println("(" + i + ") to update " + menuItems.get(i).getName() + " | Costs: $"
 					+ menuItems.get(i).getPrice());
 		}
-		System.out.println("Press (-1) to exit update");
+		System.out.println("(-1) to exit update");
 
 		int foodToUpdate;
 		do {
@@ -44,9 +44,9 @@ public class MenuItemMgr {
 		}
 		while (foodToUpdate != -1) {
 
-			System.out.println("Press (0) if name of food is unchanged");
-			System.out.println("Press (1) to change name of food");
-			System.out.println("Press (-1) to exit update");
+			System.out.println("(0) if name of food is unchanged");
+			System.out.println("(1) to change name of food");
+			System.out.println("(-1) to exit update");
 
 			int usrInput;
 			do {
@@ -74,9 +74,9 @@ public class MenuItemMgr {
 				menuItems.get(foodToUpdate).setName(foodName);
 			}
 
-			System.out.println("Enter 0 if the description of food is unchanged");
-			System.out.println("Press 1 to change description of the food");
-			System.out.println("Press (-1) to exit update");
+			System.out.println("(0) if the description of food is unchanged");
+			System.out.println("(1) to change description of the food");
+			System.out.println("(-1) to exit update");
 
 			do {
 
@@ -104,9 +104,9 @@ public class MenuItemMgr {
 				menuItems.get(foodToUpdate).setDescription(foodDescription);
 			}
 
-			System.out.println("Enter 0 if the price of this food type is unchanged");
-			System.out.println("Press 1 to change price of the food");
-			System.out.println("Press (-1) to exit update");
+			System.out.println("(0) if the price of this food type is unchanged");
+			System.out.println("(1) to change price of the food");
+			System.out.println("(-1) to exit update");
 
 			do {
 
@@ -130,7 +130,6 @@ public class MenuItemMgr {
 
 			if (usrInput == 1) {
 				System.out.println("Enter new price of the food");
-				System.out.println("Enter (-1) to exit update");
 				double foodPrice;
 
 				do {
@@ -157,9 +156,9 @@ public class MenuItemMgr {
 					+ " | Costs: $" + menuItems.get(foodToUpdate).getPrice());
 
 			for (int i = 0; i < size; i++) {
-				System.out.println("Press (" + i + ") to update " + menuItems.get(i).getName());
+				System.out.println("(" + i + ") to update " + menuItems.get(i).getName());
 			}
-			System.out.println("Press (-1) to exit update");
+			System.out.println("(-1) to exit update");
 
 			do {
 

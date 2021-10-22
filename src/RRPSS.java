@@ -68,13 +68,12 @@ public class RRPSS {
                         sc.next();
                     }
                     choice = sc.nextInt();
+                    break;
 
-                    if (choice == -1) {
-                        break;
-                    }
                 } while (true);
 
                 while (choice != -1) {
+
                     if (choice == 1) {
                         restaurant.menuItems.add(menuItemMgr.createMenuItem());
                     } else if (choice == 2) {
@@ -154,32 +153,34 @@ public class RRPSS {
                 break;
 
             case 3:
-                System.out.printf("Enter the number of person: ");
-                int noOfPax = sc.nextInt();
+                // System.out.printf("Enter the number of person: ");
+                // int noOfPax = sc.nextInt();
 
-                System.out.println("Enter Customer Contact Number: ");
-                int contactNo = sc.nextInt();
+                // System.out.println("Enter Customer Contact Number: ");
+                // int contactNo = sc.nextInt();
 
-                Customer cust = customerMgr.findCustomer(restaurant.customer, contactNo);
-                if (cust == null) {
-                    System.out.println("Enter Customer Name: ");
-                    String custName = sc.next();
-                    System.out.println("Membership?: ");
-                    boolean member = sc.nextBoolean();
-                    long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
-                    cust = new Customer(custID, custName, member, contactNo);
-                    restaurant.customer.add(cust);
-                }
+                // Customer cust = customerMgr.findCustomer(restaurant.customer, contactNo);
+                // if (cust == null) {
+                // System.out.println("Enter Customer Name: ");
+                // String custName = sc.next();
+                // System.out.println("Membership?: ");
+                // boolean member = sc.nextBoolean();
+                // long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+                // cust = new Customer(custID, custName, member, contactNo);
+                // restaurant.customer.add(cust);
+                // }
 
-                Table table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(), noOfPax);
-                if (table != null) {
-                    Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table, cust);
-                    if (order != null) {
-                        restaurant.order.add(order);
-                    } else {
-                        table.setStatus(0);
-                    }
-                }
+                // Table table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(),
+                // noOfPax);
+                // if (table != null) {
+                // Order order = orderMgr.createOrder(restaurant.menuItems,
+                // restaurant.promotions, staff, table, cust);
+                // if (order != null) {
+                // restaurant.order.add(order);
+                // } else {
+                // table.setStatus(0);
+                // }
+                // }
                 break;
             case 4:
                 int orderSize = restaurant.order.size();

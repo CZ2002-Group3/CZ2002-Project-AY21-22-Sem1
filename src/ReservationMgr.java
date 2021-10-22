@@ -1,3 +1,4 @@
+import java.lang.reflect.Member;
 import java.text.*;
 import java.util.*;
 
@@ -8,20 +9,56 @@ public class ReservationMgr {
 		int size = reservation.size();
 		int tableNo, choice;
 
-		System.out.println("(1)Check Single reservation");
-		System.out.println("(2)Check All reservation");
+		if (size == 0) {
+			System.out.printf("ERROR: There are no reservations at the moment");
+			return;
+		}
+
+		System.out.println("(1) Check Single reservation");
+		System.out.println("(2) Check All reservation");
+		System.out.println("(-1) Exit Check reservation");
 		System.out.printf("Enter your Choices: ");
-		choice = sc.nextInt();
+
+		do {
+
+			while (!sc.hasNextInt()) {
+				System.out.println("That's not a number!");
+				sc.next(); // this is important!
+			}
+
+			choice = sc.nextInt();
+			if (choice == 1 || choice == 2 || choice == -1) {
+				break;
+			}
+			System.out
+					.println("Input entered is either not an integer, or is not in the valid range. Please try again!");
+
+		} while (choice <= 0 || choice > 2);
+		sc.nextLine();
+
 		if (choice == 1) {
 			System.out.printf("Enter your Table Number: ");
-			tableNo = sc.nextInt();
+
+			do {
+
+				while (!sc.hasNextInt()) {
+					System.out.println("That's not a number!");
+					sc.next(); // this is important!
+				}
+
+				tableNo = sc.nextInt();
+				break;
+
+			} while (true);
+			sc.nextLine();
+
 			for (int i = 0; i < size; i++) {
 				if (reservation.get(i).getTableNumber() == tableNo) {
 					reservation.get(i).printReservation();
 					return;
 				}
 			}
-			System.out.println("NOT FOUND!!");
+			System.out.println("RESERVATION NOT FOUND!!");
 
 		} else if (choice == 2) {
 			for (int i = 0; i < size; i++)
@@ -35,8 +72,24 @@ public class ReservationMgr {
 		Scanner sc = new Scanner(System.in);
 		int tableNo;
 		int size = reservation.size();
+
+		if (size == 0) {
+			System.out.printf("ERROR: There are no reservations at the moment");
+			return;
+		}
 		System.out.printf("Enter the table number to be removed: ");
-		tableNo = sc.nextInt();
+		do {
+
+			while (!sc.hasNextInt()) {
+				System.out.println("That's not a number!");
+				sc.next(); // this is important!
+			}
+
+			tableNo = sc.nextInt();
+			break;
+
+		} while (true);
+		sc.nextLine();
 
 		for (int i = 0; i < size; i++) {
 			if (reservation.get(i).getTableNumber() == tableNo) {
@@ -55,7 +108,23 @@ public class ReservationMgr {
 		CustomerMgr customerMgr = new CustomerMgr();
 
 		System.out.printf("Enter number of Pax: ");
-		int numPax = sc.nextInt();
+		int numPax;
+		do {
+
+			while (!sc.hasNextInt()) {
+				System.out.println("That's not a number!");
+				sc.next(); // this is important!
+			}
+
+			numPax = sc.nextInt();
+			if (numPax >= 1 && numPax <= 10) {
+				break;
+			}
+			System.out
+					.println("Input entered is either not an integer, or is not in the valid range. Please try again!");
+
+		} while (true);
+		sc.nextLine();
 
 		Table table = tableMgr.reverseTable(tables, numPax);
 
@@ -66,8 +135,25 @@ public class ReservationMgr {
 			if (cust == null) {
 				System.out.println("Enter Customer Name: ");
 				String custName = sc.next();
-				System.out.println("Membership?: ");
-				boolean member = sc.nextBoolean();
+
+				sc.nextLine();
+				char member_str;
+
+				while (true) {
+					System.out.println("Membership? Enter (Y/N)");
+					member_str = sc.nextLine().charAt(0);
+					if (member_str == 'y' || member_str == 'Y' || member_str == 'n' || member_str == 'N') {
+						break;
+					}
+				}
+
+				boolean member = true;
+				if (member_str == 'y' || member_str == 'Y') {
+					member = true;
+				} else if (member_str == 'n' || member_str == 'N') {
+					member = false;
+				}
+
 				long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
 				cust = new Customer(custID, custName, member, contactNo);
 				customers.add(cust);
@@ -80,7 +166,7 @@ public class ReservationMgr {
 			Date dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateString);
 			reservation.add(new Reservation(dateTime, numPax, cust, table));
 		}
-
+		return;
 	}
 
 }
