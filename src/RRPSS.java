@@ -39,14 +39,14 @@ public class RRPSS {
         System.out.printf("Enter the number of your choice: ");
 
         do {
-            while(!sc.hasNextInt()){	
+            while (!sc.hasNextInt()) {
                 System.out.println("Input is invalid, try again!");
                 System.out.print("Choice of which to update (-1 to quit): ");
                 sc.next();
             }
             choice = sc.nextInt();
             break;
-        } while(true);
+        } while (true);
 
         while (choice != 0) {
 
@@ -62,17 +62,18 @@ public class RRPSS {
                 System.out.println("Enter the number of your choice: ");
 
                 do {
-                    while(!sc.hasNextInt()){	
+                    while (!sc.hasNextInt()) {
                         System.out.println("Input is invalid, try again!");
                         System.out.print("Choice of which to update (-1 to quit): ");
                         sc.next();
                     }
                     choice = sc.nextInt();
                     break;
-                } while(true);
 
+                } while (true);
 
                 while (choice != -1) {
+
                     if (choice == 1) {
                         restaurant.menuItems.add(menuItemMgr.createMenuItem());
                     } else if (choice == 2) {
@@ -91,14 +92,14 @@ public class RRPSS {
 
                     System.out.println("Enter the number of your choice: ");
                     do {
-                        while(!sc.hasNextInt()){	
+                        while (!sc.hasNextInt()) {
                             System.out.println("Input is invalid, try again!");
                             System.out.println("Enter the number of your choice: ");
                             sc.next();
                         }
                         choice = sc.nextInt();
                         break;
-                    } while(true);
+                    } while (true);
                 }
                 break;
             case 2:
@@ -111,15 +112,15 @@ public class RRPSS {
                 System.out.printf("Enter the number of your choice (-1 to quit): ");
 
                 do {
-                    while(!sc.hasNextInt()){	
+                    while (!sc.hasNextInt()) {
                         System.out.println("Input is invalid, try again!");
                         System.out.printf("Enter the number of your choice (-1 to quit): ");
                         sc.next();
                     }
                     choice = sc.nextInt();
                     break;
-                } while(true);
-                
+                } while (true);
+
                 while (choice != -1) {
                     if (choice == 1) {
                         promotionMgr.createPromotion(restaurant.promotions, restaurant.menuItems);
@@ -140,17 +141,17 @@ public class RRPSS {
                     System.out.printf("Enter the number of your choice (-1 to quit): ");
 
                     do {
-                        while(!sc.hasNextInt()){	
+                        while (!sc.hasNextInt()) {
                             System.out.println("Input is invalid, try again!");
                             System.out.printf("Enter the number of your choice (-1 to quit): ");
                             sc.next();
                         }
                         choice = sc.nextInt();
                         break;
-                    } while(true);
+                    } while (true);
                 }
                 break;
-                
+
             case 3:
                 // System.out.printf("Enter the number of person: ");
                 // int noOfPax = sc.nextInt();
@@ -201,14 +202,14 @@ public class RRPSS {
                 System.out.println("(2) Remove reservation");
 
                 do {
-                    while(!sc.hasNextInt()){	
+                    while (!sc.hasNextInt()) {
                         System.out.println("Input is invalid, try again!");
                         System.out.print("Choice of which to update (-1 to quit): ");
                         sc.next();
                     }
                     choice = sc.nextInt();
                     break;
-                } while(true);
+                } while (true);
 
                 timeMgr.checkExpired(restaurant.reservation);
                 if (choice == 1)
@@ -257,14 +258,14 @@ public class RRPSS {
             System.out.printf("Enter the number of your choice: ");
 
             do {
-                while(!sc.hasNextInt()){	
+                while (!sc.hasNextInt()) {
                     System.out.println("Input is invalid, try again!");
                     System.out.print("Choice of which to update (-1 to quit): ");
                     sc.next();
                 }
                 choice = sc.nextInt();
                 break;
-            } while(true);
+            } while (true);
 
         }
         sc.close();
