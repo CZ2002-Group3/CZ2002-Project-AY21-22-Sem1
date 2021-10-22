@@ -20,7 +20,7 @@ public class RRPSS {
         long employeeID = sc.nextInt();
 
         Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
-        System.out.println("Welcome " + staff.getStaffName());
+        //System.out.println("Welcome " + staff.getStaffName());
 
         int choice = -1;
 
