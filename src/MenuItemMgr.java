@@ -5,6 +5,11 @@ public class MenuItemMgr {
 	public MenuItemMgr() {
 	}
 
+	/**
+	 * 
+	 * @param MenuItemMgr
+	 */
+
 	public void updateMenuItem(List<MenuItem> menuItems) {
 
 		Scanner sc = new Scanner(System.in);
