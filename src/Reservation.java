@@ -4,12 +4,12 @@ public class Reservation {
 
 	private Date dateTime;
 	private int numPax;
-	private int contactNumber;
+	private long contactNumber;
 	private int tableNumber;
 	private String customerName;
 	private Table table;
 	private Customer cust;
-	
+
 	public Reservation(Date Datee, int numPax, Customer cust, Table table) {
 		this.dateTime = Datee;
 		this.numPax = numPax;
@@ -22,18 +22,18 @@ public class Reservation {
 
 	public void printReservation() {
 		System.out.println("===========================================================");
-		System.out.println("Date and Time of reservation: "+ dateTime);
-		System.out.println("Number of Pax: "+ numPax);
-		System.out.println("Customer contact number: "+ contactNumber);
-		System.out.println("Table assigned: "+ tableNumber);
-		System.out.println("Customer Name: "+ customerName);
+		System.out.println("Date and Time of reservation: " + dateTime);
+		System.out.println("Number of Pax: " + numPax);
+		System.out.println("Customer contact number: " + contactNumber);
+		System.out.println("Table assigned: " + tableNumber);
+		System.out.println("Customer Name: " + customerName);
 		System.out.println(" ");
 	}
 
 	public Date getdateTime() {
 		return dateTime;
 	}
-	
+
 	public String getcustomerName() {
 		return customerName;
 	}
@@ -42,11 +42,11 @@ public class Reservation {
 		return tableNumber;
 	}
 
-	public Table getTable(){
+	public Table getTable() {
 		return table;
 	}
 
-	public Customer getCustomer(){
+	public Customer getCustomer() {
 		return cust;
 	}
 }

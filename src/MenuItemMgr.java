@@ -2,8 +2,6 @@ import java.util.*;
 
 public class MenuItemMgr {
 
-	List<MenuItem> menuItems;
-
 	public MenuItemMgr() {
 	}
 
@@ -18,30 +16,58 @@ public class MenuItemMgr {
 		}
 
 		for (int i = 0; i < size; i++) {
-			System.out.println("Press (" + i + ") to update " + menuItems.get(i).getName());
+			System.out.println("Press (" + i + ") to update " + menuItems.get(i).getName() + " | Costs: $"
+					+ menuItems.get(i).getPrice());
 		}
 		System.out.println("Press (-1) to exit update");
 
-		int foodToUpdate = sc.nextInt();
-		sc.nextLine();
+		int foodToUpdate;
+		do {
 
-		while (foodToUpdate >= size) {
-			System.out.println("Incorrect value entered. Please try again!");
+			while (!sc.hasNextInt()) {
+				System.out.println("That's not a number!");
+				sc.next(); // this is important!
+			}
+
 			foodToUpdate = sc.nextInt();
-			sc.nextLine();
-		}
+			if (foodToUpdate < size) {
+				break;
+			}
+			System.out
+					.println("Input entered is either not an integer, or is not in the valid range. Please try again!");
+
+		} while (foodToUpdate >= size || foodToUpdate <= -2);
 
 		while (foodToUpdate != -1) {
 
 			System.out.println("Press (0) if name of food is unchanged");
 			System.out.println("Press (1) to change name of food");
-			int usrInput = sc.nextInt();
-			sc.nextLine();
-			while (usrInput < 0 || usrInput >= 2) {
-				System.out.println("Incorrect value entered. Please try again!");
+
+			int usrInput;
+			do {
+
+				while (!sc.hasNextInt()) {
+					System.out.println("That's not a number!");
+					sc.next(); // this is important!
+				}
 				usrInput = sc.nextInt();
-				sc.nextLine();
-			}
+
+				if (usrInput == 0 || usrInput == 1) {
+					break;
+				}
+				System.out.println(
+						"Input entered is either not an integer, or is not in the valid range. Please try again!");
+
+			} while (usrInput < 0 || usrInput >= 2);
+			sc.nextLine();
+
+			// int usrInput = sc.nextInt();
+			// sc.nextLine();
+			// while (usrInput < 0 || usrInput >= 2) {
+			// System.out.println("Incorrect value entered. Please try again!");
+			// usrInput = sc.nextInt();
+			// sc.nextLine();
+			// }
 
 			if (usrInput == 1) {
 				System.out.println("Enter new name of the food");
@@ -49,7 +75,7 @@ public class MenuItemMgr {
 				menuItems.get(foodToUpdate).setName(foodName);
 			}
 
-			System.out.println("Enter 0 if the description of food ");
+			System.out.println("Enter 0 if the description of food is unchanged");
 			System.out.println("Press 1 to change description of the food");
 			usrInput = sc.nextInt();
 			sc.nextLine();
@@ -81,19 +107,33 @@ public class MenuItemMgr {
 				menuItems.get(foodToUpdate).setPrice(foodPrice);
 			}
 
+			System.out.println("Selected menu item has been updated to " + menuItems.get(foodToUpdate).getName()
+					+ " | Costs: $" + menuItems.get(foodToUpdate).getPrice());
+
 			for (int i = 0; i < size; i++) {
 				System.out.println("Press (" + i + ") to update " + menuItems.get(i).getName());
 			}
 			System.out.println("Press (-1) to exit update");
 
-			foodToUpdate = sc.nextInt();
 			sc.nextLine();
-
-			while (foodToUpdate >= size) {
-				System.out.println("Incorrect value entered. Please try again!");
+			do {
+				System.out.println(
+						"Input entered is either not an integer, or is not in the valid range. Please try again!");
+				while (!sc.hasNextInt()) {
+					System.out.println("That's not a number!");
+					sc.next(); // this is important!
+				}
 				foodToUpdate = sc.nextInt();
-				sc.nextLine();
-			}
+			} while (foodToUpdate >= size);
+
+			// foodToUpdate = sc.nextInt();
+			// sc.nextLine();
+
+			// while (foodToUpdate >= size) {
+			// System.out.println("Incorrect value entered. Please try again!");
+			// foodToUpdate = sc.nextInt();
+			// sc.nextLine();
+			// }
 
 		}
 	}
@@ -134,6 +174,7 @@ public class MenuItemMgr {
 		double foodPrice = sc.nextDouble();
 		sc.nextLine();
 
+		System.out.println("Added " + foodName + " | Costs: $" + foodPrice);
 		return new MenuItem(foodName, foodDescription, foodPrice, foodCat);
 	}
 
@@ -198,7 +239,8 @@ public class MenuItemMgr {
 		System.out.println("Items on the menu at the moment are as shown");
 
 		for (int i = 0; i < size; i++) {
-			System.out.println("(" + i + ") " + menuItems.get(i).getName());
+			System.out
+					.println("(" + i + ") " + menuItems.get(i).getName() + " | Costs: $" + menuItems.get(i).getPrice());
 		}
 	}
 

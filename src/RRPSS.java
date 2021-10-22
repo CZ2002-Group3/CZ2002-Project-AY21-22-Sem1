@@ -16,11 +16,11 @@ public class RRPSS {
         CustomerMgr customerMgr = new CustomerMgr();
         TimeMgr timeMgr = new TimeMgr();
 
-        System.out.println("Enter your Employee ID:");
-        long employeeID = sc.nextInt();
+        // System.out.println("Enter your Employee ID:");
+        // long employeeID = sc.nextInt();
 
-        Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
-        //System.out.println("Welcome " + staff.getStaffName());
+        // Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
+        // System.out.println("Welcome " + staff.getStaffName());
 
         int choice = -1;
 
@@ -47,19 +47,33 @@ public class RRPSS {
                 System.out.println("(1) Add menu item");
                 System.out.println("(2) Update menu item");
                 System.out.println("(3) Delete menu item");
+                System.out.println("(4) Print menu item");
+                System.out.println("Enter (-1) to exit Altering restaurant menu: ");
 
-                System.out.printf("Enter the number of your choice: ");
+                System.out.println("Enter the number of your choice: ");
+
                 choice = sc.nextInt();
 
-                if (choice == 1) {
-                    restaurant.menuItems.add(menuItemMgr.createMenuItem());
-                } else if (choice == 2) {
-                    menuItemMgr.updateMenuItem(restaurant.menuItems);
-                }
-                if (choice == 3) {
-                    menuItemMgr.deleteMenuItem(restaurant.menuItems);
-                }
+                while (choice != -1) {
+                    if (choice == 1) {
+                        restaurant.menuItems.add(menuItemMgr.createMenuItem());
+                    } else if (choice == 2) {
+                        menuItemMgr.updateMenuItem(restaurant.menuItems);
+                    } else if (choice == 3) {
+                        menuItemMgr.deleteMenuItem(restaurant.menuItems);
+                    } else if (choice == 4) {
+                        menuItemMgr.printMenuItemList(restaurant.menuItems);
+                    }
+                    System.out.println("Altering restaurant menu");
+                    System.out.println("(1) Add menu item");
+                    System.out.println("(2) Update menu item");
+                    System.out.println("(3) Delete menu item");
+                    System.out.println("(4) Print menu item");
+                    System.out.println("Enter (-1) to exit Altering restaurant menu: ");
 
+                    System.out.println("Enter the number of your choice: ");
+                    choice = sc.nextInt();
+                }
                 break;
             case 2:
                 System.out.println("Altering restaurant promotion menu");
@@ -80,32 +94,34 @@ public class RRPSS {
                 }
                 break;
             case 3:
-                System.out.printf("Enter the number of person: ");
-                int noOfPax = sc.nextInt();
+                // System.out.printf("Enter the number of person: ");
+                // int noOfPax = sc.nextInt();
 
-                System.out.println("Enter Customer Contact Number: ");
-                int contactNo = sc.nextInt();
+                // System.out.println("Enter Customer Contact Number: ");
+                // int contactNo = sc.nextInt();
 
-                Customer cust = customerMgr.findCustomer(restaurant.customer, contactNo);
-                if (cust == null) {
-                    System.out.println("Enter Customer Name: ");
-                    String custName = sc.next();
-                    System.out.println("Membership?: ");
-                    boolean member = sc.nextBoolean();
-                    long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
-                    cust = new Customer(custID, custName, member, contactNo);
-                    restaurant.customer.add(cust);
-                }
+                // Customer cust = customerMgr.findCustomer(restaurant.customer, contactNo);
+                // if (cust == null) {
+                // System.out.println("Enter Customer Name: ");
+                // String custName = sc.next();
+                // System.out.println("Membership?: ");
+                // boolean member = sc.nextBoolean();
+                // long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+                // cust = new Customer(custID, custName, member, contactNo);
+                // restaurant.customer.add(cust);
+                // }
 
-                Table table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(), noOfPax);
-                if (table != null) {
-                    Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table, cust);
-                    if (order != null) {
-                        restaurant.order.add(order);
-                    } else {
-                        table.setStatus(0);
-                    }
-                }
+                // Table table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(),
+                // noOfPax);
+                // if (table != null) {
+                // Order order = orderMgr.createOrder(restaurant.menuItems,
+                // restaurant.promotions, staff, table, cust);
+                // if (order != null) {
+                // restaurant.order.add(order);
+                // } else {
+                // table.setStatus(0);
+                // }
+                // }
                 break;
             case 4:
                 int orderSize = restaurant.order.size();

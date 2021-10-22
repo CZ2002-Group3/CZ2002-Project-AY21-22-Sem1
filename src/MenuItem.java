@@ -40,4 +40,8 @@ public class MenuItem {
 		this.price = price;
 	}
 
+	public void setFoodCategory(FoodCategory foodType) {
+		this.foodType = foodType;
+	}
+
 }
