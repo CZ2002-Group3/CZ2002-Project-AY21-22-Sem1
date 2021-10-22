@@ -22,12 +22,12 @@ public class OrderMgr {
 
 			Customer cust = found.getCustomer();
 			if (cust.getIsMember()) {
-				System.out.println("Does the customer ");
+				System.out.printf("Does the customer want a discount? ");
 
 				do {
 					while (!sc.hasNextBoolean()) {
 						System.out.println("Input is invalid, try again!");
-						System.out.println("Does the customer ");
+						System.out.printf("Does the customer want a discount? ");
 						sc.next();
 					}
 					discount = sc.nextBoolean();
@@ -36,6 +36,7 @@ public class OrderMgr {
 				} while (true);
 				
 			}
+			
 
 			found.printOrderInvoice(discount);
 			table.setStatus(0);

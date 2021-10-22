@@ -68,6 +68,19 @@ public class ReservationMgr {
 
 	}
 
+	public Reservation checkReservation(List<Reservation> reservation, long contactNumber) {
+		Scanner sc = new Scanner(System.in);
+		int size = reservation.size();
+
+		for (int i = 0; i < size; i++) {
+			Reservation curr = reservation.get(i);
+			if (curr.getCustomer().getContactNumber() == contactNumber) {
+				return curr;
+			}
+		}
+		return null;
+	}
+
 	public void removeReservation(List<Reservation> reservation) {
 		Scanner sc = new Scanner(System.in);
 		int tableNo;

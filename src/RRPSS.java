@@ -15,13 +15,7 @@ public class RRPSS {
         PromotionMgr promotionMgr = new PromotionMgr();
         CustomerMgr customerMgr = new CustomerMgr();
         TimeMgr timeMgr = new TimeMgr();
-
-        // System.out.println("Enter your Employee ID:");
-        // long employeeID = sc.nextInt();
-
-        // Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
-        // System.out.println("Welcome " + staff.getStaffName());
-
+        
         int choice = -1;
 
         System.out.println("(1) Create/Update/Remove menu item");
@@ -153,47 +147,113 @@ public class RRPSS {
                 break;
 
             case 3:
-                // System.out.printf("Enter the number of person: ");
-                // int noOfPax = sc.nextInt();
+                // Create Order
+                timeMgr.checkExpired(restaurant.reservation);
+                System.out.printf("Enter your Employee ID: ");
+                long employeeID = sc.nextInt();
 
-                // System.out.println("Enter Customer Contact Number: ");
-                // int contactNo = sc.nextInt();
+                Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
 
-                // Customer cust = customerMgr.findCustomer(restaurant.customer, contactNo);
-                // if (cust == null) {
-                // System.out.println("Enter Customer Name: ");
-                // String custName = sc.next();
-                // System.out.println("Membership?: ");
-                // boolean member = sc.nextBoolean();
-                // long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
-                // cust = new Customer(custID, custName, member, contactNo);
-                // restaurant.customer.add(cust);
-                // }
+                System.out.printf("Enter the number of person: ");
+                int noOfPax = sc.nextInt();
 
-                // Table table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(),
-                // noOfPax);
-                // if (table != null) {
-                // Order order = orderMgr.createOrder(restaurant.menuItems,
-                // restaurant.promotions, staff, table, cust);
-                // if (order != null) {
-                // restaurant.order.add(order);
-                // } else {
-                // table.setStatus(0);
-                // }
-                // }
+                System.out.printf("Enter Customer Contact Number: ");
+                long contactNo = sc.nextLong();
+
+                Table table;
+                Customer cust;
+                Reservation reserve;
+
+                reserve = reservationMgr.checkReservation(restaurant.reservation, contactNo);
+                if (reserve != null) {
+                    cust = reserve.getCustomer();
+                    table = reserve.getTable();
+                    table.setStatus(1);
+                    Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table, cust);
+                    if (order != null) {
+                        restaurant.order.add(order);
+                    } else {
+                        table.setStatus(0);
+                    }
+                } else {
+                    cust = customerMgr.findCustomer(restaurant.customer, contactNo);
+                    if (cust == null) {
+                        System.out.printf("Enter Customer Name: ");
+                        String custName = sc.next();
+                        System.out.printf("Does the customer want a membership?: ");
+                        boolean member = sc.nextBoolean();
+                        long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+                        cust = new Customer(custID, custName, member, contactNo);
+                        restaurant.customer.add(cust);
+                    }
+
+                    table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(), noOfPax);
+                    if (table != null) {
+                        Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table,
+                                cust);
+                        if (order != null) {
+                            restaurant.order.add(order);
+                        } else {
+                            table.setStatus(0);
+                        }
+                    }
+                }
                 break;
             case 4:
+                // View order
+                System.out.println("(1) Show one order");
+                System.out.println("(2) Show all orders");
+                System.out.println("(0) Return back to menu");
+
+                System.out.printf("Enter the number of your choice: ");
+                choice = sc.nextInt();
+
                 int orderSize = restaurant.order.size();
-                for (int i = 0; i < orderSize; i++) {
-                    restaurant.order.get(i).printOrderInvoice(false);
+                if (choice == 1) {
+                    Boolean exist = false;
+                    System.out.printf("Enter Table Number: ");
+                    int tableNo = sc.nextInt();
+
+                    for (int i = 0; i < orderSize; i++) {
+                        Order curr = restaurant.order.get(i);
+                        if (curr.getTableNumber() == tableNo) {
+                            curr.printOrderInvoice(false);
+                            exist = true;
+                        }
+                    }
+
+                    if (!exist) {
+                        System.out.println("The Order does not exist!");
+                    }
+                } else if (choice == 2) {
+                    for (int i = 0; i < orderSize; i++) {
+                        System.out.println("");
+                        restaurant.order.get(i).printOrderInvoice(false);
+                    }
                 }
                 break;
             case 5:
+                // Add/Remove order item/s to/from order
                 System.out.printf("Enter Table Number: ");
                 int tableNo = sc.nextInt();
-                orderMgr.removeOrderItem(restaurant.order, tableNo);
+
+                System.out.println("(1) Remove items from Order");
+                System.out.println("(2) Add items to Order");
+                System.out.println("(0) Return back to menu");
+
+                System.out.printf("Enter the number of your choice: ");
+                choice = sc.nextInt();
+
+                if (choice == 1) {
+                    orderMgr.removeOrderItem(restaurant.order, tableNo);
+                } else if (choice == 2) {
+                    orderMgr.addOrderItem(restaurant.order, restaurant.menuItems, restaurant.promotions, tableNo);
+                } else
+                    System.out.println("Invalid Choice");
+
                 break;
             case 6:
+                // Create reservation booking
                 reservationMgr.createReservation(restaurant.reservation, restaurant.table, restaurant.customer);
                 break;
             case 7:
@@ -221,6 +281,32 @@ public class RRPSS {
 
                 break;
             case 8:
+                // Check table availability
+                System.out.println("(1) Show one table");
+                System.out.println("(2) Show all tables");
+                System.out.printf("Enter the number of your choice: ");
+                choice = sc.nextInt();
+
+                int tableSize = restaurant.table.size();
+                if (choice == 1) {
+                    Boolean exist = false;
+                    System.out.printf("Enter Table Number: ");
+                    int tableNo1 = sc.nextInt();
+
+                    for (int i = 0; i < tableSize; i++) {
+                        Table curr = restaurant.table.get(i);
+                        if (curr.getTableNumber() == tableNo1) {
+                            System.out.println("Table number " + curr.getTableNumber() + " is " + curr.getStatus());
+                            exist = true;
+                        }
+                    }
+
+                    if (!exist) {
+                        System.out.println("The table does not exist!");
+                    }
+                } else if (choice == 2) {
+                    tableMgr.getTableStatus(restaurant.table);
+                }
                 break;
             case 9:
                 System.out.printf("Enter Table Number: ");
@@ -228,6 +314,10 @@ public class RRPSS {
                 orderMgr.orderPaid(restaurant.order, tableNumber);
                 break;
             case 10:
+                // Generate Sales Report
+                System.out.printf("Enter the period (in days): ");
+                int days = sc.nextInt();
+                restaurant.generateSalesReport(days);
                 break;
             default:
                 System.out.println("(1) Create/Update/Remove menu item");
