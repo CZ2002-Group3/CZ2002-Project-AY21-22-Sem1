@@ -65,7 +65,7 @@ public class ReservationMgr {
 		System.out.printf("Enter number of Pax: ");
 		int numPax = sc.nextInt();
 
-		Table table = tableMgr.reverseTable(tables, numPax);
+		Table table = tableMgr.reserveTable(tables, numPax);
 
 		if (table != null) {
 			System.out.println("Enter Customer Contact Number: ");

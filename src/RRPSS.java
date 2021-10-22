@@ -77,7 +77,7 @@ public class RRPSS {
                 break;
             case 3:
                 // Create Order
-                System.out.println("Enter your Employee ID:");
+                System.out.printf("Enter your Employee ID: ");
                 long employeeID = sc.nextInt();
 
                 Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
@@ -131,6 +131,8 @@ public class RRPSS {
                 // View order
                 System.out.println("(1) Show one order");
                 System.out.println("(2) Show all orders");
+                System.out.println("(0) Return back to menu");
+
                 System.out.printf("Enter the number of your choice: ");
                 choice = sc.nextInt();
 
@@ -153,6 +155,7 @@ public class RRPSS {
                     }
                 } else if (choice == 2) {
                     for (int i = 0; i < orderSize; i++) {
+                        System.out.println("");
                         restaurant.order.get(i).printOrderInvoice(false);
                     }
                 }
@@ -164,6 +167,8 @@ public class RRPSS {
 
                 System.out.println("(1) Remove items from Order");
                 System.out.println("(2) Add items to Order");
+                System.out.println("(0) Return back to menu");
+
                 System.out.printf("Enter the number of your choice: ");
                 choice = sc.nextInt();
 
@@ -228,9 +233,13 @@ public class RRPSS {
                 // Print Order Invoice
                 System.out.printf("Enter Table Number: ");
                 int tableNumber = sc.nextInt();
-                orderMgr.orderPaid(restaurant.order, tableNumber);
+                orderMgr.orderPaid(restaurant.order, restaurant.paidOrders, tableNumber);
                 break;
             case 10:
+                // Generate Sales Report
+                System.out.printf("Enter the period (in days): ");
+                int days = sc.nextInt();
+                restaurant.generateSalesReport(days);
                 break;
             default:
                 System.out.println("(1) Create/Update/Remove menu item");

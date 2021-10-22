@@ -5,7 +5,7 @@ public class OrderMgr {
 	public OrderMgr() {
 	}
 
-	public void orderPaid(List<Order> order, int tableNumber) {
+	public void orderPaid(List<Order> order, List<Order> paidOrder, int tableNumber) {
 		int orderSize = order.size();
 		Order found = null;
 		Scanner sc = new Scanner(System.in);
@@ -22,12 +22,13 @@ public class OrderMgr {
 
 			Customer cust = found.getCustomer();
 			if (cust.getIsMember()) {
-				System.out.println("Does the customer want a discount?");
+				System.out.printf("Does the customer want a discount? ");
 				discount = sc.nextBoolean();
 			}
 
 			found.printOrderInvoice(discount);
 			table.setStatus(0);
+			paidOrder.add(found);
 			order.remove(found);
 		} else {
 			System.out.println("Order not found!");
@@ -261,11 +262,4 @@ public class OrderMgr {
 			System.out.println("Order not found!");
 		}
 	}
-
-	public void generateSalesReport(List<Order> order, int days, List<MenuItem> MenuItem, List<Promotion> Promotion) {
-		Order orderInPeriod;
-		Date today = new Date();
-
-	}
-
 }

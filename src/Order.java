@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Date;
+import java.util.*;
 
 public class Order {
 
@@ -9,7 +7,7 @@ public class Order {
 	private Date timeStamp;
 	private Staff waiter;
 	private List<MenuItem> orderItem;
-	private boolean type;
+	private boolean discounted;
 	private Table table;
 	private double totalPrice;
 	private List<Promotion> promotionItem;
@@ -42,25 +40,64 @@ public class Order {
 		this.table = table;
 		this.promotionItem = new ArrayList<Promotion>();
 		this.promotionItem.addAll(promotionItems);
+		this.discounted = false;
 	}
-
-	public void printOrderInvoice(boolean discounted) {
+	
+	public void printOrderInvoice(boolean haveDiscount) {
 		calculateTotal();
+		this.discounted = haveDiscount;
 		int oLength = orderItem.size();
 		int pLength = promotionItem.size();
+		int no = 1;
 
 		System.out.println("Sever: " + waiter.getStaffName());
 		System.out.println("Table: " + table.getTableNumber());
 		System.out.println("Date: " + timeStamp);
 
+		Map<MenuItem, Integer> totalMenuItem = new HashMap<MenuItem, Integer>();
+		Map<Promotion, Integer> totalPromoItem = new HashMap<Promotion, Integer>();
+
 		for (int i = 0; i < oLength; i++) {
-			System.out.println(orderItem.get(i).getName() + "				$"
-					+ String.format("%.2f", orderItem.get(i).getPrice()));
+			MenuItem item = orderItem.get(i);
+			if (totalMenuItem.containsKey(item)) {
+				totalMenuItem.put(item, totalMenuItem.get(item) + 1);
+
+			} else {
+				totalMenuItem.put(item, 1);
+			}
+		}
+		for (int i = 0; i < pLength; i++) {
+			Promotion item = promotionItem.get(i);
+			if (totalPromoItem.containsKey(item)) {
+				totalPromoItem.put(item, totalPromoItem.get(item) + 1);
+
+			} else {
+				totalPromoItem.put(item, 1);
+			}
 		}
 
-		for (int i = 0; i < pLength; i++) {
-			System.out.println(promotionItem.get(i).getName() + " " + promotionItem.get(i).getDescription()
-					+ "				$" + String.format("%.2f", promotionItem.get(i).getPrice()));
+		for (MenuItem key : totalMenuItem.keySet()) {
+			MenuItem item = key;
+			int amount = totalMenuItem.get(item);
+			double totalPrice = amount * item.getPrice();
+			System.out.println(
+					no + ". " + item.getName() + " Qty: " + amount + " Price: $" + String.format("%.2f", totalPrice));
+			no++;
+		}
+
+		for (Promotion key : totalPromoItem.keySet()) {
+			Promotion item = key;
+			int amount = totalPromoItem.get(item);
+			double totalPrice = amount * item.getPrice();
+			List<MenuItem> promoList = item.getPromoList();
+			int promoSize = promoList.size();
+
+			System.out.println(no + ". " + item.getName() + " -");
+			for (int i = 0; i < promoSize; i++) {
+				System.out.println(no + "." + (i + 1) + ". " + promoList.get(i).getName());
+			}
+			System.out.println("Qty: " + amount + " Price: $" + String.format("%.2f", totalPrice));
+			no++;
 		}
 
 		double servieCharge = totalPrice * 0.1;
@@ -70,22 +107,25 @@ public class Order {
 		System.out.println("Subtotal: $" + String.format("%.2f", totalPrice));
 		System.out.println("10% Service Charge: $" + String.format("%.2f", servieCharge));
 		System.out.println("7% GST: $" + String.format("%.2f", gst));
-		if (discounted) {
+		if (this.discounted) {
 			double memberDiscount = totalPrice * discount;
-			double memberFinal = totalPrice + servieCharge + gst - memberDiscount;
-			System.out.println("15% Member Discount: -$" + String.format("%.2f", gst));
+			double memberFinal = (totalPrice + servieCharge + gst) - memberDiscount;
+			System.out.println("15% Member Discount: -$" + String.format("%.2f", memberDiscount));
 			System.out.println("Total: $" + String.format("%.2f", memberFinal));
+			totalPrice = memberFinal;
 		} else {
 			System.out.println("Total: $" + String.format("%.2f", finalTotal));
+			totalPrice = finalTotal;
 		}
 	}
-	
+
 	public Table getTable() {
 		return this.table;
 	}
 
 	public Double getTotalPrice() {
-		calculateTotal();
+		if (this.totalPrice == 0)
+			calculateTotal();
 		return this.totalPrice;
 	}
 
@@ -101,11 +141,11 @@ public class Order {
 		return this.customer;
 	}
 
-	public List<MenuItem> getOrderItems(){
+	public List<MenuItem> getOrderItems() {
 		return this.orderItem;
 	}
 
-	public List<Promotion> getPromotions(){
+	public List<Promotion> getPromotions() {
 		return this.promotionItem;
 	}
 
