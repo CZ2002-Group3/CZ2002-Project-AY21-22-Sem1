@@ -39,10 +39,14 @@ public class MenuItemMgr {
 		} while (foodToUpdate >= size || foodToUpdate <= -2);
 		sc.nextLine();
 
+		if (foodToUpdate == -1) {
+			return;
+		}
 		while (foodToUpdate != -1) {
 
 			System.out.println("Press (0) if name of food is unchanged");
 			System.out.println("Press (1) to change name of food");
+			System.out.println("Press (-1) to exit update");
 
 			int usrInput;
 			do {
@@ -55,6 +59,8 @@ public class MenuItemMgr {
 
 				if (usrInput == 0 || usrInput == 1) {
 					break;
+				} else if (usrInput == -1) {
+					return;
 				}
 				System.out.println(
 						"Input entered is either not an integer, or is not in the valid range. Please try again!");
@@ -70,6 +76,7 @@ public class MenuItemMgr {
 
 			System.out.println("Enter 0 if the description of food is unchanged");
 			System.out.println("Press 1 to change description of the food");
+			System.out.println("Press (-1) to exit update");
 
 			do {
 
@@ -81,7 +88,10 @@ public class MenuItemMgr {
 
 				if (usrInput == 0 || usrInput == 1) {
 					break;
+				} else if (usrInput == -1) {
+					return;
 				}
+
 				System.out.println(
 						"Input entered is either not an integer, or is not in the valid range. Please try again!");
 
@@ -96,6 +106,7 @@ public class MenuItemMgr {
 
 			System.out.println("Enter 0 if the price of this food type is unchanged");
 			System.out.println("Press 1 to change price of the food");
+			System.out.println("Press (-1) to exit update");
 
 			do {
 
@@ -107,7 +118,10 @@ public class MenuItemMgr {
 
 				if (usrInput == 0 || usrInput == 1) {
 					break;
+				} else if (usrInput == -1) {
+					return;
 				}
+
 				System.out.println(
 						"Input entered is either not an integer, or is not in the valid range. Please try again!");
 
@@ -116,6 +130,7 @@ public class MenuItemMgr {
 
 			if (usrInput == 1) {
 				System.out.println("Enter new price of the food");
+				System.out.println("Enter (-1) to exit update");
 				double foodPrice;
 
 				do {
@@ -128,7 +143,10 @@ public class MenuItemMgr {
 					foodPrice = sc.nextDouble();
 					if (foodPrice > 0) {
 						break;
+					} else if (foodPrice == -1) {
+						return;
 					}
+
 				} while (true);
 				sc.nextLine();
 
@@ -153,6 +171,8 @@ public class MenuItemMgr {
 				foodToUpdate = sc.nextInt();
 				if (foodToUpdate < size) {
 					break;
+				} else if (usrInput == -1) {
+					return;
 				}
 				System.out.println(
 						"Input entered is either not an integer, or is not in the valid range. Please try again!");
@@ -170,6 +190,7 @@ public class MenuItemMgr {
 		System.out.println("Press (1) to add a Main course");
 		System.out.println("Press (2) to add a Drink");
 		System.out.println("Press (3) to add a Dessert");
+		System.out.println("Press (-1) to exit create");
 
 		int foodChoice;
 
@@ -183,6 +204,8 @@ public class MenuItemMgr {
 			foodChoice = sc.nextInt();
 			if (foodChoice >= 0 && foodChoice < 4) {
 				break;
+			} else if (foodChoice == -1) {
+				return null;
 			}
 			System.out
 					.println("Input entered is either not an integer, or is not in the valid range. Please try again!");
