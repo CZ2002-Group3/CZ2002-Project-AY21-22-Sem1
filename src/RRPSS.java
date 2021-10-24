@@ -150,12 +150,34 @@ public class RRPSS {
                 // Create Order
                 timeMgr.checkExpired(restaurant.reservation);
                 System.out.printf("Enter your Employee ID: ");
-                long employeeID = sc.nextInt();
+                long employeeID;
+
+                do {
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Input is invalid, try again!");
+                        System.out.printf("Enter your Employee ID: ");
+                        sc.next();
+                    }
+                    employeeID = sc.nextInt();
+                    break;
+    
+                } while (true);
 
                 Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
-
+                
                 System.out.printf("Enter Customer Contact Number: ");
-                long contactNo = sc.nextLong();
+                long contactNo;
+
+                do {
+                    while (!sc.hasNextLong()) {
+                        System.out.println("Input is invalid, try again!");
+                        System.out.printf("Enter Customer Contact Number: ");
+                        sc.next();
+                    }
+                    contactNo = sc.nextLong();
+                    break;
+    
+                } while (true);
 
                 Table table;
                 Customer cust;
@@ -178,15 +200,43 @@ public class RRPSS {
                     if (cust == null) {
                         System.out.printf("Enter Customer Name: ");
                         String custName = sc.next();
-                        System.out.printf("Does the customer want a membership?: ");
-                        boolean member = sc.nextBoolean();
+                        boolean member;
+                        char member_str;
+
+                        do {
+                            System.out.println("Does the customer want a membership? (Y/N)");
+                            member_str = sc.next().charAt(0);
+        
+                            if (member_str == 'y' || member_str == 'Y') {
+                                member = true;
+                                break;
+                            } else if (member_str == 'n' || member_str == 'N') {
+                                member = false;
+                                break;
+                            } else {
+                                System.out.println("Invalid input, please try again!");
+                                continue;
+                            }
+                        } while(true);
+
                         long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
                         cust = new Customer(custID, custName, member, contactNo);
                         restaurant.customer.add(cust);
                     }
 
                     System.out.printf("Enter the number of person: ");
-                    int noOfPax = sc.nextInt();
+                    int noOfPax;
+
+                    do {
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Input is invalid, try again!");
+                            System.out.printf("Enter the number of person: ");
+                            sc.next();
+                        }
+                        noOfPax = sc.nextInt();
+                        break;
+        
+                    } while (true);
 
                     table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(), noOfPax);
                     if (table != null) {
