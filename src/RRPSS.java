@@ -384,7 +384,7 @@ public class RRPSS {
                 } while (true);
                 sc.nextLine();
 
-                orderMgr.orderPaid(restaurant.order, tableNumber);
+                orderMgr.orderPaid(restaurant.order, restaurant.paidOrders, tableNumber);
                 break;
             case 10:
                 // Generate Sales Report

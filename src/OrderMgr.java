@@ -1,16 +1,32 @@
+/**
+ Represents the manager of order class.
+ @author Thai Wei Cheng
+ @version 1.0
+ @since 2021-10-24
+*/
 import java.util.*;
 
 public class OrderMgr {
 
+	/**
+	 * Create an order manager.
+	 */
 	public OrderMgr() {
 	}
 
-	public void orderPaid(List<Order> order, int tableNumber) {
+	/**
+	 * Function used when an order is paid.
+	 * Find the order according to the table number.
+	 * Changes the status of the table.
+	 * @param order This is the list of orders.
+	 * @param paidOrder This is the list of paid orders.
+	 * @param tableNumber This is the table number of the order being paid.
+	 */
+	public void orderPaid(List<Order> order, List<Order> paidOrder, int tableNumber) {
 		int orderSize = order.size();
 		Order found = null;
 		Scanner sc = new Scanner(System.in);
 		Boolean discount = false;
-		char discount_str;
 
 		for (int i = 0; i < orderSize; i++) {
 			if (order.get(i).getTableNumber() == tableNumber) {
@@ -23,38 +39,37 @@ public class OrderMgr {
 
 			Customer cust = found.getCustomer();
 			if (cust.getIsMember()) {
-				
-				
-				do {
-					System.out.printf("Does the customer want a discount? (Y/N)");
-					discount_str = sc.next().charAt(0);
-
-					if (discount_str == 'y' || discount_str == 'Y') {
-						discount = true;
-						break;
-					} else if (discount_str == 'n' || discount_str == 'N') {
-						discount = false;
-						break;
-					} else {
-						System.out.println("Invalid input, please try again!");
-						continue;
-					}
-				} while(true);
+				System.out.printf("Does the customer want a discount? ");
+				discount = sc.nextBoolean();
 			}
-			
 
 			found.printOrderInvoice(discount);
 			table.setStatus(0);
+			paidOrder.add(found);
 			order.remove(found);
 		} else {
 			System.out.println("Order not found!");
 		}
 	}
 
+	/**
+	 * Viewing of order invoice before paying.
+	 * @param order this is the order to view.
+	 * @param discounted this indicate if there is a discount.
+	 */
 	public void viewOrder(Order order, boolean discounted) {
 		order.printOrderInvoice(discounted);
 	}
 
+	/**
+	 * Creates a new order object.
+	 * @param MenuItem This is a list of a le carte items avaliable in the restaurant.
+	 * @param Promotion This is a list of promotion set items avaliable in the restaurant.
+	 * @param waiter This is the waiter making the order.
+	 * @param table This is the table where the customer is sitting.
+	 * @param customer This is the customer making the order.
+	 * @return
+	 */
 	public Order createOrder(List<MenuItem> MenuItem, List<Promotion> Promotion, Staff waiter, Table table,
 			Customer customer) {
 		Order order = null;
@@ -82,7 +97,7 @@ public class OrderMgr {
 				break;
 
 			} while (true);
-			
+
 			switch (choice) {
 			case 1:
 				int mLength = MenuItem.size();
@@ -104,9 +119,8 @@ public class OrderMgr {
 					}
 					choice = sc.nextInt();
 					break;
-	
+
 				} while (true);
-				
 
 				while (choice != 0) {
 					orderedMenu.add(MenuItem.get(choice - 1));
@@ -122,9 +136,9 @@ public class OrderMgr {
 						}
 						choice = sc.nextInt();
 						break;
-		
+
 					} while (true);
-					
+
 				}
 				choice = 1;
 				break;
@@ -149,10 +163,8 @@ public class OrderMgr {
 					}
 					choice = sc.nextInt();
 					break;
-	
-				} while (true);
 
-				
+				} while (true);
 
 				while (choice != 0) {
 					orderedPromo.add(Promotion.get(choice - 1));
@@ -166,7 +178,7 @@ public class OrderMgr {
 						}
 						choice = sc.nextInt();
 						break;
-		
+
 					} while (true);
 				}
 				choice = 1;
@@ -192,10 +204,17 @@ public class OrderMgr {
 		return order;
 	}
 
+	/**
+	 * Function to remove an ordered item in the order.
+	 * Item can be a le carte or promotion set.
+	 * @param order This is the list of orders.
+	 * @param tableNumber This is the table number of the order being paid.
+	 */
 	public void removeOrderItem(List<Order> order, int tableNumber) {
 		int orderSize = order.size();
 		Order found = null;
 		Scanner sc = new Scanner(System.in);
+		int choice = -1;
 
 		for (int i = 0; i < orderSize; i++) {
 			if (order.get(i).getTableNumber() == tableNumber) {
@@ -207,13 +226,62 @@ public class OrderMgr {
 			List<MenuItem> menuItems = found.getOrderItems();
 			List<Promotion> promoItems = found.getPromotions();
 
+			while (choice != 0) {
+
+				int mSize = menuItems.size();
+				int pSize = promoItems.size();
+
+				System.out.println("CHOICE NAME		FOOD CATEGORY		DESCRIPTION		PRICE");
+				for (int j = 0; j < mSize; j++) {
+					System.out.println("(" + (j + 1) + ") " + menuItems.get(j).getName() + "		"
+							+ menuItems.get(j).getFoodCategory() + "		" + menuItems.get(j).getDescription()
+							+ "		$" + String.format("%.2f", menuItems.get(j).getPrice()));
+				}
+
+				System.out.println("CHOICE NAME		DESCRIPTION		PRICE");
+				for (int j = 0; j < pSize; j++) {
+					System.out.println("(" + (mSize + j + 1) + ") " + promoItems.get(j).getName() + "		"
+							+ promoItems.get(j).getDescription() + "				$"
+							+ String.format("%.2f", promoItems.get(j).getPrice()));
+				}
+
+				System.out.println("(0) Go back to selection");
+				System.out.printf("Enter the number of your choice: ");
+				choice = sc.nextInt();
+
+				if (choice <= mSize && choice > 0) {
+					if ((pSize == 0 && (mSize - 1) != 0) || pSize > 0) {
+						MenuItem delMenuItem = menuItems.get(choice - 1);
+						System.out.println(delMenuItem.getName() + " Removed!");
+						menuItems.remove(delMenuItem);
+					} else {
+						System.out.println("You must have at least one item in your order!");
+					}
+				} else if (choice > mSize) {
+					if ((mSize == 0 && (pSize - 1) != 0) || mSize > 0) {
+						Promotion delPromotion = promoItems.get(choice - 1 - mSize);
+						System.out.println(delPromotion.getName() + " Removed!");
+						promoItems.remove(delPromotion);
+					} else {
+						System.out.println("You must have at least one item in your order!");
+					}
+				}
+			}
 
 		} else {
 			System.out.println("Order not found!");
 		}
 	}
 
-public void addOrderItem(List<Order> order, List<MenuItem> MenuItem, List<Promotion> Promotion, int tableNumber) {
+	/**
+	 * Function to add an item in the order.
+	 * Item can be a le carte or promotion set.
+	 * @param order This is the list of orders.
+	 * @param MenuItem This is a list of a le carte items avaliable in the restaurant.
+	 * @param Promotion This is a list of promotion set items avaliable in the restaurant.
+	 * @param tableNumber This is the table number of the order being paid.
+	 */
+	public void addOrderItem(List<Order> order, List<MenuItem> MenuItem, List<Promotion> Promotion, int tableNumber) {
 		int orderSize = order.size();
 		Order found = null;
 		Scanner sc = new Scanner(System.in);
