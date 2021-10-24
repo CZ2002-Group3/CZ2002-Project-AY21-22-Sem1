@@ -27,6 +27,7 @@ public class OrderMgr {
 		Order found = null;
 		Scanner sc = new Scanner(System.in);
 		Boolean discount = false;
+		char discount_str;
 
 		for (int i = 0; i < orderSize; i++) {
 			if (order.get(i).getTableNumber() == tableNumber) {
@@ -39,9 +40,25 @@ public class OrderMgr {
 
 			Customer cust = found.getCustomer();
 			if (cust.getIsMember()) {
-				System.out.printf("Does the customer want a discount? ");
-				discount = sc.nextBoolean();
+				
+				
+				do {
+					System.out.printf("Does the customer want a discount? (Y/N)");
+					discount_str = sc.next().charAt(0);
+
+					if (discount_str == 'y' || discount_str == 'Y') {
+						discount = true;
+						break;
+					} else if (discount_str == 'n' || discount_str == 'N') {
+						discount = false;
+						break;
+					} else {
+						System.out.println("Invalid input, please try again!");
+						continue;
+					}
+				} while(true);
 			}
+			
 
 			found.printOrderInvoice(discount);
 			table.setStatus(0);
@@ -51,7 +68,7 @@ public class OrderMgr {
 			System.out.println("Order not found!");
 		}
 	}
-
+	
 	/**
 	 * Viewing of order invoice before paying.
 	 * @param order this is the order to view.
