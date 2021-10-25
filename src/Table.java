@@ -11,6 +11,10 @@ public class Table {
 		setCapacity(capacity);
 	}
 
+	
+	/** 
+	 * @param SetTable<0
+	 */
 	public void setStatus(int SetTable) { // 0 set VACATED, 1 set OCCUPIED, 2 set RESERVED 
 		while(SetTable>2 || SetTable<0)
 		{
@@ -34,18 +38,34 @@ public class Table {
 			}
 	}
 
+	
+	/** 
+	 * @return TableStatus
+	 */
 	public TableStatus getStatus() {
 		return this.status;
 	}
 
+	
+	/** 
+	 * @param number
+	 */
 	public void setTableNumber(int number){
 		this.tableNumber=number;
 		System.out.println("Table number set to" + this.tableNumber);
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public int getTableNumber() {
 		return this.tableNumber;
 	}
+	
+	/** 
+	 * @param capNo10
+	 */
 	public void setCapacity(int capNo) { // 0 set VACATED, 1 set OCCUPIED, 2 set RESERVED 
 		while(capNo%2!=0 || capNo<0 || capNo>10)
 		{
@@ -78,6 +98,10 @@ public class Table {
 		}
 		
 	}
+	
+	/** 
+	 * @return int
+	 */
 	public int getCapacity() {
 		
 		if(this.capacity == TableCapacity.SIZE2)
@@ -103,11 +127,19 @@ public class Table {
 	}
 
 
+	
+	/** 
+	 * @param custid
+	 */
 	public void setCustomerID(long custid){
 		this.customerId=custid;
 		System.out.println("CustomerID " + this.customerId +" sits at Table Number " + this.tableNumber);
 	}
 
+	
+	/** 
+	 * @return Boolean
+	 */
 	public Boolean checkTableAvailability() {
 		if (this.status == TableStatus.RESERVED || this.status == TableStatus.OCCUPIED)
 		{

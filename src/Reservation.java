@@ -30,22 +30,42 @@ public class Reservation {
 		System.out.println(" ");
 	}
 
+	
+	/** 
+	 * @return Date
+	 */
 	public Date getdateTime() {
 		return dateTime;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getcustomerName() {
 		return customerName;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public int getTableNumber() {
 		return tableNumber;
 	}
 
+	
+	/** 
+	 * @return Table
+	 */
 	public Table getTable() {
 		return table;
 	}
 
+	
+	/** 
+	 * @return Customer
+	 */
 	public Customer getCustomer() {
 		return cust;
 	}

@@ -12,6 +12,10 @@ public class RestaurantTables {
 		throw new UnsupportedOperationException();
 	}
 
+	
+	/** 
+	 * @return Table[]
+	 */
 	public Table[] getTable() {
 		// TODO - implement RestaurantTables.getTable
 		throw new UnsupportedOperationException();

@@ -58,6 +58,10 @@ public class Restaurant {
 		promotions.add(promo1);
 	}
 
+	
+	/** 
+	 * @throws ParseException
+	 */
 	private void addOrder() throws ParseException {
 		TableMgr tableMgr = new TableMgr();
 		List<MenuItem> orderItems;
@@ -109,6 +113,10 @@ public class Restaurant {
 		customer.add(new Customer(custID, "Tim", false, 1111));
 	}
 
+	
+	/** 
+	 * @param days
+	 */
 	public void generateSalesReport(int days) {
 		List<Order> ordersInPeriod = new ArrayList<Order>();
 		Date today = new Date();

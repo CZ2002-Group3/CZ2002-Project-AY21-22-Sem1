@@ -187,6 +187,10 @@ public class MenuItemMgr {
 		}
 	}
 
+	
+	/** 
+	 * @return MenuItem
+	 */
 	public MenuItem createMenuItem() {
 
 		Scanner sc = new Scanner(System.in);
@@ -254,6 +258,10 @@ public class MenuItemMgr {
 		return new MenuItem(foodName, foodDescription, foodPrice, foodCat);
 	}
 
+	
+	/** 
+	 * @param menuItems
+	 */
 	public void deleteMenuItem(List<MenuItem> menuItems) {
 		Scanner sc = new Scanner(System.in);
 		int size = menuItems.size();
@@ -317,6 +325,10 @@ public class MenuItemMgr {
 
 	}
 
+	
+	/** 
+	 * @param menuItems
+	 */
 	public void printMenuItemList(List<MenuItem> menuItems) {
 		Scanner sc = new Scanner(System.in);
 

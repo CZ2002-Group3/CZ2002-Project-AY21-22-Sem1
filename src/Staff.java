@@ -10,14 +10,26 @@ public class Staff {
 		this.jobTitle = jobTitle;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getStaffName() {
 		return this.name;
 	}
 
+	
+	/** 
+	 * @return long
+	 */
 	public long getEmpolyeeID() {
 		return this.employeeID;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getJobTitle() {
 		return this.jobTitle;
 	}

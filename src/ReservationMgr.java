@@ -4,6 +4,10 @@ import java.util.*;
 
 public class ReservationMgr {
 
+	
+	/** 
+	 * @param reservation
+	 */
 	public void checkReservation(List<Reservation> reservation) {
 		Scanner sc = new Scanner(System.in);
 		int size = reservation.size();
@@ -68,6 +72,12 @@ public class ReservationMgr {
 
 	}
 
+	
+	/** 
+	 * @param reservation
+	 * @param contactNumber
+	 * @return Reservation
+	 */
 	public Reservation checkReservation(List<Reservation> reservation, long contactNumber) {
 		Scanner sc = new Scanner(System.in);
 		int size = reservation.size();
@@ -81,6 +91,10 @@ public class ReservationMgr {
 		return null;
 	}
 
+	
+	/** 
+	 * @param reservation
+	 */
 	public void removeReservation(List<Reservation> reservation) {
 		Scanner sc = new Scanner(System.in);
 		int tableNo;
@@ -114,6 +128,13 @@ public class ReservationMgr {
 		System.out.println("Table not under reservation !! ");
 	}
 
+	
+	/** 
+	 * @param reservation
+	 * @param tables
+	 * @param customers
+	 * @throws ParseException
+	 */
 	public void createReservation(List<Reservation> reservation, List<Table> tables, List<Customer> customers)
 			throws ParseException {
 		Scanner sc = new Scanner(System.in);

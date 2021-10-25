@@ -3,6 +3,10 @@ import java.util.List;
 
 public class TimeMgr {
 
+	
+	/** 
+	 * @param reservations
+	 */
 	public void checkExpired(List<Reservation> reservations) {
 		Date newdate = new Date();
 		int size = reservations.size();

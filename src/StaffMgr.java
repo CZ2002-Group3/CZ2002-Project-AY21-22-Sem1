@@ -5,6 +5,12 @@ public class StaffMgr {
 
     }
 
+    
+    /** 
+     * @param employeeID
+     * @param staffs
+     * @return Staff
+     */
     public Staff getStaff(long employeeID, List<Staff> staffs){
         Staff foundStaff;
 

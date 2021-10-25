@@ -7,12 +7,23 @@ public class TableMgr {
 	public TableMgr() {
 	}
 
+	
+	/** 
+	 * @param i++
+	 */
 	public void getTableStatus(List<Table> tables) {// pass in resturant.tables
 		for (int i = 0; i < tables.size(); i++) {
 			System.out.println("Table number " + tables.get(i).getTableNumber() + " is " + tables.get(i).getStatus());
 		}
 	}
 
+	
+	/** 
+	 * @param tables
+	 * @param custid
+	 * @param numOfPax
+	 * @return Table
+	 */
 	public Table assignTable(List<Table> tables, long custid, int numOfPax) {
 		int flag; // to check if this customer has been allocated a table
 		flag = 0;
@@ -33,6 +44,12 @@ public class TableMgr {
 		return null;
 	}
 
+	
+	/** 
+	 * @param tables
+	 * @param numOfPax
+	 * @return Table
+	 */
 	public Table reserveTable(List<Table> tables, int numOfPax) {
 		int flag; // to check if this customer has been allocated a table
 		flag = 0;

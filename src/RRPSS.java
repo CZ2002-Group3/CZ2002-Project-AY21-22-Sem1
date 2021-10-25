@@ -3,6 +3,11 @@ import java.util.*;
 
 public class RRPSS {
 
+    
+    /** 
+     * @param args
+     * @throws ParseException
+     */
     public static void main(String[] args) throws ParseException {
         Scanner sc = new Scanner(System.in);
 

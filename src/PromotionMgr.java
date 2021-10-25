@@ -24,6 +24,11 @@ public class PromotionMgr {
 		}
 	}
 
+	
+	/** 
+	 * @param promotions
+	 * @param menuItems
+	 */
 	public void updatePromotion(List<Promotion> promotions, List<MenuItem> menuItems) {
 
 		Scanner sc = new Scanner(System.in);
@@ -261,6 +266,11 @@ public class PromotionMgr {
 		}
 	}
 
+	
+	/** 
+	 * @param promotions
+	 * @param menuItems
+	 */
 	public void createPromotion(List<Promotion> promotions, List<MenuItem> menuItems) {
 		Scanner sc = new Scanner(System.in);
 		Promotion promotion = new Promotion();
