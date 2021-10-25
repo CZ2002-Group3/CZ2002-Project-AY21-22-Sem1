@@ -1,14 +1,24 @@
+/**
+ Represents the manager of promotion class.
+ @author Chua Wen Rong, Jonathan
+ @version 1.0
+ @since 2021-10-25
+*/
+
 import java.util.List;
 import java.util.Scanner;
 
 public class PromotionMgr {
-
+	/**
+	 * Constructor to create promotion manager.
+	 */
 	public PromotionMgr() {
 	}
 
 	/**
-	 * 
-	 * @param Promotion
+	 * Function used when generating the list of ongoing promotions.
+	 * Iterates through the list of promotions, and prints them out.
+	 * @param Promotion This is the list of promotions.
 	 */
 	public void getPromotionList(List<Promotion> promotions) {
 		System.out.println("The current promotions are: ");
@@ -26,8 +36,13 @@ public class PromotionMgr {
 
 	
 	/** 
-	 * @param promotions
-	 * @param menuItems
+	 * Function that performs the update on a particular promotion in the list of ongoing promotions.
+	 * Updates current promotion by adding new menu items.
+	 * Updates current promotion by deleting existing menu items.
+	 * Updates the descriptions of existing promotion.
+	 * Updates the price of the existing promotion.
+	 * @param promotions This is the list of promotions.
+	 * @param menuItems This is the list of menuItems.
 	 */
 	public void updatePromotion(List<Promotion> promotions, List<MenuItem> menuItems) {
 
@@ -268,8 +283,10 @@ public class PromotionMgr {
 
 	
 	/** 
-	 * @param promotions
-	 * @param menuItems
+	 * Function to create promotion to be added to the list of promotions
+	 * Creates promotion by specifying the name, description, price and choice of menuItems.
+	 * @param promotions This is the list of promotions.
+	 * @param menuItems This is the list of menuItems.
 	 */
 	public void createPromotion(List<Promotion> promotions, List<MenuItem> menuItems) {
 		Scanner sc = new Scanner(System.in);
@@ -387,8 +404,10 @@ public class PromotionMgr {
 	}
 
 	/**
-	 * 
-	 * @param Promotion
+	 * Function to delete ongoing promotion from the list of promotions.
+	 * Specify which promotion to be deleted from the list
+	 * Deletes the promotion specified.
+	 * @param Promotion This is the list of promotions.
 	 */
 	public void deletePromotion(List<Promotion> promotions) {
 		Scanner sc = new Scanner(System.in);
