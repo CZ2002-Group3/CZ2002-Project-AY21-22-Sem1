@@ -1,15 +1,29 @@
-import java.util.*;
+/**
+ Represents the manager of the MenuItem class.
+ @author Lee Yew Chuan Michael
+ @version 1.0
+ @since 2021-10-25
+*/import java.util.*;
+
+
 
 public class MenuItemMgr {
 
+	/**
+	 * Create a MenuItem manager.
+	*/
 	public MenuItemMgr() {
 	}
 
 	/**
-	 * 
-	 * @param MenuItemMgr
-	 */
-
+	 * Function used to update the details of a menu item in a restaurants menu. 
+	 * menu item here refers to an ala carte item
+	 * Users select the menu item they wish to update
+	 * Users are given the option to change the name, description, price, and food category of the menu item
+	 * Users input in the appropriate changes they want to make
+	 * Corresponding atributes of the corresponding menu item are updated
+	 * @param menuItems This is the list of menu items ie. The ala carte items on sale in the restaurant at the moment
+	*/
 	public void updateMenuItem(List<MenuItem> menuItems) {
 
 		Scanner sc = new Scanner(System.in);
@@ -189,7 +203,13 @@ public class MenuItemMgr {
 
 	
 	/** 
-	 * @return MenuItem
+	 * Function used to create a menu item which is to be added to a restaurants menu 
+	 * menu item here refers to an ala carte item
+	 * Users creates a new menu item by setting a name, description, price, and food category of the new menu item
+	 * Users pass input in the appropriate inputs to create the desired menu item
+	 * A newly created menu item with the corresponding atributes is created
+	 * The newly created menu item is returned
+	 * @return A newly created menu item object
 	 */
 	public MenuItem createMenuItem() {
 
@@ -257,10 +277,14 @@ public class MenuItemMgr {
 		System.out.println("Added " + foodName + " | Costs: $" + foodPrice);
 		return new MenuItem(foodName, foodDescription, foodPrice, foodCat);
 	}
-
 	
+
 	/** 
-	 * @param menuItems
+	 * Function used to delete a menu item off a restaurants menu 
+	 * menu item here refers to an ala carte item
+	 * User selects the menu item they wish to remove from the restaurants menu 
+	 * Corresponding menu item which was selected is removed off the restaurants menu 
+	 * @param menuItems This is the list of menu items ie. The ala carte items on sale in the restaurant at the moment
 	 */
 	public void deleteMenuItem(List<MenuItem> menuItems) {
 		Scanner sc = new Scanner(System.in);
@@ -327,7 +351,9 @@ public class MenuItemMgr {
 
 	
 	/** 
-	 * @param menuItems
+	 * Function used to print all the menu items on sale on the restaurants menu at the current moment in time
+	 * menu item here refers to an ala carte item
+	 * @param menuItems This is the list of menu items ie. The ala carte items on sale in the restaurant at the moment
 	 */
 	public void printMenuItemList(List<MenuItem> menuItems) {
 		Scanner sc = new Scanner(System.in);
