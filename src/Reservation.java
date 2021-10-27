@@ -1,3 +1,11 @@
+/**
+ Represents Reservation in the restaurant.
+ @author Jerome Lee
+ @version 1.0
+ @since 2021-10-27
+*/
+
+
 import java.util.Date;
 
 public class Reservation {
@@ -9,7 +17,11 @@ public class Reservation {
 	private String customerName;
 	private Table table;
 	private Customer cust;
+	
 
+	/**
+	 * Constructor to create Reservation.
+	 */
 	public Reservation(Date Datee, int numPax, Customer cust, Table table) {
 		this.dateTime = Datee;
 		this.numPax = numPax;
@@ -20,6 +32,9 @@ public class Reservation {
 		this.table = table;
 	}
 
+	/**
+	 * Function to print out all the details of the reservation.
+	 */
 	public void printReservation() {
 		System.out.println("===========================================================");
 		System.out.println("Date and Time of reservation: " + dateTime);
@@ -32,7 +47,8 @@ public class Reservation {
 
 	
 	/** 
-	 * @return Date
+	 * Accessor method to get the date and time of the reservation.
+	 * @return Date - dateTime of the reservation made.
 	 */
 	public Date getdateTime() {
 		return dateTime;
@@ -40,7 +56,8 @@ public class Reservation {
 
 	
 	/** 
-	 * @return String
+	 * Accessor method to get the Customer Name of the reservation.
+	 * @return String - customerName customer name that make the reservation.
 	 */
 	public String getcustomerName() {
 		return customerName;
@@ -48,7 +65,8 @@ public class Reservation {
 
 	
 	/** 
-	 * @return int
+	 * Accessor method to get the Table Number of the reservation.
+	 * @return Int - tableNumber table number under the reservation.
 	 */
 	public int getTableNumber() {
 		return tableNumber;
@@ -56,7 +74,8 @@ public class Reservation {
 
 	
 	/** 
-	 * @return Table
+	 * Accessor method to get the Table of the reservation.
+	 * @return Table - table.
 	 */
 	public Table getTable() {
 		return table;
@@ -64,7 +83,8 @@ public class Reservation {
 
 	
 	/** 
-	 * @return Customer
+	 * Accessor method to get the Customer of the reservation.
+	 * @return Customer - cust customer details.
 	 */
 	public Customer getCustomer() {
 		return cust;

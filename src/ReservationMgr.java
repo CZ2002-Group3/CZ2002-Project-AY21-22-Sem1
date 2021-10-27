@@ -1,12 +1,26 @@
-import java.lang.reflect.Member;
+/**
+ Represents the manager of Reservation class.
+ @author Jerome Lee
+ @version 1.0
+ @since 2021-10-27
+*/
+
 import java.text.*;
 import java.util.*;
 
 public class ReservationMgr {
+	
+	/**
+	 * Create a Reservation manager.
+	*/
+	public ReservationMgr() {
+	}
 
 	
-	/** 
-	 * @param reservation
+	/**
+	 * Function used when needed to check the reservation list.
+	 * Iterates through the list of reservation, and prints them out.
+	 * @param reservation This is the list of reservation.
 	 */
 	public void checkReservation(List<Reservation> reservation) {
 		Scanner sc = new Scanner(System.in);
@@ -74,9 +88,10 @@ public class ReservationMgr {
 
 	
 	/** 
-	 * @param reservation
-	 * @param contactNumber
-	 * @return Reservation
+	 * Function used to check if the customer comes under reservation.
+	 * @param reservation This is the list of reservation.
+	 * @param contactNumber customer contact number
+	 * @return Reservation - customer under the reservation.
 	 */
 	public Reservation checkReservation(List<Reservation> reservation, long contactNumber) {
 		Scanner sc = new Scanner(System.in);
@@ -93,7 +108,10 @@ public class ReservationMgr {
 
 	
 	/** 
-	 * @param reservation
+	 * Function used when removing a reservation.
+	 * Iterates through the list of reservation, and find the table to be removed.
+	 * Update the Status accordingly.
+	 * @param reservation This is the list of reservation.
 	 */
 	public void removeReservation(List<Reservation> reservation) {
 		Scanner sc = new Scanner(System.in);
@@ -130,9 +148,14 @@ public class ReservationMgr {
 
 	
 	/** 
-	 * @param reservation
-	 * @param tables
-	 * @param customers
+	 * Function used when creating a new reservation, adding to the reservation list.
+	 * Ask for the number of people, name of the customer, contact number and date/time of reservation.
+	 * Check whether the customer is under membership and Update accordingly base on the customerID.
+	 * Get the next available table and set to reserved.
+	 * Update reservation accordingly with the information.
+	 * @param reservation This is the list of reservation.
+	 * @param tables This is the list of tables
+	 * @param customers This is the list of customer
 	 * @throws ParseException
 	 */
 	public void createReservation(List<Reservation> reservation, List<Table> tables, List<Customer> customers)
