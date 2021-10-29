@@ -3,8 +3,7 @@ import java.util.*;
 
 public class RRPSS {
 
-    
-    /** 
+    /**
      * @param args
      * @throws ParseException
      */
@@ -165,11 +164,11 @@ public class RRPSS {
                     }
                     employeeID = sc.nextInt();
                     break;
-    
+
                 } while (true);
 
                 Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
-                
+
                 System.out.printf("Enter Customer Contact Number: ");
                 long contactNo;
 
@@ -181,7 +180,7 @@ public class RRPSS {
                     }
                     contactNo = sc.nextLong();
                     break;
-    
+
                 } while (true);
 
                 Table table;
@@ -211,7 +210,7 @@ public class RRPSS {
                         do {
                             System.out.println("Does the customer want a membership? (Y/N)");
                             member_str = sc.next().charAt(0);
-        
+
                             if (member_str == 'y' || member_str == 'Y') {
                                 member = true;
                                 break;
@@ -222,7 +221,7 @@ public class RRPSS {
                                 System.out.println("Invalid input, please try again!");
                                 continue;
                             }
-                        } while(true);
+                        } while (true);
 
                         long custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
                         cust = new Customer(custID, custName, member, contactNo);
@@ -240,7 +239,7 @@ public class RRPSS {
                         }
                         noOfPax = sc.nextInt();
                         break;
-        
+
                     } while (true);
 
                     table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(), noOfPax);
@@ -445,7 +444,8 @@ public class RRPSS {
                 // Generate Sales Report
                 System.out.printf("Enter the period (in days): ");
                 int days = sc.nextInt();
-                restaurant.generateSalesReport(days);
+                SalesReportGenerator sr = new SalesReportGenerator();
+                sr.generateSalesReport(restaurant.paidOrders, restaurant.menuItems, restaurant.promotions, days);
                 break;
             default:
                 System.out.println("(1) Create/Update/Remove menu item");
