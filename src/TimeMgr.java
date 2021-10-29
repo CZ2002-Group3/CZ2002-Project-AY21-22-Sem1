@@ -18,12 +18,12 @@ public class TimeMgr {
 	 * @param reservation This is the list of reservation.
 	 */
 	public void checkExpired(List<Reservation> reservations) {
-		Date newdate = new Date();
+		Date currDate = new Date();
 		int size = reservations.size();
 		for (int i = 0; i < size; i++) {
-			Reservation curr = reservations.get(i);
+			Reservation reservationDate = reservations.get(i);
 			
-			long diff = newdate.getTime() - curr.getdateTime().getTime();
+			long diff = currDate.getTime() - reservationDate.getdateTime().getTime();
 
 			long diffSeconds = diff / 1000 % 60;
 			long diffMinutes = diff / (60 * 1000) % 60;
@@ -37,8 +37,8 @@ public class TimeMgr {
 
 			if (diffDays == 0 && diffMinutes >= 10)
 			{
-				System.out.println("Time limit have reached, reserved table: "+ curr.getTableNumber()+" have been removed");
-				reservations.remove(curr);
+				System.out.println("Time limit have reached, reserved table: "+ reservationDate.getTableNumber()+" have been removed");
+				reservations.remove(reservationDate);
 				size--;
 			}
 		}

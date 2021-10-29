@@ -22,6 +22,7 @@ public class OrderMgr {
 	 * @param paidOrder This is the list of paid orders.
 	 * @param tableNumber This is the table number of the order being paid.
 	 */
+	
 	public void orderPaid(List<Order> order, List<Order> paidOrder, int tableNumber) {
 		int orderSize = order.size();
 		Order found = null;

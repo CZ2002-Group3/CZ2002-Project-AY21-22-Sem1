@@ -8,7 +8,6 @@
 
 
 public class MenuItemMgr {
-
 	/**
 	 * Create a MenuItem manager.
 	*/
@@ -368,8 +367,7 @@ public class MenuItemMgr {
 		System.out.println("Items on the menu at the moment are as shown");
 
 		for (int i = 0; i < size; i++) {
-			System.out
-					.println("(" + i + ") " + menuItems.get(i).getName() + " | Costs: $" + menuItems.get(i).getPrice());
+			System.out.println("(" + i + ") " + menuItems.get(i).getName() + " | Costs: $" + menuItems.get(i).getPrice());
 		}
 	}
 
