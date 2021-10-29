@@ -1,5 +1,5 @@
 /**
- Represents the manager of order class.
+ Represents the manager of table class.
  @author Chiaw Yan Shiun
  @version 1.0
  @since 2021-10-24
