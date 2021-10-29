@@ -1,3 +1,10 @@
+/**
+ Represents Sales report Generator.
+ @author Thai Wei Cheng
+ @version 1.0
+ @since 2021-10-29
+*/
+
 import java.util.*;
 
 public class SalesReportGenerator {
