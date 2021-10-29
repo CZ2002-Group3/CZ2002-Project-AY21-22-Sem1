@@ -2,7 +2,6 @@ import java.text.*;
 import java.util.*;
 
 public class RRPSS {
-
     
     /** 
      * @param args
@@ -76,11 +75,11 @@ public class RRPSS {
                     if (choice == 1) {
                         restaurant.menuItems.add(menuItemMgr.createMenuItem());
                     } else if (choice == 2) {
-                        menuItemMgr.updateMenuItem(restaurant.menuItems);
+                        menuItemMgr.updateMenuItem(restaurant.getMenuItems());
                     } else if (choice == 3) {
-                        menuItemMgr.deleteMenuItem(restaurant.menuItems);
+                        menuItemMgr.deleteMenuItem(restaurant.getMenuItems());
                     } else if (choice == 4) {
-                        menuItemMgr.printMenuItemList(restaurant.menuItems);
+                        menuItemMgr.printMenuItemList(restaurant.getMenuItems());
                     }
                     System.out.println("Altering restaurant menu");
                     System.out.println("(1) Add menu item");
@@ -122,13 +121,13 @@ public class RRPSS {
 
                 while (choice != -1) {
                     if (choice == 1) {
-                        promotionMgr.createPromotion(restaurant.promotions, restaurant.menuItems);
+                        promotionMgr.createPromotion(restaurant.getPromotions(), restaurant.menuItems);
                     } else if (choice == 2) {
-                        promotionMgr.updatePromotion(restaurant.promotions, restaurant.menuItems);
+                        promotionMgr.updatePromotion(restaurant.gerPromotions(), restaurant.menuItems);
                     } else if (choice == 3) {
-                        promotionMgr.deletePromotion(restaurant.promotions);
+                        promotionMgr.deletePromotion(restaurant.getPromotions();
                     } else {
-                        promotionMgr.getPromotionList(restaurant.promotions);
+                        promotionMgr.getPromotionList(restaurant.getPromotions());
                     }
 
                     System.out.println("Altering restaurant promotion menu:");
@@ -168,7 +167,7 @@ public class RRPSS {
     
                 } while (true);
 
-                Staff staff = staffMgr.getStaff(employeeID, restaurant.staff);
+                Staff staff = staffMgr.getStaff(employeeID, restaurant.getStaff());
                 
                 System.out.printf("Enter Customer Contact Number: ");
                 long contactNo;
@@ -188,20 +187,20 @@ public class RRPSS {
                 Customer cust;
                 Reservation reserve;
 
-                reserve = reservationMgr.checkReservation(restaurant.reservation, contactNo);
+                reserve = reservationMgr.checkReservation(restaurant.getReservation(), contactNo);
                 if (reserve != null) {
                     cust = reserve.getCustomer();
                     table = reserve.getTable();
                     restaurant.reservation.remove(reserve);
                     table.setStatus(1);
-                    Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table, cust);
+                    Order order = orderMgr.createOrder(restaurant.getMenuItems(), restaurant.getPromotions(), staff, table, cust);
                     if (order != null) {
                         restaurant.order.add(order);
                     } else {
                         table.setStatus(0);
                     }
                 } else {
-                    cust = customerMgr.findCustomer(restaurant.customer, contactNo);
+                    cust = customerMgr.findCustomer(restaurant.getCustomer(), contactNo);
                     if (cust == null) {
                         System.out.printf("Enter Customer Name: ");
                         String custName = sc.next();
@@ -243,9 +242,9 @@ public class RRPSS {
         
                     } while (true);
 
-                    table = tableMgr.assignTable(restaurant.table, cust.getCustomerID(), noOfPax);
+                    table = tableMgr.assignTable(restaurant.getTable(), cust.getCustomerID(), noOfPax);
                     if (table != null) {
-                        Order order = orderMgr.createOrder(restaurant.menuItems, restaurant.promotions, staff, table,
+                        Order order = orderMgr.createOrder(restaurant.getMenuItems(), restaurant.getPromotions(), staff, table,
                                 cust);
                         if (order != null) {
                             restaurant.order.add(order);
@@ -271,7 +270,7 @@ public class RRPSS {
                     break;
                 } while (true);
 
-                int orderSize = restaurant.order.size();
+                int orderSize = restaurant.getOrder().size();
                 if (choice == 1) {
                     Boolean exist = false;
                     System.out.printf("Enter Table Number: ");
