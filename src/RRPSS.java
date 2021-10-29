@@ -5,7 +5,7 @@ public class RRPSS {
     
     /** 
      * @param args
-     * @throws ParseException
+     * @throws ParseExceptions
      */
     public static void main(String[] args) throws ParseException {
         Scanner sc = new Scanner(System.in);
@@ -285,7 +285,7 @@ public class RRPSS {
                     } while (true);
 
                     for (int i = 0; i < orderSize; i++) {
-                        Order curr = restaurant.order.get(i);
+                        Order curr = restaurant.getOrder().get(i);
                         if (curr.getTableNumber() == tableNo) {
                             curr.printOrderInvoice(false);
                             exist = true;
@@ -431,7 +431,7 @@ public class RRPSS {
                     }
 
                     tableNumber = sc.nextInt();
-                    if (tableNumber <= restaurant.table.size() && tableNumber >= 1) {
+                    if (tableNumber <= restaurant.getTable.size() && tableNumber >= 1) {
                         break;
                     }
                     System.out.println("Input is invalid, try again!");
