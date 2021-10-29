@@ -85,7 +85,7 @@ public class OrderMgr {
 	 * @param waiter This is the waiter making the order.
 	 * @param table This is the table where the customer is sitting.
 	 * @param customer This is the customer making the order.
-	 * @return
+	 * @return the created order.
 	 */
 	public Order createOrder(List<MenuItem> MenuItem, List<Promotion> Promotion, Staff waiter, Table table,
 			Customer customer) {
