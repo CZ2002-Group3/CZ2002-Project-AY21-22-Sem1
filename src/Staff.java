@@ -13,6 +13,9 @@ public class Staff {
 
 	/**
 	 * Constructor to create Staff.
+	 * @param name The name of the staff.
+	 * @param employeeID staff employee ID.
+	 * @param jobTitle The job title of the staff.
 	 */
 	public Staff(String name, long employeeID, String jobTitle) {
 		this.name = name;
@@ -23,7 +26,7 @@ public class Staff {
 	
 	/** 
 	 * Accessor method to get the staff name.
-	 * @return String - this name.
+	 * @return the name of the staff
 	 */
 	public String getStaffName() {
 		return this.name;
@@ -32,16 +35,16 @@ public class Staff {
 	
 	/** 
 	 * Accessor method to get the employee ID.
-	 * @return long - this employeeID
+	 * @return the employee ID of the staff
 	 */
-	public long getEmpolyeeID() {
+	public long getEmployeeID() {
 		return this.employeeID;
 	}
 
 	
 	/** 
 	 * Accessor method to get the Job title.
-	 * @return String - this jobtitle.
+	 * @return the job title of the staff
 	 */
 	public String getJobTitle() {
 		return this.jobTitle;

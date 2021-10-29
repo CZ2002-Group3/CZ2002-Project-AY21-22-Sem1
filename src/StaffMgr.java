@@ -28,7 +28,7 @@ public class StaffMgr {
 
         int length = staffs.size();
         for(int i = 0; i < length; i++){
-            if(staffs.get(i).getEmpolyeeID() == employeeID ){
+            if(staffs.get(i).getEmployeeID() == employeeID ){
                 foundStaff = staffs.get(i);
                 return foundStaff;
             }
