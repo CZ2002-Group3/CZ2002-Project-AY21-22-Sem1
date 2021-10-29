@@ -1,3 +1,10 @@
+/**
+ Represents the manager of table class.
+ @author Chiaw Yan Shiun
+ @version 1.0
+ @since 2021-10-24
+*/
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +15,8 @@ public class TableMgr {
 	}
 
 	
-	/** 
-	 * @param i++
+	/** Gets the status of all the tables in the restuarant
+	 * @param i++ counter
 	 */
 	public void getTableStatus(List<Table> tables) {// pass in resturant.tables
 		for (int i = 0; i < tables.size(); i++) {
@@ -19,10 +26,10 @@ public class TableMgr {
 
 	
 	/** 
-	 * @param tables
-	 * @param custid
-	 * @param numOfPax
-	 * @return Table
+	 * @param tables list of tables on the restuarant
+	 * @param custid Customer ID that is sitting at the table
+	 * @param numOfPax Number of people with the customer
+	 * @return Table Table that is assigned to the customer 
 	 */
 	public Table assignTable(List<Table> tables, long custid, int numOfPax) {
 		int flag; // to check if this customer has been allocated a table
@@ -46,9 +53,9 @@ public class TableMgr {
 
 	
 	/** 
-	 * @param tables
-	 * @param numOfPax
-	 * @return Table
+	 * @param tables list of tables on the restuarant
+	 * @param numOfPax Number of people with the customer
+	 * @return Table Table that is reserved for the customer
 	 */
 	public Table reserveTable(List<Table> tables, int numOfPax) {
 		int flag; // to check if this customer has been allocated a table

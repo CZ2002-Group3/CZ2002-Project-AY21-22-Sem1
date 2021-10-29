@@ -1,3 +1,9 @@
+/**
+ Represents a table in the restaurant.
+ @author Chiaw Yan Shiun
+ @version 1.0
+ @since 2021-10-24
+*/
 public class Table {
 
 	private TableStatus status;
@@ -12,8 +18,8 @@ public class Table {
 	}
 
 	
-	/** 
-	 * @param SetTable<0
+	/** sets the status of the table to either vacated, occupied, reserved based on scenario.
+	 * @param SetTable choice input to set status
 	 */
 	public void setStatus(int SetTable) { // 0 set VACATED, 1 set OCCUPIED, 2 set RESERVED 
 		while(SetTable>2 || SetTable<0)
@@ -39,15 +45,15 @@ public class Table {
 	}
 
 	
-	/** 
-	 * @return TableStatus
+	/**  get the status of the table
+	 * @return this is the status of the table 
 	 */
 	public TableStatus getStatus() {
 		return this.status;
 	}
 
 	
-	/** 
+	/** set the table number
 	 * @param number
 	 */
 	public void setTableNumber(int number){
@@ -56,15 +62,15 @@ public class Table {
 	}
 
 	
-	/** 
-	 * @return int
+	/** get the table number
+	 * @return table number
 	 */
 	public int getTableNumber() {
 		return this.tableNumber;
 	}
 	
-	/** 
-	 * @param capNo10
+	/** Set the seating capacity of the table
+	 * @param capNo10 the capacity to be set 
 	 */
 	public void setCapacity(int capNo) { // 0 set VACATED, 1 set OCCUPIED, 2 set RESERVED 
 		while(capNo%2!=0 || capNo<0 || capNo>10)
@@ -99,8 +105,8 @@ public class Table {
 		
 	}
 	
-	/** 
-	 * @return int
+	/** Get the capacity of the table 
+	 * @return capacity of the table 
 	 */
 	public int getCapacity() {
 		
@@ -128,8 +134,8 @@ public class Table {
 
 
 	
-	/** 
-	 * @param custid
+	/** Set the customer ID of the table 
+	 * @param custid CustomerID to be seated at that table 
 	 */
 	public void setCustomerID(long custid){
 		this.customerId=custid;
@@ -137,8 +143,8 @@ public class Table {
 	}
 
 	
-	/** 
-	 * @return Boolean
+	/** returns True/ false based on the table status. if table is occupied return false, table is available return true.
+	 * @return Boolean Availability of the table 
 	 */
 	public Boolean checkTableAvailability() {
 		if (this.status == TableStatus.RESERVED || this.status == TableStatus.OCCUPIED)
