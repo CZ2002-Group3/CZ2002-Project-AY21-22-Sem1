@@ -474,7 +474,7 @@ public class RRPSS {
                 break;
             case 10:
                 // Generate Sales Report
-                System.out.printf("Enter the period (in days): ");
+                System.out.printf("Enter the period (in days) (0 to exit): ");
                 int days;
 
                 do {
@@ -492,13 +492,18 @@ public class RRPSS {
                             break;
                         }
                     }
+                    else if(days == 0){
+                        break;
+                    }
                     else{
                         System.out.println("Input is invalid, try again!");
                     }
                 } while (true);
 
-                SalesReportGenerator sr = new SalesReportGenerator();
-                sr.generateSalesReport(restaurantMgr.getPaidOrders(), restaurantMgr.getMenuItems(), restaurantMgr.getPromotions(), days);
+                if(days >= 1){
+                    SalesReportGenerator sr = new SalesReportGenerator();
+                    sr.generateSalesReport(restaurantMgr.getPaidOrders(), restaurantMgr.getMenuItems(), restaurantMgr.getPromotions(), days);
+                }
                 break;
             default:
                 System.out.println("============================================================");
