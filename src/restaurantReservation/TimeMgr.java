@@ -1,15 +1,14 @@
 package restaurantReservation;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  Represents Time management in the restaurant.
  @author SS7_Grp3
  @version 1.0
  @since 2021-10-27
 */
-
-import java.util.Date;
-import java.util.List;
-
 public class TimeMgr {
 
 	
