@@ -1,13 +1,12 @@
 package restaurantReservation;
+import java.util.*;
+
 /**
  Represents Sales report Generator.
  @author SS7_Grp3
  @version 1.0
  @since 2021-10-29
 */
-
-import java.util.*;
-
 public class SalesReportGenerator {
 
 	/**
