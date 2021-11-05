@@ -74,7 +74,7 @@ public class Order {
 		int pLength = promotionItem.size();
 		int no = 1;
 
-		System.out.println("Sever: " + waiter.getStaffName());
+		System.out.println("Server: " + waiter.getStaffName());
 		System.out.println("Table: " + table.getTableNumber());
 		System.out.println("Date: " + timeStamp);
 
