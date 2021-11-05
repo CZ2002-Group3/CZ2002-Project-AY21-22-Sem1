@@ -21,25 +21,29 @@ public class RRPSS {
         TimeMgr timeMgr = new TimeMgr();
 
         int choice = -1;
-
-        System.out.println("(1) Create/Update/Remove menu item");
-        System.out.println("(2) Create/Update/Remove promotion");
-        System.out.println("(3) Create order");
-        System.out.println("(4) View order");
-        System.out.println("(5) Add/Remove order item/s to/from order");
-        System.out.println("(6) Create reservation booking");
-        System.out.println("(7) Check/Remove reservation booking");
-        System.out.println("(8) Check table availability");
-        System.out.println("(9) Print order invoice");
-        System.out.println("(10) Print sale revenue report by period (eg day or month)");
-        System.out.println("(0) Exit");
-
+        System.out.println("============================================================");
+        System.out.println("|                   -- ABC RESTAURANT --                   |");
+        System.out.println("|==========================================================|");
+        System.out.println("|                        Main Menu                         |");
+        System.out.println("|----------------------------------------------------------|");
+        System.out.println("|(1) Create/Update/Remove menu item                        |");
+        System.out.println("|(2) Create/Update/Remove promotion                        |");
+        System.out.println("|(3) Create order                                          |");
+        System.out.println("|(4) View order                                            |");
+        System.out.println("|(5) Add/Remove order item/s to/from order                 |");
+        System.out.println("|(6) Create reservation booking                            |");
+        System.out.println("|(7) Check/Remove reservation booking                      |");
+        System.out.println("|(8) Check table availability                              |");
+        System.out.println("|(9) Print order invoice                                   |");
+        System.out.println("|(10) Print sale revenue report by period (eg day or month)|");
+        System.out.println("|(0) Exit                                                  |");
+        System.out.println("------------------------------------------------------------\n");
         System.out.printf("Enter the number of your choice: ");
 
         do {
             while (!sc.hasNextInt()) {
                 System.out.println("Input is invalid, try again!");
-                System.out.print("Choice of which to update (-1 to quit): ");
+                System.out.print("Enter the number of your choice: ");
                 sc.next();
             }
             choice = sc.nextInt();
@@ -50,14 +54,18 @@ public class RRPSS {
 
             switch (choice) {
             case 1:
-                System.out.println("Altering restaurant menu");
-                System.out.println("(1) Add menu item");
-                System.out.println("(2) Update menu item");
-                System.out.println("(3) Delete menu item");
-                System.out.println("(4) Print menu item");
-                System.out.println("Enter (-1) to exit Altering restaurant menu: ");
+                System.out.println("============================================================");
+                System.out.println("|               Altering Restaurant Menu                   |");
+                System.out.println("|----------------------------------------------------------|");
+                System.out.println("|(1) Add menu item                                         |");
+                System.out.println("|(2) Update menu item                                      |");
+                System.out.println("|(3) Delete menu item                                      |");
+                System.out.println("|(4) Print menu item                                       |");
+                System.out.println("|(-1) Exit                                                 |");
+                System.out.println("------------------------------------------------------------\n");
+                System.out.println("Enter the number of your choice:                            ");
 
-                System.out.println("Enter the number of your choice: ");
+                
 
                 do {
                     while (!sc.hasNextInt()) {
@@ -81,14 +89,17 @@ public class RRPSS {
                     } else if (choice == 4) {
                         menuItemMgr.printMenuItemList(restaurantMgr.getMenuItems());
                     }
-                    System.out.println("Altering restaurant menu");
-                    System.out.println("(1) Add menu item");
-                    System.out.println("(2) Update menu item");
-                    System.out.println("(3) Delete menu item");
-                    System.out.println("(4) Print menu item");
-                    System.out.println("Enter (-1) to exit Altering restaurant menu: ");
+                    System.out.println("============================================================");
+                    System.out.println("|               Altering Restaurant Menu                   |");
+                    System.out.println("|----------------------------------------------------------|");
+                    System.out.println("|(1) Add menu item                                         |");
+                    System.out.println("|(2) Update menu item                                      |");
+                    System.out.println("|(3) Delete menu item                                      |");
+                    System.out.println("|(4) Print menu item                                       |");
+                    System.out.println("|(-1) Exit                                                 |");
+                    System.out.println("------------------------------------------------------------\n");
+                    System.out.println("Enter the number of your choice:                            ");
 
-                    System.out.println("Enter the number of your choice: ");
                     do {
                         while (!sc.hasNextInt()) {
                             System.out.println("Input is invalid, try again!");
@@ -101,13 +112,17 @@ public class RRPSS {
                 }
                 break;
             case 2:
-                System.out.println("Altering restaurant promotion menu");
-                System.out.println("(1) Create promotion");
-                System.out.println("(2) Update promotion");
-                System.out.println("(3) Delete promotion");
-                System.out.println("(4) Print list of promotions");
-
-                System.out.printf("Enter the number of your choice (-1 to quit): ");
+                System.out.println("============================================================");
+                System.out.println("|         Altering Restaurant Promotion Menu               |");
+                System.out.println("|----------------------------------------------------------|");
+                System.out.println("|(1) Create promotion                                      |");
+                System.out.println("|(2) Update promotion                                      |");
+                System.out.println("|(3) Delete promotion                                      |");
+                System.out.println("|(4) Print list of promotions                              |");
+                System.out.println("|(-1) Exit                                                 |");
+                System.out.println("------------------------------------------------------------\n");
+                System.out.println("Enter the number of your choice:                            ");
+               
 
                 do {
                     while (!sc.hasNextInt()) {
@@ -129,14 +144,16 @@ public class RRPSS {
                     } else {
                         promotionMgr.getPromotionList(restaurantMgr.getPromotions());
                     }
-
-                    System.out.println("Altering restaurant promotion menu:");
-                    System.out.println("(1) Create promotion");
-                    System.out.println("(2) Update promotion");
-                    System.out.println("(3) Delete promotion");
-                    System.out.println("(4) Print list of promotions");
-
-                    System.out.printf("Enter the number of your choice (-1 to quit): ");
+                    System.out.println("============================================================");
+                    System.out.println("|            Altering Restaurant Promotion Menu            |");
+                    System.out.println("|----------------------------------------------------------|");
+                    System.out.println("|(1) Create promotion                                      |");
+                    System.out.println("|(2) Update promotion                                      |");
+                    System.out.println("|(3) Delete promotion                                      |");
+                    System.out.println("|(4) Print list of promotions                              |");
+                    System.out.println("|(-1) Exit                                                 |");
+                    System.out.println("------------------------------------------------------------\n");
+                    System.out.println("Enter the number of your choice:                            ");
 
                     do {
                         while (!sc.hasNextInt()) {
@@ -256,10 +273,13 @@ public class RRPSS {
                 break;
             case 4:
                 // View order
-                System.out.println("(1) Show one order");
-                System.out.println("(2) Show all orders");
-                System.out.println("(0) Return back to menu");
-
+                System.out.println("============================================================");
+                System.out.println("|                  View Restaurant Orders                  |");
+                System.out.println("|----------------------------------------------------------|");
+                System.out.println("|(1) Show one order                                        |");
+                System.out.println("|(2) Show all orders                                       |");
+                System.out.println("|(0) Return back to menu                                   |");
+                System.out.println("------------------------------------------------------------\n");
                 System.out.printf("Enter the number of your choice: ");
                 do {
                     while (!sc.hasNextInt()) {
@@ -316,10 +336,13 @@ public class RRPSS {
                     break;
                 } while (true);
 
-                System.out.println("(1) Remove items from Order");
-                System.out.println("(2) Add items to Order");
-                System.out.println("(0) Return back to menu");
-
+                System.out.println("============================================================");
+                System.out.println("|               Add/Remove Restaurant Orders               |");
+                System.out.println("|----------------------------------------------------------|");
+                System.out.println("|(1) Remove items from Order                               |");
+                System.out.println("|(2) Add items to Order                                    |");
+                System.out.println("|(0) Return back to menu                                   |");
+                System.out.println("------------------------------------------------------------\n");
                 System.out.printf("Enter the number of your choice: ");
 
                 do {
@@ -344,9 +367,13 @@ public class RRPSS {
                 reservationMgr.createReservation(restaurantMgr.getReservation(), restaurantMgr.getTable(), restaurantMgr.getCustomer());
                 break;
             case 7:
-                System.out.println("Reservation Menu");
-                System.out.println("(1) Check reservation");
-                System.out.println("(2) Remove reservation");
+                System.out.println("====================================================");
+                System.out.println("|               Reservation Menu                   |");
+                System.out.println("|--------------------------------------------------|");
+                System.out.println("|(1) Check reservation                             |");
+                System.out.println("|(2) Remove reservation                            |");
+                System.out.println("----------------------------------------------------\n");
+                System.out.printf("Enter the number of your choice: ");
 
                 do {
                     while (!sc.hasNextInt()) {
@@ -369,8 +396,12 @@ public class RRPSS {
                 break;
             case 8:
                 // Check table availability
-                System.out.println("(1) Show one table");
-                System.out.println("(2) Show all tables");
+                System.out.println("====================================================");
+                System.out.println("|                 Table Status                     |");
+                System.out.println("|--------------------------------------------------|");
+                System.out.println("|(1) Show one table                                |");
+                System.out.println("|(2) Show all tables                               |");
+                System.out.println("----------------------------------------------------\n");
                 System.out.printf("Enter the number of your choice: ");
 
                 do {
@@ -448,37 +479,49 @@ public class RRPSS {
                 sr.generateSalesReport(restaurantMgr.getPaidOrders(), restaurantMgr.getMenuItems(), restaurantMgr.getPromotions(), days);
                 break;
             default:
-                System.out.println("(1) Create/Update/Remove menu item");
-                System.out.println("(2) Create/Update/Remove promotion");
-                System.out.println("(3) Create order");
-                System.out.println("(4) View order");
-                System.out.println("(5) Add/Remove order item/s to/from order");
-                System.out.println("(6) Create reservation booking");
-                System.out.println("(7) Check/Remove reservation booking");
-                System.out.println("(8) Check table availability");
-                System.out.println("(9) Print order invoice");
-                System.out.println("(10) Print sale revenue report by period (eg day or month)");
-                System.out.println("(0) Exit");
+                System.out.println("============================================================");
+                System.out.println("|                   -- ABC RESTAURANT --                   |");
+                System.out.println("|==========================================================|");
+                System.out.println("|                        Main Menu                         |");
+                System.out.println("|----------------------------------------------------------|");
+                System.out.println("|(1) Create/Update/Remove menu item                        |");
+                System.out.println("|(2) Create/Update/Remove promotion                        |");
+                System.out.println("|(3) Create order                                          |");
+                System.out.println("|(4) View order                                            |");
+                System.out.println("|(5) Add/Remove order item/s to/from order                 |");
+                System.out.println("|(6) Create reservation booking                            |");
+                System.out.println("|(7) Check/Remove reservation booking                      |");
+                System.out.println("|(8) Check table availability                              |");
+                System.out.println("|(9) Print order invoice                                   |");
+                System.out.println("|(10) Print sale revenue report by period (eg day or month)|");
+                System.out.println("|(0) Exit                                                  |");
+                System.out.println("------------------------------------------------------------");
+                System.out.printf("Enter the number of your choice: ");
                 break;
             }
-            System.out.println("(1) Create/Update/Remove menu item");
-            System.out.println("(2) Create/Update/Remove promotion");
-            System.out.println("(3) Create order");
-            System.out.println("(4) View order");
-            System.out.println("(5) Add/Remove order item/s to/from order");
-            System.out.println("(6) Create reservation booking");
-            System.out.println("(7) Check/Remove reservation booking");
-            System.out.println("(8) Check table availability");
-            System.out.println("(9) Print order invoice");
-            System.out.println("(10) Print sale revenue report by period (eg day or month)");
-            System.out.println("(0) Exit");
-
+            System.out.println("============================================================");
+            System.out.println("|                   -- ABC RESTAURANT --                   |");
+            System.out.println("|==========================================================|");
+            System.out.println("|                        Main Menu                         |");
+            System.out.println("|----------------------------------------------------------|");
+            System.out.println("|(1) Create/Update/Remove menu item                        |");
+            System.out.println("|(2) Create/Update/Remove promotion                        |");
+            System.out.println("|(3) Create order                                          |");
+            System.out.println("|(4) View order                                            |");
+            System.out.println("|(5) Add/Remove order item/s to/from order                 |");
+            System.out.println("|(6) Create reservation booking                            |");
+            System.out.println("|(7) Check/Remove reservation booking                      |");
+            System.out.println("|(8) Check table availability                              |");
+            System.out.println("|(9) Print order invoice                                   |");
+            System.out.println("|(10) Print sale revenue report by period (eg day or month)|");
+            System.out.println("|(0) Exit                                                  |");
+            System.out.println("------------------------------------------------------------");
             System.out.printf("Enter the number of your choice: ");
 
             do {
                 while (!sc.hasNextInt()) {
                     System.out.println("Input is invalid, try again!");
-                    System.out.print("Choice of which to update (-1 to quit): ");
+                    System.out.print("Enter the number of your choice: ");
                     sc.next();
                 }
                 choice = sc.nextInt();

@@ -97,7 +97,7 @@ public class PromotionMgr {
 
 					do {
 						System.out.println("Please choose which of the following you would like to update: ");
-						System.out.print("1. Menu items\n" + "2. Descriptions\n" + "3. Price\n");
+						System.out.print("(1) Menu items\n" + "(2) Descriptions\n" + "(3) Price\n");
 						System.out.print("Choice of which to update (-1 to quit): ");
 						do {
 							while (!sc.hasNextInt()) {

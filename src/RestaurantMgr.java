@@ -1,6 +1,17 @@
+/**
+ Stores all the variables needed for RRPSS to work.
+ @author Thai Wei Cheng
+ @version 1.0
+ @since 2021-10-29
+*/
+
 import java.text.*;
 import java.util.*;
 
+/**
+* Create a Restaurant manager.
+* Initializes all the array list and also add some initial data for testing purposes.
+*/
 public class RestaurantMgr {
 
 	protected List<Table> table;
@@ -99,28 +110,67 @@ public class RestaurantMgr {
 		order.add(new Order(timeStamp, waiter, orderItems, promotionItems, cust, tables));
 	}
 
+	/**
+	 * Get the Table array list.
+	 * @return this is the Table object array list.
+	 */
 	public List<Table> getTable(){
 			return this.table;
 	};
+
+	/**
+	 * Get the Reservation array list.
+	 * @return this is the Reservation object array list.
+	 */
 	public List<Reservation> getReservation(){
 		return this.reservation;
 	}
+
+	/**
+	 * Get the Staff array list.
+	 * @return this is the Staff object array list.
+	 */
 	public List<Staff> getStaff(){
 		return this.staff;
 	}
+
+	/**
+	 * Get the Customer array list.
+	 * @return this is the Customer object array list.
+	 */
 	public List<Customer> getCustomer()
 	{
 		return this.customer;
 	}
+
+	/**
+	 * Get the Order array list.
+	 * @return this is the Order object array list.
+	 */
 	public List<Order> getOrder(){
 		return this.order;
 	}
+
+	/**
+	 * Get the Paid Orders array list.
+	 * @return this is the Order object array list of Paid Orders.
+	 */
 	public List<Order> getPaidOrders(){
 		return this.paidOrders;
 	}
+
+	/**
+	 * Get the Menu Items array list.
+	 * @return this is the Menu Items object array list.
+	 */
 	public List<MenuItem> getMenuItems(){
 		return this.menuItems;
 	}
+
+	/**
+	 * Get the Promotions array list.
+	 * @return this is the Promotions object array list.
+	 */
 	public List<Promotion> getPromotions(){
 		return this.promotions;
 	}
