@@ -36,9 +36,11 @@ public class TimeMgr {
 			System.out.print(diffMinutes + " minutes, ");
 			System.out.println(diffSeconds + " seconds.");
 
-			if (diffDays == 0 && diffMinutes >= 10)
+			if ((diffDays == 0 && diffHours > 0) || (diffDays == 0 && diffMinutes >= 10))
 			{
 				System.out.println("Time limit have reached, reserved table: "+ reservationDate.getTableNumber()+" have been removed");
+				Table table = reservationDate.getTable();
+				table.setStatus(0);
 				reservations.remove(reservationDate);
 				size--;
 			}

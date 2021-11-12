@@ -1,12 +1,14 @@
 package restaurantReservation;
+
 import java.util.*;
 
 /**
- Represents the manager of order class.
- @author SS7_Grp3
- @version 1.0
- @since 2021-10-24
-*/
+ * Represents the manager of order class.
+ * 
+ * @author SS7_Grp3
+ * @version 1.0
+ * @since 2021-10-24
+ */
 
 public class OrderMgr {
 
@@ -17,14 +19,14 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Function used when an order is paid.
-	 * Find the order according to the table number.
-	 * Changes the status of the table.
-	 * @param order This is the list of orders.
-	 * @param paidOrder This is the list of paid orders.
+	 * Function used when an order is paid. Find the order according to the table
+	 * number. Changes the status of the table.
+	 * 
+	 * @param order       This is the list of orders.
+	 * @param paidOrder   This is the list of paid orders.
 	 * @param tableNumber This is the table number of the order being paid.
 	 */
-	
+
 	public void orderPaid(List<Order> order, List<Order> paidOrder, int tableNumber) {
 		int orderSize = order.size();
 		Order found = null;
@@ -43,8 +45,7 @@ public class OrderMgr {
 
 			Customer cust = found.getCustomer();
 			if (cust.getIsMember()) {
-				
-				
+
 				do {
 					System.out.printf("Does the customer want a discount? (Y/N)");
 					discount_str = sc.next().charAt(0);
@@ -59,9 +60,8 @@ public class OrderMgr {
 						System.out.println("Invalid input, please try again!");
 						continue;
 					}
-				} while(true);
+				} while (true);
 			}
-			
 
 			found.printOrderInvoice(discount);
 			table.setStatus(0);
@@ -71,10 +71,11 @@ public class OrderMgr {
 			System.out.println("Order not found!");
 		}
 	}
-	
+
 	/**
 	 * Viewing of order invoice before paying.
-	 * @param order this is the order to view.
+	 * 
+	 * @param order      this is the order to view.
 	 * @param discounted this indicate if there is a discount.
 	 */
 	public void viewOrder(Order order, boolean discounted) {
@@ -106,20 +107,24 @@ public class OrderMgr {
 			System.out.println("(4) Cancel Ordering");
 
 			System.out.printf("Enter the number of your choice: ");
-
+			choice = -1;
 			do {
-				while (!sc.hasNextInt()) {
+				try {
+					choice = sc.nextInt();
+					if(choice < 0 || choice > 4){
+							System.out.println("Input is invalid, try again!");
+							System.out.printf("Enter the number of your choice: ");
+					}
+				} catch (InputMismatchException e) {
+					sc.nextLine();
 					System.out.println("Input is invalid, try again!");
 					System.out.printf("Enter the number of your choice: ");
-					sc.next();
 				}
-				choice = sc.nextInt();
-				break;
-
-			} while (true);
+			} while (choice < 0 || choice > 4);
 
 			switch (choice) {
 			case 1:
+				choice = -1;
 				int mLength = MenuItem.size();
 				System.out.println("CHOICE NAME		FOOD CATEGORY		DESCRIPTION		PRICE");
 				for (int i = 0; i < mLength; i++) {
@@ -132,37 +137,43 @@ public class OrderMgr {
 				System.out.printf("Enter the number of your choice: ");
 
 				do {
-					while (!sc.hasNextInt()) {
+					try {
+						choice = sc.nextInt();
+						if(choice < 0 || choice > mLength){
+							System.out.println("Input is invalid, try again!");
+							System.out.printf("Enter the number of your choice: ");
+						}
+					} catch (InputMismatchException e) {
+						sc.nextLine();
 						System.out.println("Input is invalid, try again!");
 						System.out.printf("Enter the number of your choice: ");
-						sc.next();
 					}
-					choice = sc.nextInt();
-					break;
-
-				} while (true);
+				} while (choice < 0 || choice > mLength);
 
 				while (choice != 0) {
 					orderedMenu.add(MenuItem.get(choice - 1));
 					System.out.println(MenuItem.get(choice - 1).getName() + " Added!");
-
+					
 					System.out.printf("Enter the number of your choice: ");
-
+					choice = -1;
 					do {
-						while (!sc.hasNextInt()) {
+						try {
+							choice = sc.nextInt();
+							if(choice < 0 || choice > mLength){
+								System.out.println("Input is invalid, try again!");
+								System.out.printf("Enter the number of your choice: ");
+							}
+						} catch (InputMismatchException e) {
+							sc.nextLine();
 							System.out.println("Input is invalid, try again!");
 							System.out.printf("Enter the number of your choice: ");
-							sc.next();
 						}
-						choice = sc.nextInt();
-						break;
-
-					} while (true);
-
+					} while (choice < 0 || choice > mLength);
 				}
 				choice = 1;
 				break;
 			case 2:
+				choice = -1;
 				int pLength = Promotion.size();
 
 				System.out.println("CHOICE NAME		DESCRIPTION		PRICE");
@@ -176,30 +187,39 @@ public class OrderMgr {
 				System.out.printf("Enter the number of your choice: ");
 
 				do {
-					while (!sc.hasNextInt()) {
+					try {
+						choice = sc.nextInt();
+						if(choice < 0 || choice > pLength){
+							System.out.println("Input is invalid, try again!");
+							System.out.printf("Enter the number of your choice: ");
+						}
+					} catch (InputMismatchException e) {
+						sc.nextLine();
 						System.out.println("Input is invalid, try again!");
 						System.out.printf("Enter the number of your choice: ");
-						sc.next();
 					}
-					choice = sc.nextInt();
-					break;
-
-				} while (true);
+				} while (choice < 0 || choice > pLength);
 
 				while (choice != 0) {
 					orderedPromo.add(Promotion.get(choice - 1));
 					System.out.println(Promotion.get(choice - 1).getName() + " Added!");
 
+					System.out.printf("Enter the number of your choice: ");
+					choice = -1;
 					do {
-						while (!sc.hasNextInt()) {
+						try {
+							choice = sc.nextInt();
+							if(choice < 0 || choice > pLength){
+								System.out.println("Input is invalid, try again!");
+								System.out.printf("Enter the number of your choice: ");
+							}
+						} catch (InputMismatchException e) {
+							sc.nextLine();
 							System.out.println("Input is invalid, try again!");
 							System.out.printf("Enter the number of your choice: ");
-							sc.next();
 						}
-						choice = sc.nextInt();
-						break;
-
-					} while (true);
+					} while (choice < 0 || choice > pLength);
+					
 				}
 				choice = 1;
 				break;
@@ -225,9 +245,10 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Function to remove an ordered item in the order.
-	 * Item can be a le carte or promotion set.
-	 * @param order This is the list of orders.
+	 * Function to remove an ordered item in the order. Item can be a le carte or
+	 * promotion set.
+	 * 
+	 * @param order       This is the list of orders.
 	 * @param tableNumber This is the table number of the order being paid.
 	 */
 	public void removeOrderItem(List<Order> order, int tableNumber) {
@@ -294,11 +315,14 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Function to add an item in the order.
-	 * Item can be a le carte or promotion set.
-	 * @param order This is the list of orders.
-	 * @param MenuItem This is a list of a le carte items avaliable in the restaurant.
-	 * @param Promotion This is a list of promotion set items avaliable in the restaurant.
+	 * Function to add an item in the order. Item can be a le carte or promotion
+	 * set.
+	 * 
+	 * @param order       This is the list of orders.
+	 * @param MenuItem    This is a list of a le carte items avaliable in the
+	 *                    restaurant.
+	 * @param Promotion   This is a list of promotion set items avaliable in the
+	 *                    restaurant.
 	 * @param tableNumber This is the table number of the order being paid.
 	 */
 	public void addOrderItem(List<Order> order, List<MenuItem> MenuItem, List<Promotion> Promotion, int tableNumber) {

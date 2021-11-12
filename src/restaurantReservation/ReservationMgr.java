@@ -29,7 +29,7 @@ public class ReservationMgr {
 		int tableNo, choice;
 
 		if (size == 0) {
-			System.out.printf("ERROR: There are no reservations at the moment");
+			System.out.printf("ERROR: There are no reservations at the moment\n");
 			return;
 		}
 
@@ -120,7 +120,7 @@ public class ReservationMgr {
 		int size = reservation.size();
 
 		if (size == 0) {
-			System.out.printf("ERROR: There are no reservations at the moment");
+			System.out.printf("ERROR: There are no reservations at the moment\n");
 			return;
 		}
 		System.out.printf("Enter the table number to be removed: ");
@@ -221,9 +221,27 @@ public class ReservationMgr {
 			}
 			table.setCustomerID(cust.getCustomerID());
 
-			System.out.println("Enter Reservation date and time (Format: dd/MM/yyyy HH:mm): ");
-			String dateString = sc.nextLine();
-			Date dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateString);
+			Date dateTime;
+			Date todayDate = new Date();
+			while(true){
+				System.out.println("Enter Reservation date and time (Format: dd/MM/yyyy HH:mm): ");
+				String dateString = sc.nextLine();
+				dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateString);
+				if(dateTime.compareTo(todayDate) > 0){
+					String reserve = new SimpleDateFormat("dd-MM-yyyy").format(dateTime);
+					String today = new SimpleDateFormat("dd-MM-yyyy").format(todayDate);
+					if(reserve.compareTo(today) != 0){
+						System.out.println("Reservation can only made on the same day!");
+					}
+					else{
+						break;
+					}
+				}
+				else if(dateTime.compareTo(todayDate) <= 0){
+					System.out.println("Reservation can only made in advance!");
+				}
+			}
+
 			reservation.add(new Reservation(dateTime, numPax, cust, table));
 		}
 		return;

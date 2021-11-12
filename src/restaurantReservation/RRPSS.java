@@ -417,6 +417,7 @@ public class RRPSS {
                 } while (true);
                 sc.nextLine();
 
+                timeMgr.checkExpired(restaurantMgr.getReservation());
                 int tableSize = restaurantMgr.getTable().size();
                 if (choice == 1) {
                     Boolean exist = false;
