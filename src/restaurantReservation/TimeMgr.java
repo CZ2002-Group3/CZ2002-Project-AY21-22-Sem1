@@ -31,10 +31,10 @@ public class TimeMgr {
 			long diffHours = diff / (60 * 60 * 1000) % 24;
 			long diffDays = diff / (24 * 60 * 60 * 1000);
 
-			System.out.print(diffDays + " days, ");
-			System.out.print(diffHours + " hours, ");
-			System.out.print(diffMinutes + " minutes, ");
-			System.out.println(diffSeconds + " seconds.");
+			// System.out.print(diffDays + " days, ");
+			// System.out.print(diffHours + " hours, ");
+			// System.out.print(diffMinutes + " minutes, ");
+			// System.out.println(diffSeconds + " seconds.");
 
 			if ((diffDays == 0 && diffHours > 0) || (diffDays == 0 && diffMinutes >= 10))
 			{

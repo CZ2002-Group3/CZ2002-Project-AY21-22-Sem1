@@ -339,6 +339,10 @@ public class MenuItemMgr {
 				if (foodToDelete >= 0 && foodToDelete < menuItems.size()) {
 					break;
 				}
+				if (foodToDelete == -1)
+				{
+					break;
+				}
 				System.out.println(
 						"Input entered is either not an integer, or is not in the valid range. Please try again!");
 

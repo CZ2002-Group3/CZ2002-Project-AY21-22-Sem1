@@ -49,13 +49,15 @@ public class RestaurantMgr {
 		promotions.add(promo1);
 
 		// add table
-		table.add(new Table(1, 10));
-		table.add(new Table(2, 10));
-		table.add(new Table(3, 10));
-		table.add(new Table(4, 10));
+		table.add(new Table(1, 2));
+		table.add(new Table(2, 4));
+		table.add(new Table(3, 6));
+		table.add(new Table(4, 8));
 		table.add(new Table(5, 10));
+		table.add(new Table(6, 10));
 
 		// add customer
+		// walk-in
 		long custID;
 		custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
 		customer.add(new Customer(custID, "Tom", true, 12345));
@@ -63,6 +65,10 @@ public class RestaurantMgr {
 		customer.add(new Customer(custID, "John", false, 14224));
 		custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
 		customer.add(new Customer(custID, "Tim", false, 1111));
+
+		// reservation
+		custID = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+		customer.add(new Customer(custID, "Shawn", false, 142541));
 
 		// add staff
 		staff.add(new Staff("Tom", 1234, "Cleaner"));
@@ -79,16 +85,16 @@ public class RestaurantMgr {
 		Staff waiter = staff.get(0);
 
 		cust = customer.get(0);
-		tables = tableMgr.assignTable(table, cust.getCustomerID(), 5);
-		timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("20/10/2021 10:50");
+		tables = tableMgr.assignTable(table, cust.getCustomerID(), 2);
+		timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("12/11/2021 16:48");
 		orderItems = new ArrayList<MenuItem>();
 		orderItems.add(menuItems.get(0));
 		promotionItems = new ArrayList<Promotion>();
 		order.add(new Order(timeStamp, waiter, orderItems, promotionItems, cust, tables));
 
 		cust = customer.get(1);
-		tables = tableMgr.assignTable(table, cust.getCustomerID(), 5);
-		timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("20/10/2020 10:50");
+		tables = tableMgr.assignTable(table, cust.getCustomerID(), 4);
+		timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("12/11/2021 16:30");
 		orderItems = new ArrayList<MenuItem>();
 		orderItems.add(menuItems.get(0));
 		orderItems.add(menuItems.get(1));
@@ -97,8 +103,8 @@ public class RestaurantMgr {
 		order.add(new Order(timeStamp, waiter, orderItems, promotionItems, cust, tables));
 
 		cust = customer.get(1);
-		tables = tableMgr.assignTable(table, cust.getCustomerID(), 5);
-		timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("15/10/2021 10:50");
+		tables = tableMgr.assignTable(table, cust.getCustomerID(), 6);
+		timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("12/11/2021 16:10");
 		orderItems = new ArrayList<MenuItem>();
 		orderItems.add(menuItems.get(0));
 		orderItems.add(menuItems.get(1));
@@ -108,6 +114,12 @@ public class RestaurantMgr {
 		promotionItems.add(promotions.get(0));
 		promotionItems.add(promotions.get(0));
 		order.add(new Order(timeStamp, waiter, orderItems, promotionItems, cust, tables));
+
+		// add reservation
+		cust = customer.get(3);
+		tables = tableMgr.reserveTable(table, 5);
+		Date dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("12/11/2021 18:53");
+		reservation.add(new Reservation(dateTime, 5, cust, tables));
 	}
 
 	/**
